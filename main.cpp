@@ -10,15 +10,7 @@
  *
  */
 
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
-#include <pthread.h>
-#include <mutex>
-#include <chrono>
-#include <unistd.h>
-#include <sys/types.h>
+
 
 #include "lexer.h"
 
@@ -26,6 +18,7 @@
 #define NUM_THREADS 8
 
 // Function prototypes
+
 
 // Threads structs
 struct thread_data
