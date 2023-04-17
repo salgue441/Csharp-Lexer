@@ -59,7 +59,7 @@ public:
     void set_html_title(const std::string &);
 
     // Public methods
-    void tokenize(const std::string &, const size_t &);
+    std::string tokenize(const std::string &);
     void print_tokens() const;
     void print_html() const;
 

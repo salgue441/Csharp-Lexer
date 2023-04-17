@@ -10,15 +10,15 @@
  *
  */
 
+#include <iostream>
 
-
+// Classes
 #include "lexer.h"
 
 // Constants & Macros
 #define NUM_THREADS 8
 
 // Function prototypes
-
 
 // Threads structs
 struct thread_data
@@ -33,6 +33,12 @@ struct thread_data
  * @param argv - Arguments
  * @return int - 0 if success, 1 if error
  */
-int main(int argc, char **argv) {}
+int main(int argc, char **argv)
+{
+    (void)argc;
+    (void)argv;
+
+    std::cout << "Hello World!" << std::endl;
+}
 
 // Function definitions
