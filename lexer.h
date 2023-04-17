@@ -35,7 +35,10 @@
 /**
  * @class Lexer
  * @brief
- * The lexer class
+ * The lexer class is responsible for tokenizing the input file.
+ * It uses a thread pool to tokenize the file.
+ * The tokens are stored in a vector and can be accessed by the
+ * main thread.
  */
 class Lexer
 {
@@ -50,8 +53,6 @@ public:
     std::string get_html_classes() const;
     std::string get_html_title() const;
     std::vector<std::string> get_tokens() const;
-    std::mutex get_token_mutex() const;
-    std::condition_variable get_token_cv() const;
     bool get_is_finished() const;
 
     // Mutator Methods
@@ -72,7 +73,7 @@ private:
     bool is_finished;
 
     // Private methods
-    std::optional<size_t> get_next_token();
+    std::optional<std::string> get_next_token();
     void lexer_thread(const std::string &, size_t, size_t);
     void handle_token(const std::string &);
 };
