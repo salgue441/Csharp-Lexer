@@ -2,7 +2,7 @@
  * @file lexer.h
  * @author Carlos Salguero
  * @author Sergio Garnica
- * @brief Parallel lexer for Csharp language
+ * @brief Lexer class definition
  * @version 0.1
  * @date 2023-04-17
  *
@@ -21,50 +21,60 @@
 #endif
 
 // Libraries
-#include <iostream>
-#include <fstream>
 #include <sstream>
 #include <string>
 #include <vector>
-#include <mutex>
-#include <condition_variable>
 #include <memory>
 #include <optional>
+#include <mutex>
+#include <condition_variable>
 
-// Constants and macros
 #define MAX_THREADS 8
 #define MAX_BUFFER_SIZE 1024
 
-// Function prototypes
 /**
+ * @class Lexer
  * @brief
- * Processes a chunk of input by parsing it and adding the recognized tokens
- * to a shared vector.
- * @param input - The chunk of input to process.
+ * The lexer class
  */
-void process_chunks(std::unique_ptr<std::string> &);
+class Lexer
+{
+public:
+    // Constructor
+    Lexer() = default;
 
-/**
- * @brief
- * Starts a pool of workers threads to process the chunks of input.
- * @param chunks - a vector of unique pointers to the chunks of input.
- * @param num_threads - The number of threads to start.
- */
-void start_workers(std::vector<std::unique_ptr<std::string>> &, const size_t &);
+    // Destructor
+    ~Lexer() = default;
 
-/**
- * @brief
- * Waits for all the workers to finish processing the chunks of input.
- * @param num_threads - The number of threads to wait for.
- */
-void wait_workers(const size_t &);
+    // Access Methods
+    std::string get_html_classes() const;
+    std::string get_html_title() const;
+    std::vector<std::string> get_tokens() const;
+    std::mutex get_token_mutex() const;
+    std::condition_variable get_token_cv() const;
+    bool get_is_finished() const;
 
-/**
- * @brief
- * Generates the HTML file with syntax highlighting for the recognized tokens.
- * @param tokens - The vector of recognized tokens.
- * @param filename - The name of the file to generate
- */
-void generate_html(const std::vector<std::string> &, const std::string &);
+    // Mutator Methods
+    void set_html_classes(const std::string &);
+    void set_html_title(const std::string &);
+
+    // Public methods
+    void tokenize(const std::string &, const size_t &);
+    void print_tokens() const;
+    void print_html() const;
+
+private:
+    std::string m_html_classes;
+    std::string m_html_title;
+    std::vector<std::string> m_tokens;
+    std::mutex m_token_mutex;
+    std::condition_variable m_token_cv;
+    bool is_finished;
+
+    // Private methods
+    std::optional<size_t> get_next_token();
+    void lexer_thread(const std::string &, size_t, size_t);
+    void handle_token(const std::string &);
+};
 
 #endif //! LEXER_H
