@@ -13,39 +13,29 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#ifdef _WIN32
-#include <windows.h>
-#else
-#include <unistd.h>
-#include <pthread.h>
-#endif
-
-#include <iostream>
-#include <fstream>
-#include <sstream>
 #include <string>
 #include <vector>
-#include <mutex>
-#include <condition_variable>
-#include <memory>
-#include <optional>
 
 /**
  * @brief
- * Reads a file and returns its contents as a string.
- * @param filename - The name of the file to read.
- * @return std::string - The contents of the file.
+ * Enumeration for the token types
+ *
  */
-std::string read_file(const std::string &);
+enum class TokenType
+{
+    Keyword,
+    Identifier,
+    Literal,
+    Operator,
+    Separator,
+    Comment,
+    Other
+};
 
-/**
- * @brief
- * Splits a string into chunks of a given size.
- * @param input - The string to split.
- * @param chunk_size - The size of each chunk.
- * @return std::vector<std::string> - The chunks of the string.
- */
-std::vector<std::unique_ptr<std::string>> split_string(
-    const std::string &, const size_t &);
+struct Token
+{
+    TokenType type;
+    std::string value;
+};
 
 #endif //! UTILS_H
