@@ -23,6 +23,7 @@
 // Libraries
 #include <sstream>
 #include <string>
+#include <string_view>
 #include <vector>
 #include <memory>
 #include <optional>
@@ -74,8 +75,8 @@ private:
 
     // Private methods
     std::optional<std::string> get_next_token();
-    void lexer_thread(const std::string &, size_t, size_t);
-    void handle_token(const std::string &);
+    void lexer_thread(const std::string_view &, size_t, size_t);
+    void handle_token(const std::string_view &);
 };
 
 #endif //! LEXER_H

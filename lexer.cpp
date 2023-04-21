@@ -106,38 +106,18 @@ void Lexer::set_html_title(const std::string &html_title)
  * @param chunk_size - The size of each chunk.
  * @return std::vector<std::string> - The tokens vector.
  */
-void Lexer::lexer_thread(const std::string &input,
+void Lexer::lexer_thread(const std::string_view &input,
                          size_t num_chunks, size_t chunk_size)
 {
-    std::vector<std::thread> threads;
-    std::vector<std::string> chunks;
+    std::vector<std::string> tokens;
+    tokens.reserve(num_chunks);
 
-    size_t input_size{input.size()};
-
-    for (size_t i{}; i < num_chunks; i++)
+    for (size_t i = 0; i < num_chunks; ++i)
     {
-        size_t start_index{i * chunk_size};
-        size_t end_index{(i + 1) * chunk_size};
-
-        if (end_index > input_size)
-            end_index = input_size;
-
-        chunks.emplace_back(input.substr(start_index,
-                                         end_index - start_index));
+        std::string chunk{input.substr(i * chunk_size, chunk_size)};
+        tokens.push_back(tokenize(chunk));
     }
 
-    for (size_t i{}; i < num_chunks; i++)
-        threads.emplace_back([this, chunk = std::move(chunks[i])]
-                             { tokenize(chunk); });
-
-    for (auto &thread : threads)
-        thread.join();
-
-    // Signal that tokenization is finished
-    {
-        std::unique_lock<std::mutex> lock(m_token_mutex);
-        is_finished = true;
-    }
-
-    m_token_cv.notify_all();
+    std::unique_lock<std::mutex> lock(m_token_mutex);
+    m_tokens.insert(m_tokens.end(), tokens.begin(), tokens.end());
 }

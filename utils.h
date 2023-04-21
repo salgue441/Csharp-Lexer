@@ -19,7 +19,8 @@
 /**
  * @brief
  * Enumeration for the token types
- *
+ * @enum TokenType - Keyword, Identifier, Literal, Operator,
+ *                   Separator, Comment, Other
  */
 enum class TokenType
 {
@@ -32,6 +33,11 @@ enum class TokenType
     Other
 };
 
+/**
+ * @brief
+ * Struct for the tokens of the lexer
+ * @struct Token - type, value
+ */
 struct Token
 {
     TokenType type;
