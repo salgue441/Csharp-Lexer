@@ -1,1 +1,1 @@
-/usr/bin/c++ -rdynamic CMakeFiles/Lexer.dir/main.cpp.o -o Lexer 
+/usr/bin/c++ CMakeFiles/Lexer.dir/main.cpp.o -o Lexer 
