@@ -21,17 +21,15 @@
 #endif
 
 // Libraries
-#include <sstream>
 #include <string>
-#include <string_view>
 #include <vector>
-#include <memory>
-#include <optional>
+#include <string_view>
 #include <mutex>
 #include <condition_variable>
+#include <optional>
 
-#define MAX_THREADS 8
-#define MAX_BUFFER_SIZE 1024
+// Project files
+#include "Utils.h"
 
 /**
  * @class Lexer
@@ -43,39 +41,37 @@
  */
 class Lexer
 {
-public:
+public: 
     // Constructor
     Lexer() = default;
 
-    // Destructor
+    // Destructor 
     ~Lexer() = default;
 
-    // Access Methods
+    // Access functions
     std::string get_html_classes() const;
     std::string get_html_title() const;
-    std::vector<std::string> get_tokens() const;
-    bool get_is_finished() const;
+    std::vector<Token> get_tokens() const;
+    bool is_finished() const;
 
-    // Mutator Methods
-    void set_html_classes(const std::string &);
-    void set_html_title(const std::string &);
+    // Mutator functions
+    void set_html_classes(const std::string_view &);
+    void set_html_title(const std::string_view &);
 
-    // Public methods
-    std::string tokenize(const std::string &);
-    void print_tokens() const;
-    void print_html() const;
+    // Public functions
+    void tokenize(const std::string_view &);
 
 private:
     std::string m_html_classes;
     std::string m_html_title;
-    std::vector<std::string> m_tokens;
-    std::mutex m_token_mutex;
-    std::condition_variable m_token_cv;
-    bool is_finished;
+    std::vector<Token> m_tokens;
+    std::mutex m_mutex;
+    std::condition_variable m_cv;
+    bool m_finished{false};
 
-    // Private methods
-    std::optional<std::string> get_next_token();
-    void lexer_thread(const std::string_view &, size_t, size_t);
+    // Private functions
+    std::optional<std::string> get_next_token(const std::string_view &);
+    void lexer_thread(const std::string_view &, const size_t &, const size_t &);
     void handle_token(const std::string_view &);
 };
 
