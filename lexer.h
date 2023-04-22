@@ -13,66 +13,50 @@
 #ifndef LEXER_H
 #define LEXER_H
 
-#ifdef _WIN32
-#include <windows.h>
-#else
-#include <unistd.h>
-#include <pthread.h>
-#endif
-
-// Libraries
+// C++ Standard Library
 #include <string>
 #include <vector>
-#include <string_view>
-#include <mutex>
-#include <condition_variable>
-#include <optional>
+#include <string_view>        // for std::string_view, std::string_view_literals
+#include <mutex>              // for std::mutex, std::lock_guard
+#include <condition_variable> // for std::condition_variable
+#include <optional>           // for std::optional
+#include <pthread.h>          // for pthread_t
+#include <future>             // for std::async, std::future
+#include <memory>             // for smart pointers
 
 // Project files
 #include "Utils.h"
 
-/**
- * @class Lexer
- * @brief
- * The lexer class is responsible for tokenizing the input file.
- * It uses a thread pool to tokenize the file.
- * The tokens are stored in a vector and can be accessed by the
- * main thread.
- */
 class Lexer
 {
-public: 
-    // Constructor
+public:
     Lexer() = default;
-
-    // Destructor 
     ~Lexer() = default;
 
-    // Access functions
     std::string get_html_classes() const;
     std::string get_html_title() const;
-    std::vector<Token> get_tokens() const;
+    std::vector<std::unique_ptr<Token>> get_tokens() const;
     bool is_finished() const;
 
-    // Mutator functions
     void set_html_classes(const std::string_view &);
     void set_html_title(const std::string_view &);
 
-    // Public functions
     void tokenize(const std::string_view &);
 
 private:
     std::string m_html_classes;
     std::string m_html_title;
-    std::vector<Token> m_tokens;
+    std::vector<std::unique_ptr<Token>> m_tokens;
     std::mutex m_mutex;
     std::condition_variable m_cv;
+    std::size_t m_max_threads{std::thread::hardware_concurrency()};
     bool m_finished{false};
+    std::vector<pthread_t> m_threads;
+    std::vector<std::future<void>> m_futures;
 
-    // Private functions
     std::optional<std::string> get_next_token(const std::string_view &);
-    void lexer_thread(const std::string_view &, const size_t &, const size_t &);
+    void lexer_thread(const std::string_view &);
     void handle_token(const std::string_view &);
 };
 
-#endif //! LEXER_H
+#endif // LEXER_H

@@ -36,41 +36,22 @@ std::string Lexer::get_html_title() const
 /**
  * @brief
  * Gets the tokens vector.
- * @return std::vector<std::string> - The tokens vector.
+ * @return std::vector<Token> - The tokens vector.
  */
-std::vector<std::string> Lexer::get_tokens() const
+std::vector<Token> Lexer::get_tokens() const
 {
     return m_tokens;
 }
 
 /**
  * @brief
- * Gets the is_finished flag.
- * @return bool - The is_finished flag.
+ * Checks if the lexer has finished tokenizing the file.
+ * @return true - The lexer has finished tokenizing the file.
+ * @return false - The lexer has not finished tokenizing the file.
  */
-bool Lexer::get_is_finished() const
+bool Lexer::is_finished() const
 {
-    return is_finished;
-}
-
-// Private Access Methods
-/**
- * @brief
- * Gets the next token from the buffer and removes it.
- * @return std::optional<std::string> - The next token.
- * @return std::nullopt - If there are no more tokens.
- */
-std::optional<std::string> Lexer::get_next_token()
-{
-    std::unique_lock<std::mutex> lock(m_token_mutex);
-
-    if (m_tokens.empty())
-        return std::nullopt;
-
-    std::string token{m_tokens.front()};
-    m_tokens.erase(m_tokens.begin());
-
-    return token;
+    return m_finished;
 }
 
 // Mutator Methods
@@ -79,7 +60,7 @@ std::optional<std::string> Lexer::get_next_token()
  * Sets the HTML classes for the output file.
  * @param html_classes - The HTML classes.
  */
-void Lexer::set_html_classes(const std::string &html_classes)
+void Lexer::set_html_classes(const std::string_view &html_classes)
 {
     m_html_classes = html_classes;
 }
@@ -89,35 +70,78 @@ void Lexer::set_html_classes(const std::string &html_classes)
  * Sets the HTML title for the output file.
  * @param html_title - The HTML title.
  */
-void Lexer::set_html_title(const std::string &html_title)
+void Lexer::set_html_title(const std::string_view &html_title)
 {
     m_html_title = html_title;
 }
 
-// Private Functions
+// Private Methods
 /**
  * @brief
- * Starts a lexer thread to tokenize a string input. Creates a thread
- * that tokenizes a string input. The input is devided into chunks and
- * each chunk is tokenized by a thread. The tokens are stored in a vector
- * and can be accessed by the main thread.s
- * @param input - The string input to tokenize.
- * @param num_threads - The number of threads to use.
- * @param chunk_size - The size of each chunk.
- * @return std::vector<std::string> - The tokens vector.
+ * Gets the next token from the input file.
+ * @param input - The input file.
+ * @return std::optional<std::string> - The next token.
+ * @return std::nullopt - If there are no more tokens.
  */
-void Lexer::lexer_thread(const std::string_view &input,
-                         size_t num_chunks, size_t chunk_size)
+std::optional<std::string> Lexer::get_next_token(const std::string_view &input)
 {
-    std::vector<std::string> tokens;
-    tokens.reserve(num_chunks);
+    static std::size_t pos{};
+    static const std::size_t input_size{input.size()};
+    static const std::string_view delimeters{" \t\r\n"};
 
-    for (size_t i = 0; i < num_chunks; ++i)
+    if (pos == input_size)
+        return std::nullopt;
+
+    std::size_t token_start{
+        input.find_first_not_of(delimeters, pos)};
+
+    if (token_start == std::string::npos)
+        return std::nullopt;
+
+    std::size_t token_end{
+        input.find_first_of(delimeters, token_start)};
+
+    if (token_end == std::string::npos)
+        token_end = input_size;
+
+    pos = token_end;
+
+    return std::make_shared<std::string>(input.substr(
+        token_start, token_end - token_start));
+}
+
+/**
+ * @brief
+ *
+ */
+void Lexer::lexer_thread(const std::string_view &input)
+{
+    std::optional<std::string> token{get_next_token(input)};
+
+    while (token)
     {
-        std::string chunk{input.substr(i * chunk_size, chunk_size)};
-        tokens.push_back(tokenize(chunk));
+        std::unique_lock<std::mutex> lock(m_mutex);
+
+        m_tokens.push_back(Token{TokenType::Other, *token});
+        lock.unlock();
+        m_cv.notify_one();
+        token = get_next_token(input);
     }
 
-    std::unique_lock<std::mutex> lock(m_token_mutex);
-    m_tokens.insert(m_tokens.end(), tokens.begin(), tokens.end());
+    m_finished = true;
+    m_cv.notify_one();
+
+    return;
+}
+
+// Other Methods (public)
+/**
+ * @brief
+ * Tokenizes the input file.
+ * @param filenames - The filenames to tokenize.
+ * @return void
+ * @throw std::runtime_error - If the file cannot be opened.
+ */
+void Lexer::tokenize(const std::vector<std::string> &filenames)
+{
 }
