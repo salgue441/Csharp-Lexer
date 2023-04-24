@@ -59,7 +59,7 @@ private:
     std::size_t m_max_threads{std::thread::hardware_concurrency()};
     std::vector<std::thread> m_threads;
     std::vector<std::future<void>> m_futures;
-    bool m_is_finished{false};
+    bool m_finished{false};
 
     // Access methods
     std::optional<std::string_view> get_next_token(const std::string_view &,
