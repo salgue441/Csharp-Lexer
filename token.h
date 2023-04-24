@@ -69,7 +69,15 @@ public:
     bool is_operator() const;
     bool is_separator() const;
     bool is_comment() const;
-    bool is_other() const;
+    bool is_preprocessor() const;
+    bool is_contextual_keyword() const;
+    bool is_access_specifier() const;
+    bool is_attribute_target() const;
+    bool is_attribute_usage() const;
+    bool is_escaped_identifier() const;
+    bool is_interpolated_string() const;
+    bool is_nullable() const;
+    bool is_verbatim_string() const;
 
 private:
     std::string m_value;
