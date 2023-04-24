@@ -46,9 +46,10 @@ std::optional<std::string_view> Lexer::get_next_token(
  * Process the input string in parallel to generate tokens. It is designed
  * to run in a separate thead, tokenizing the input string and storing
  * the token in the shared tokens vector in a thread safe manner.
+ * @note Is designed to be run as a separate thread.
  * @param input The input string to be tokenized
- * @timecomplexity O(n)
- * @spacecomplexity O(1)
+ * @timecomplexity O(n) - Where n is the length of the input string
+ * @spacecomplexity O(n) - Because the tokens vector is resized
  */
 void Lexer::lexer_thread(const std::string_view &input)
 {
@@ -64,6 +65,29 @@ void Lexer::lexer_thread(const std::string_view &input)
 
         m_cv.notify_one();
     }
+}
+
+/**
+ * @brief
+ * Handles the token by adding it to the tokens vector. This function is
+ * thread safe.
+ * @note This function is designed to handle a single token at a time.
+ *       It is intended to be used when you already have a token
+ *       and you want to add it to the tokens vector.
+ * @param token_str The token to be handled
+ * @timecomplexity O(1) - Handles a single token at a time
+ * @spacecomplexity O(1) - Doesn't allocate any memory on the heap
+ */
+void Lexer::handle_token(const std::string_view &token_str)
+{
+    std::shared_ptr<Token> token = std::make_shared<Token>(token_str);
+
+    {
+        std::lock_guard<std::mutex> lock(m_mutex);
+        m_tokens.push_back(token);
+    }
+
+    m_cv.notify_one();
 }
 
 // Mutator Methods (public)
