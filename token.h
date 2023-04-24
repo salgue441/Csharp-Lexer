@@ -14,6 +14,7 @@
 #define TOKEN_H
 
 #include <string>
+#include <sstream>
 #include <array>
 #include <memory>
 #include <optional>

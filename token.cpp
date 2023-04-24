@@ -182,3 +182,93 @@ void Token::set_type(TokenType type)
 {
     this->m_type = type;
 }
+
+// Functions
+/**
+ * @brief
+ * Prints the token to the console in a readable format
+ * @return std::string The token in a readable format
+ */
+std::string Token::to_string() const
+{
+    std::istringstream iss(this->m_value);
+    std::ostringstream oss;
+    std::string token;
+
+    while (std::getline(iss, token, ' '))
+    {
+        if (std::find(m_keywords.begin(),
+                      m_keywords.end(), token) != m_keywords.end())
+            oss << "Keyword: " << token << std::endl;
+
+        else if (std::find(m_operators.begin(),
+                           m_operators.end(),
+                           token) != m_operators.end())
+            oss << "Operator: " << token << std::endl;
+
+        else if (std::find(m_separators.begin(),
+                           m_separators.end(),
+                           token) != m_separators.end())
+            oss << "Separator: " << token << std::endl;
+
+        else if (std::find(m_comments.begin(),
+                           m_comments.end(),
+                           token) != m_comments.end())
+            oss << "Comment: " << token << std::endl;
+
+        else if (std::find(m_literals.begin(),
+                           m_literals.end(),
+                           token) != m_literals.end())
+            oss << "Literal: " << token << std::endl;
+
+        else if (std::find(m_preprocessor.begin(),
+                           m_preprocessor.end(),
+                           token) != m_preprocessor.end())
+            oss << "Preprocessor: " << token << std::endl;
+
+        else if (std::find(m_contextual_keywords.begin(),
+                           m_contextual_keywords.end(),
+                           token) != m_contextual_keywords.end())
+            oss << "Contextual Keyword: " << token << std::endl;
+
+        else if (std::find(m_access_specifiers.begin(),
+                           m_access_specifiers.end(),
+                           token) != m_access_specifiers.end())
+            oss << "Access Specifier: " << token << std::endl;
+
+        else if (std::find(m_attribute_targets.begin(),
+                           m_attribute_targets.end(),
+                           token) != m_attribute_targets.end())
+            oss << "Attribute Target: " << token << std::endl;
+
+        else if (std::find(m_attribute_usage.begin(),
+                           m_attribute_usage.end(),
+                           token) != m_attribute_usage.end())
+            oss << "Attribute Usage: " << token << std::endl;
+
+        else if (std::find(m_escaped_identifiers.begin(),
+                           m_escaped_identifiers.end(),
+                           token) != m_escaped_identifiers.end())
+            oss << "Escaped Identifier: " << token << std::endl;
+
+        else if (std::find(m_interpolated_strings.begin(),
+                           m_interpolated_strings.end(),
+                           token) != m_interpolated_strings.end())
+            oss << "Interpolated String: " << token << std::endl;
+
+        else if (std::find(m_nullables.begin(),
+                           m_nullables.end(),
+                           token) != m_nullables.end())
+            oss << "Nullable: " << token << std::endl;
+
+        else if (std::find(m_verbatim_strings.begin(),
+                           m_verbatim_strings.end(),
+                           token) != m_verbatim_strings.end())
+            oss << "Verbatim String: " << token << std::endl;
+
+        else
+            oss << "Identifier: " << token << std::endl;
+    }
+
+    return oss.str();
+}
