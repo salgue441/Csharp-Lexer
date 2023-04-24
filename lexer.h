@@ -62,7 +62,8 @@ private:
     bool m_is_finished{false};
 
     // Access methods
-    std::optional<std::string> get_next_token(const std::string_view &);
+    std::optional<std::string_view> get_next_token(const std::string_view &,
+                                                   std::size_t &) const;
 
     // Functions
     void lexer_thread(const std::string_view &);
