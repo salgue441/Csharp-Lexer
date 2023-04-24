@@ -21,6 +21,8 @@
  * @param current_position The current position in the input string
  * @return std::optional<std::string_view> - The next token in the input string
  * @return std::nullopt - If there are no more tokens in the input string
+ * @timecomplexity O(n)
+ * @spacecomplexity O(1)
  */
 std::optional<std::string_view> Lexer::get_next_token(
     const std::string_view &input, std::size_t &current_position) const
@@ -37,6 +39,31 @@ std::optional<std::string_view> Lexer::get_next_token(
 
     return input.substr(start_position,
                         current_position - start_position);
+}
+
+/**
+ * @brief
+ * Process the input string in parallel to generate tokens. It is designed
+ * to run in a separate thead, tokenizing the input string and storing
+ * the token in the shared tokens vector in a thread safe manner.
+ * @param input The input string to be tokenized
+ * @timecomplexity O(n)
+ * @spacecomplexity O(1)
+ */
+void Lexer::lexer_thread(const std::string_view &input)
+{
+    std::size_t current_position{0};
+    std::optional<std::string_view> token;
+
+    while ((token = get_next_token(input, current_position)))
+    {
+        {
+            std::lock_guard<std::mutex> lock(m_mutex);
+            m_tokens.push_back(std::make_shared<Token>(*token));
+        }
+
+        m_cv.notify_one();
+    }
 }
 
 // Mutator Methods (public)
