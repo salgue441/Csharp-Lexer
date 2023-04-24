@@ -124,4 +124,6 @@ std::optional<std::pair<TokenType, std::string_view>> Lexer::get_next_token(
         return std::make_pair(TokenType::Literal, token);
     else
         return std::make_pair(TokenType::Identifier, token);
+
+    return std::nullopt;
 }
