@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/c/Users/carlo/Documents/Tec de Monterrey/Semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/ThreadLexer
+# Install script for directory: /mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/mnt/c/Users/carlo/Documents/Tec de Monterrey/Semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/ThreadLexer/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

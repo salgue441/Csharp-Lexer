@@ -13,21 +13,15 @@
 #include <iostream>
 #include <string_view>
 #include <filesystem>
+#include <fstream>
+#include <memory>
+#include <vector>
 
 // Classes
-#include "lexer.h"
-
-// Constants & Macros
-#define NUM_THREADS 8
+#include "lexer.cpp"
 
 // Function prototypes
-std::vector<std::string> get_filename(const std::string_view &filename);
-void write_output(const std::string_view &, const std::string_view &);
-
-// Threads structs
-struct thread_data
-{
-};
+std::vector<std::filesystem::path> get_filenames(const std::string_view &);
 
 // Main function
 /**
@@ -49,10 +43,17 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    std::vector<std::string> filenames = get_filename(argv[1]);
+    auto filenames = get_filenames(argv[1]);
+    Lexer lexer;
 
-    std::cout
-        << "Hello World!" << std::endl;
+    std::cout << "Input files: " << std::endl;
+
+    for (const auto &filename : filenames)
+    {
+        std::cout << filename << std::endl;
+    }
+
+    std::cout << std::endl;
 }
 
 // Function definitions
@@ -61,31 +62,33 @@ int main(int argc, char **argv)
  * @brief
  * Gets the filename from the arguments passed to the program
  * @param filename - Filename passed to the program
- * @return std::vector<std::string> - Vector with the filenames
+ * @return std::vector<std::filesystem::path> - Vector of filenames
  */
-std::vector<std::string> get_filename(const std::string_view &filename)
+std::vector<std::filesystem::path> get_filenames(
+    const std::string_view &input_directory)
 {
-    std::vector<std::string> filenames;
+    std::vector<std::filesystem::path> filenames;
+    std::filesystem::path path{input_directory};
 
-    if (filename.find(".cs") != std::string::npos)
+    if (!std::filesystem::is_directory(path))
     {
-        filenames.reserve(1);
-        filenames.push_back(std::string(filename));
+        std::cerr << "Error: " << input_directory << " is not a valid directory" << std::endl;
+        exit(1);
     }
 
-    else if (std::filesystem::is_directory(filename))
+    for (const auto &entry : std::filesystem::directory_iterator(path))
     {
-        for (const auto &entry : std::filesystem::directory_iterator(filename))
-            if (entry.path().extension() == ".cs")
-                filenames.push_back(entry.path().string());
-
-        filenames.shrink_to_fit();
+        if (entry.path().extension() == ".cs")
+        {
+            filenames.push_back(entry.path());
+        }
     }
 
-    else
-        throw std::invalid_argument("Invalid filename");
+    if (filenames.empty())
+    {
+        std::cerr << "Error: no input files found in " << input_directory << std::endl;
+        exit(1);
+    }
 
     return filenames;
 }
-
-// Threads functions

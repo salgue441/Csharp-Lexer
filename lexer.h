@@ -62,12 +62,14 @@ private:
     bool m_finished{false};
 
     // Access methods
-    std::optional<std::string_view> get_next_token(const std::string_view &,
-                                                   std::size_t &) const;
+    std::optional<std::pair<TokenType, std::string_view>>
+    get_next_token(const std::string_view &, const std::size_t &) const;
 
     // Functions
+    bool is_keyword(const std::string_view &) const;
+    bool is_literal(const std::string_view &) const;
     void lexer_thread(const std::string_view &);
-    void handle_token(const std::string_view &);
+    void handle_token(const TokenType, const std::string_view &);
 };
 
 #endif // LEXER_H

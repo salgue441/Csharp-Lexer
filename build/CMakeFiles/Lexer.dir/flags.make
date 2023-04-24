@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"/mnt/c/Users/carlo/Documents/Tec de Monterrey/Semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/ThreadLexer/include"
+CXX_INCLUDES = -I"/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/include"
 
 CXX_FLAGS = -Wall -Wextra -Werror -std=gnu++20
 

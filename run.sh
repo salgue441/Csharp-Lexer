@@ -9,8 +9,8 @@ cmake ..
 # Build the program
 make
 
-# Run the program with input file/directory output file/directory
-./Lexer ./input ./output
+# Run the program with input and output directories
+./Lexer ../input ../output
 
 # Clean up the build files
 make clean

@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/mnt/c/Users/carlo/Documents/Tec de Monterrey/Semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/ThreadLexer"
+CMAKE_SOURCE_DIR = "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/mnt/c/Users/carlo/Documents/Tec de Monterrey/Semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/ThreadLexer/build"
+CMAKE_BINARY_DIR = "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/build"
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -81,14 +81,14 @@ clean: CMakeFiles/Lexer.dir/clean
 CMakeFiles/Lexer.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lexer.dir/build.make CMakeFiles/Lexer.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lexer.dir/build.make CMakeFiles/Lexer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/mnt/c/Users/carlo/Documents/Tec de Monterrey/Semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/ThreadLexer/build/CMakeFiles" --progress-num=1,2 "Built target Lexer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/build/CMakeFiles" --progress-num=1,2 "Built target Lexer"
 .PHONY : CMakeFiles/Lexer.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Lexer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/carlo/Documents/Tec de Monterrey/Semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/ThreadLexer/build/CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/build/CMakeFiles" 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Lexer.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/carlo/Documents/Tec de Monterrey/Semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/ThreadLexer/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/build/CMakeFiles" 0
 .PHONY : CMakeFiles/Lexer.dir/rule
 
 # Convenience name for target.
