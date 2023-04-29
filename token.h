@@ -13,6 +13,9 @@
 #ifndef TOKEN_H
 #define TOKEN_H
 
+#pragma once
+
+// C++ standard libraries
 #include <string>
 #include <sstream>
 #include <array>

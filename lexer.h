@@ -1,10 +1,9 @@
 /**
  * @file lexer.h
  * @author Carlos Salguero
- * @author Sergio Garnica
- * @brief Lexer class definition
- * @version 0.3
- * @date 2023-04-17
+ * @brief Declaration of th lexer class
+ * @version 0.1
+ * @date 2023-04-29
  *
  * @copyright Copyright (c) 2023
  *
@@ -13,63 +12,56 @@
 #ifndef LEXER_H
 #define LEXER_H
 
-// C++ Standard Library
+// C++ standard libraries
+#include <string_view>
+#include <condition_variable>
 #include <string>
 #include <vector>
-#include <string_view>        // for std::string_view, std::string_view_literals
-#include <mutex>              // for std::mutex, std::lock_guard
-#include <condition_variable> // for std::condition_variable
-#include <optional>           // for std::optional
-#include <thread>             // for std::thread and std::this_thread
-#include <future>             // for std::async, std::future
-#include <memory>             // for smart pointers
+#include <thread>
+#include <mutex>
+#include <atomic>
+#include <cstdint>
+#include <queue>
 
 // Project files
-#include "Utils.h"
+#include "token.h"
 
-class Lexer
+/**
+ * @brief
+ * Class for the lexer in multithreading
+ * @class Lexer
+ */
+class ParallelLexer
 {
 public:
     // Constructor
-    Lexer() = default;
+    ParallelLexer() = default;
 
     // Destructor
-    ~Lexer() = default;
+    ~ParallelLexer() = default;
 
-    // Access methods
-    std::string get_html_classes() const;
-    std::string get_html_title() const;
-    std::vector<std::shared_ptr<Token>> get_tokens() const;
-    bool is_finished() const;
+    // MutatorsJ
+    void set_num_threads(const std::uint32_t &);
 
-    // Mutator methods
-    void set_html_classes(const std::string &);
-    void set_html_title(const std::string &);
-    void set_tokens(const std::vector<std::shared_ptr<Token>> &);
-
-    // Functions
-    void tokenize(const std::string_view &);
+    // Methods
+    void add_input(const std::string_view &);
+    void write_token_to_file(const std::string_view &);
+    void tokenize();
 
 private:
-    std::string m_html_classes;
-    std::string m_html_title;
-    std::vector<std::shared_ptr<Token>> m_tokens;
-    std::mutex m_mutex;
-    std::condition_variable m_cv;
-    std::size_t m_max_threads{std::thread::hardware_concurrency()};
-    std::vector<std::thread> m_threads;
-    std::vector<std::future<void>> m_futures;
-    bool m_finished{false};
+    std::string m_input{};
+    std::uint32_t num_threads{};
+    std::vector<std::thread> m_threads{};
+    std::vector<std::queue<Token>> m_queues{};
+    std::vector<std::mutex> m_mutexes{};
+    std::vector<std::condition_variable> m_condition_variables{};
+    std::atomic<bool> m_finished{false};
 
-    // Access methods
-    std::optional<std::pair<TokenType, std::string_view>>
-    get_next_token(const std::string_view &, const std::size_t &) const;
-
-    // Functions
-    bool is_keyword(const std::string_view &) const;
-    bool is_literal(const std::string_view &) const;
-    void lexer_thread(const std::string_view &);
-    void handle_token(const TokenType, const std::string_view &);
+    // Methods
+    void tokenize_worker();
+    std::vector<std::string> tokenize_chunk(const std::string_view &);
+    void split_input_into_chunks();
+    void process_token();
 };
 
-#endif // LEXER_H
+#endif //! LEXER_H
