@@ -265,6 +265,30 @@ gtest_main/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
+src/lexer.o: src/lexer.cpp.o
+.PHONY : src/lexer.o
+
+# target to build an object file
+src/lexer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/lexer.cpp.o
+.PHONY : src/lexer.cpp.o
+
+src/lexer.i: src/lexer.cpp.i
+.PHONY : src/lexer.i
+
+# target to preprocess a source file
+src/lexer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/lexer.cpp.i
+.PHONY : src/lexer.cpp.i
+
+src/lexer.s: src/lexer.cpp.s
+.PHONY : src/lexer.s
+
+# target to generate assembly for a file
+src/lexer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/lexer.cpp.s
+.PHONY : src/lexer.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -313,6 +337,30 @@ src/token.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/token.cpp.s
 .PHONY : src/token.cpp.s
 
+tests/lexer_test.o: tests/lexer_test.cpp.o
+.PHONY : tests/lexer_test.o
+
+# target to build an object file
+tests/lexer_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/lexer_test.cpp.o
+.PHONY : tests/lexer_test.cpp.o
+
+tests/lexer_test.i: tests/lexer_test.cpp.i
+.PHONY : tests/lexer_test.i
+
+# target to preprocess a source file
+tests/lexer_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/lexer_test.cpp.i
+.PHONY : tests/lexer_test.cpp.i
+
+tests/lexer_test.s: tests/lexer_test.cpp.s
+.PHONY : tests/lexer_test.s
+
+# target to generate assembly for a file
+tests/lexer_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/lexer_test.cpp.s
+.PHONY : tests/lexer_test.cpp.s
+
 tests/token_test.o: tests/token_test.cpp.o
 .PHONY : tests/token_test.o
 
@@ -357,12 +405,18 @@ help:
 	@echo "... gtest"
 	@echo "... gtest_main"
 	@echo "... tests"
+	@echo "... src/lexer.o"
+	@echo "... src/lexer.i"
+	@echo "... src/lexer.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
 	@echo "... src/token.o"
 	@echo "... src/token.i"
 	@echo "... src/token.s"
+	@echo "... tests/lexer_test.o"
+	@echo "... tests/lexer_test.i"
+	@echo "... tests/lexer_test.s"
 	@echo "... tests/token_test.o"
 	@echo "... tests/token_test.i"
 	@echo "... tests/token_test.s"

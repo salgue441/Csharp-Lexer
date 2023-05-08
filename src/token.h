@@ -71,6 +71,9 @@ public:
     void set_value(std::string);
     void set_type(TokenType);
 
+    // Operator overload
+    bool operator==(const Token &) const;
+
     // Functions
     std::string to_string() const;
     bool is_keyword() const;

@@ -2,8 +2,17 @@ cmake_minimum_required(VERSION 3.20)
 
 project(Lexer)
 
+# Enable C++20 support
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# Enable C++20 modules support for clang
+if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    set(CMAKE_CXX_COMPILER "/usr/bin/clang++")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fmodules -fimplicit-modules -fimplicit-module-maps")
+endif()
+
 
 # Program executable
 add_executable(Lexer 
@@ -18,6 +27,7 @@ target_compile_options(Lexer PUBLIC
     -Wall 
     -Wextra 
     -Werror
+    -fmodules-ts
 )
 
 # Include Google Test
@@ -33,10 +43,20 @@ FetchContent_MakeAvailable(googletest)
 add_executable(tests
     tests/token_test.cpp
     src/token.cpp
+
+    tests/lexer_test.cpp
+    src/lexer.cpp
 )
 
 target_include_directories(tests PUBLIC 
     ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_compile_options(tests PUBLIC 
+    -Wall 
+    -Wextra 
+    -Werror
+    -fmodules-ts
 )
 
 target_link_libraries(tests PUBLIC 

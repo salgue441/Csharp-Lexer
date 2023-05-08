@@ -18,7 +18,7 @@
 #include <vector>        // For tokens
 #include <unordered_set> // For efficient keyword checking
 #include <thread>        // For multithreading
-#include <atomic>        // For thread synchronization
+#include <mutex>         // For thread synchronization
 #include <optional>      // For optional token type
 
 // Project files
@@ -42,17 +42,25 @@ public:
     // Destructor
     ~Lexer() = default;
 
+    // Access methods
+    std::vector<Token> get_tokens() const;
+
     // Methods
+    std::vector<Token> get_tokens_from_file(
+        const std::string_view &);
     void lex_files(const std::vector<std::string> &);
+    std::string generate_html(const std::vector<std::string> &);
+    void save_to_file(const std::string &, const std::string &);
 
 private:
     std::vector<std::thread> m_threads;
-    std::atomic<bool> m_is_done;
+    std::mutex m_mutex;
     std::vector<Token> m_tokens;
 
     // Methods
     void lex_file(const std::string_view &);
     TokenType identify_token(const std::string_view &);
+    std::string token_to_html(const Token &);
 };
 
 #endif //! LEXER_H

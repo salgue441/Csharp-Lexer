@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I"/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/include"
 
-CXX_FLAGS = -Wall -Wextra -Werror -std=gnu++20
+CXX_FLAGS = -Wall -Wextra -Werror -fmodules-ts -std=c++20
 

@@ -18,6 +18,7 @@
 #include <vector>
 
 // Classes
+#include "lexer.h"
 
 // Function prototypes
 std::vector<std::filesystem::path> get_filenames(const std::string_view &);
@@ -42,6 +43,7 @@ int main(int argc, char **argv)
     }
 
     auto filenames = get_filenames(argv[1]);
+    Lexer lexer;
 
     /* std::cout << "Input files: " << std::endl;
 

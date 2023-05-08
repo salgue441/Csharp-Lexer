@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/tests.dir/tests/token_test.cpp.o CMakeFiles/tests.dir/src/token.cpp.o -o tests  lib/libgtest_main.a lib/libgtest.a 
+/usr/bin/c++ CMakeFiles/tests.dir/tests/token_test.cpp.o CMakeFiles/tests.dir/src/token.cpp.o CMakeFiles/tests.dir/tests/lexer_test.cpp.o CMakeFiles/tests.dir/src/lexer.cpp.o -o tests  lib/libgtest_main.a lib/libgtest.a 

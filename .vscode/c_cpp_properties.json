@@ -4,8 +4,8 @@
       "name": "Linux",
       "includePath": ["${workspaceFolder}/**"],
       "defines": [],
-      "compilerPath": "/usr/bin/gcc",
-      "cStandard": "c17",
+      "compilerPath": "/usr/bin/clang++",
+      "cStandard": "c23",
       "cppStandard": "gnu++20",
       "intelliSenseMode": "linux-gcc-x64"
     }

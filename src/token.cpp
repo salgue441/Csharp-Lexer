@@ -10,7 +10,6 @@
  *
  */
 
-#pragma once
 #include "token.h"
 
 // Constructor
@@ -66,6 +65,19 @@ void Token::set_value(std::string value)
 void Token::set_type(TokenType type)
 {
     m_type = type;
+}
+
+// Operator overloads
+/**
+ * @brief
+ * Operator overload for the equality operator
+ * @param other Token to compare
+ * @return true If the tokens are equal
+ * @return false If the tokens are not equal
+ */
+bool Token::operator==(const Token &other) const
+{
+    return m_value == other.m_value && m_type == other.m_type;
 }
 
 // Private methods
