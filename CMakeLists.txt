@@ -31,7 +31,7 @@ FetchContent_MakeAvailable(googletest)
 
 # Add tests target
 add_executable(tests
-    src/tests/token_test.cpp
+    tests/token_test.cpp
     src/token.cpp
 )
 

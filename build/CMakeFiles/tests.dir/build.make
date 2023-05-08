@@ -69,19 +69,19 @@ include CMakeFiles/tests.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/tests.dir/flags.make
 
-CMakeFiles/tests.dir/src/tests/token_test.cpp.o: CMakeFiles/tests.dir/flags.make
-CMakeFiles/tests.dir/src/tests/token_test.cpp.o: ../src/tests/token_test.cpp
-CMakeFiles/tests.dir/src/tests/token_test.cpp.o: CMakeFiles/tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/tests.dir/src/tests/token_test.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tests.dir/src/tests/token_test.cpp.o -MF CMakeFiles/tests.dir/src/tests/token_test.cpp.o.d -o CMakeFiles/tests.dir/src/tests/token_test.cpp.o -c "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/src/tests/token_test.cpp"
+CMakeFiles/tests.dir/tests/token_test.cpp.o: CMakeFiles/tests.dir/flags.make
+CMakeFiles/tests.dir/tests/token_test.cpp.o: ../tests/token_test.cpp
+CMakeFiles/tests.dir/tests/token_test.cpp.o: CMakeFiles/tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/tests.dir/tests/token_test.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tests.dir/tests/token_test.cpp.o -MF CMakeFiles/tests.dir/tests/token_test.cpp.o.d -o CMakeFiles/tests.dir/tests/token_test.cpp.o -c "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/tests/token_test.cpp"
 
-CMakeFiles/tests.dir/src/tests/token_test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tests.dir/src/tests/token_test.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/src/tests/token_test.cpp" > CMakeFiles/tests.dir/src/tests/token_test.cpp.i
+CMakeFiles/tests.dir/tests/token_test.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tests.dir/tests/token_test.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/tests/token_test.cpp" > CMakeFiles/tests.dir/tests/token_test.cpp.i
 
-CMakeFiles/tests.dir/src/tests/token_test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/src/tests/token_test.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/src/tests/token_test.cpp" -o CMakeFiles/tests.dir/src/tests/token_test.cpp.s
+CMakeFiles/tests.dir/tests/token_test.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/tests/token_test.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/tests/token_test.cpp" -o CMakeFiles/tests.dir/tests/token_test.cpp.s
 
 CMakeFiles/tests.dir/src/token.cpp.o: CMakeFiles/tests.dir/flags.make
 CMakeFiles/tests.dir/src/token.cpp.o: ../src/token.cpp
@@ -99,13 +99,13 @@ CMakeFiles/tests.dir/src/token.cpp.s: cmake_force
 
 # Object files for target tests
 tests_OBJECTS = \
-"CMakeFiles/tests.dir/src/tests/token_test.cpp.o" \
+"CMakeFiles/tests.dir/tests/token_test.cpp.o" \
 "CMakeFiles/tests.dir/src/token.cpp.o"
 
 # External object files for target tests
 tests_EXTERNAL_OBJECTS =
 
-tests: CMakeFiles/tests.dir/src/tests/token_test.cpp.o
+tests: CMakeFiles/tests.dir/tests/token_test.cpp.o
 tests: CMakeFiles/tests.dir/src/token.cpp.o
 tests: CMakeFiles/tests.dir/build.make
 tests: lib/libgtest_main.a

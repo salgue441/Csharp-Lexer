@@ -289,30 +289,6 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lexer.dir/build.make CMakeFiles/Lexer.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/tests/token_test.o: src/tests/token_test.cpp.o
-.PHONY : src/tests/token_test.o
-
-# target to build an object file
-src/tests/token_test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/tests/token_test.cpp.o
-.PHONY : src/tests/token_test.cpp.o
-
-src/tests/token_test.i: src/tests/token_test.cpp.i
-.PHONY : src/tests/token_test.i
-
-# target to preprocess a source file
-src/tests/token_test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/tests/token_test.cpp.i
-.PHONY : src/tests/token_test.cpp.i
-
-src/tests/token_test.s: src/tests/token_test.cpp.s
-.PHONY : src/tests/token_test.s
-
-# target to generate assembly for a file
-src/tests/token_test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/tests/token_test.cpp.s
-.PHONY : src/tests/token_test.cpp.s
-
 src/token.o: src/token.cpp.o
 .PHONY : src/token.o
 
@@ -337,6 +313,30 @@ src/token.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/token.cpp.s
 .PHONY : src/token.cpp.s
 
+tests/token_test.o: tests/token_test.cpp.o
+.PHONY : tests/token_test.o
+
+# target to build an object file
+tests/token_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/token_test.cpp.o
+.PHONY : tests/token_test.cpp.o
+
+tests/token_test.i: tests/token_test.cpp.i
+.PHONY : tests/token_test.i
+
+# target to preprocess a source file
+tests/token_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/token_test.cpp.i
+.PHONY : tests/token_test.cpp.i
+
+tests/token_test.s: tests/token_test.cpp.s
+.PHONY : tests/token_test.s
+
+# target to generate assembly for a file
+tests/token_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/token_test.cpp.s
+.PHONY : tests/token_test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -360,12 +360,12 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/tests/token_test.o"
-	@echo "... src/tests/token_test.i"
-	@echo "... src/tests/token_test.s"
 	@echo "... src/token.o"
 	@echo "... src/token.i"
 	@echo "... src/token.s"
+	@echo "... tests/token_test.o"
+	@echo "... tests/token_test.i"
+	@echo "... tests/token_test.s"
 .PHONY : help
 
 

@@ -14,7 +14,7 @@
 #include <gtest/gtest.h>
 
 // Project files
-#include "../token.h"
+#include "../src/token.h"
 
 /**
  * @brief
