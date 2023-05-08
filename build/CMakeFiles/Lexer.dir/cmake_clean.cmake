@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Lexer.dir/main.cpp.o"
   "CMakeFiles/Lexer.dir/main.cpp.o.d"
+  "CMakeFiles/Lexer.dir/token.cpp.o"
+  "CMakeFiles/Lexer.dir/token.cpp.o.d"
   "Lexer"
   "Lexer.pdb"
 )

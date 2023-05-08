@@ -7,10 +7,7 @@ cd build
 cmake ..
 
 # Build the program
-make
-
-# Run the program with input and output directories
-./Lexer ../input ../output
+make run_lexer
 
 # Clean up the build files
 make clean

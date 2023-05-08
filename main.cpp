@@ -18,7 +18,6 @@
 #include <vector>
 
 // Classes
-#include "lexer.cpp"
 
 // Function prototypes
 std::vector<std::filesystem::path> get_filenames(const std::string_view &);
@@ -33,7 +32,6 @@ std::vector<std::filesystem::path> get_filenames(const std::string_view &);
  */
 int main(int argc, char **argv)
 {
-    // Check if the number of arguments is correct
     if (argc != 3)
     {
         std::cerr
@@ -44,16 +42,15 @@ int main(int argc, char **argv)
     }
 
     auto filenames = get_filenames(argv[1]);
-    Lexer lexer;
 
-    std::cout << "Input files: " << std::endl;
+    /* std::cout << "Input files: " << std::endl;
 
     for (const auto &filename : filenames)
     {
         std::cout << filename << std::endl;
     }
 
-    std::cout << std::endl;
+    std::cout << std::endl; */
 }
 
 // Function definitions
