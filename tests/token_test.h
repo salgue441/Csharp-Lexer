@@ -41,6 +41,8 @@ protected:
     Token token_interpolated_string;
     Token token_nullable;
     Token token_verbatim_string;
+    Token token_regular_expression;
+    Token token_numeric_literal;
     Token token_other;
 
     // Methods

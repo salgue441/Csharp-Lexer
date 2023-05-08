@@ -93,8 +93,6 @@ std::string Token::get_type_string() const
         return "Keyword";
     case TokenType::Identifier:
         return "Identifier";
-    case TokenType::Literal:
-        return "Literal";
     case TokenType::Operator:
         return "Operator";
     case TokenType::Separator:

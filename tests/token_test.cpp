@@ -22,7 +22,7 @@ void TokenTest::SetUp()
     // Set up test data
     token_keyword = Token("class", TokenType::Keyword);
     token_identifier = Token("myVar", TokenType::Identifier);
-    token_literal = Token("42", TokenType::Literal);
+    token_literal = Token("42", TokenType::NumericLiteral);
     token_operator = Token("=", TokenType::Operator);
     token_separator = Token(";", TokenType::Separator);
     token_comment = Token("// this is a comment", TokenType::Comment);
@@ -34,6 +34,10 @@ void TokenTest::SetUp()
     token_escaped_identifier = Token("@myVar", TokenType::EscapedIdentifier);
     token_other = Token("???", TokenType::Other);
     token_nullable = Token("int?", TokenType::NullLiteral);
+    token_regular_expression = Token("/[a-z]+/",
+                                     TokenType::RegularExpressionLiteral);
+
+    token_numeric_literal = Token("42", TokenType::NumericLiteral);
 
     token_interpolated_string =
         Token("$\"Hello, {name}!\"", TokenType::InterpolatedStringLiteral);
@@ -103,7 +107,7 @@ TEST_F(TokenTest, AccessMethods)
     EXPECT_EQ(token_keyword.get_value(), "class");
     EXPECT_EQ(token_keyword.get_type(), TokenType::Keyword);
     EXPECT_EQ(token_literal.get_value(), "42");
-    EXPECT_EQ(token_literal.get_type(), TokenType::Literal);
+    EXPECT_EQ(token_literal.get_type(), TokenType::NumericLiteral);
     EXPECT_EQ(token_operator.get_value(), "=");
     EXPECT_EQ(token_operator.get_type(), TokenType::Operator);
     EXPECT_EQ(token_separator.get_value(), ";");
@@ -133,6 +137,7 @@ TEST_F(TokenTest, AccessMethods)
               "@\"This is a verbatim string.\"");
     EXPECT_EQ(token_verbatim_string.get_type(), TokenType::VerbatimStringLiteral);
     EXPECT_EQ(token_other.get_value(), "???");
+    EXPECT_EQ(token_regular_expression.get_value(), "/[a-z]+/");
     EXPECT_EQ(token_other.get_type(), TokenType::Other);
 }
 
@@ -160,7 +165,7 @@ TEST_F(TokenTest, TokenTypeFunctions)
 {
     EXPECT_TRUE(token_keyword.is_keyword());
     EXPECT_TRUE(token_identifier.is_identifier());
-    EXPECT_TRUE(token_literal.is_literal());
+    EXPECT_TRUE(token_literal.is_numeric_literal());
     EXPECT_TRUE(token_operator.is_operator());
     EXPECT_TRUE(token_separator.is_separator());
     EXPECT_TRUE(token_comment.is_comment());
@@ -173,6 +178,7 @@ TEST_F(TokenTest, TokenTypeFunctions)
     EXPECT_TRUE(token_interpolated_string.is_interpolated_string());
     EXPECT_TRUE(token_nullable.is_nullable());
     EXPECT_TRUE(token_verbatim_string.is_verbatim_string());
+    EXPECT_TRUE(token_regular_expression.is_regular_expression());
     EXPECT_TRUE(token_other.get_type() == TokenType::Other);
 }
 
@@ -191,9 +197,9 @@ TEST_F(TokenTest, ToStringTest)
     token.set_value("if");
     EXPECT_EQ(token.to_string(), "Keyword: if");
 
-    token.set_type(TokenType::Literal);
+    token.set_type(TokenType::NumericLiteral);
     token.set_value("42");
-    EXPECT_EQ(token.to_string(), "Literal: 42");
+    EXPECT_EQ(token.to_string(), "NumericLiteral: 42");
 
     token.set_type(TokenType::Operator);
     token.set_value("+");
@@ -218,6 +224,34 @@ TEST_F(TokenTest, ToStringTest)
     token.set_type(TokenType::EscapedIdentifier);
     token.set_value("@hello");
     EXPECT_EQ(token.to_string(), "EscapedIdentifier: @hello");
+
+    token.set_type(TokenType::Preprocessor);
+    token.set_value("#define");
+    EXPECT_EQ(token.to_string(), "Preprocessor: #define");
+
+    token.set_type(TokenType::ContextualKeyword);
+    token.set_value("get");
+    EXPECT_EQ(token.to_string(), "ContextualKeyword: get");
+
+    token.set_type(TokenType::AccessSpecifier);
+    token.set_value("public");
+    EXPECT_EQ(token.to_string(), "AccessSpecifier: public");
+
+    token.set_type(TokenType::AttributeTarget);
+    token.set_value("assembly");
+    EXPECT_EQ(token.to_string(), "AttributeTarget: assembly");
+
+    token.set_type(TokenType::AttributeUsage);
+    token.set_value("Obsolete");
+    EXPECT_EQ(token.to_string(), "AttributeUsage: Obsolete");
+
+    token.set_type(TokenType::NullLiteral);
+    token.set_value("int?");
+    EXPECT_EQ(token.to_string(), "NullLiteral: int?");
+
+    token.set_type(TokenType::RegularExpressionLiteral);
+    token.set_value("/[a-z]+/");
+    EXPECT_EQ(token.to_string(), "RegularExpressionLiteral: /[a-z]+/");
 
     token.set_type(TokenType::Other);
     token.set_value("foo");
@@ -263,10 +297,10 @@ TEST_F(TokenTest, DifferentValueAndTokenType)
     EXPECT_EQ(token.to_string(), "Identifier: test");
 
     token.set_value("1234");
-    token.set_type(TokenType::Literal);
+    token.set_type(TokenType::NumericLiteral);
     EXPECT_EQ(token.get_value(), "1234");
-    EXPECT_EQ(token.get_type(), TokenType::Literal);
-    EXPECT_EQ(token.to_string(), "Literal: 1234");
+    EXPECT_EQ(token.get_type(), TokenType::NumericLiteral);
+    EXPECT_EQ(token.to_string(), "NumericLiteral: 1234");
 }
 
 /**

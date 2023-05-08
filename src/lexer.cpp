@@ -101,7 +101,7 @@ void Lexer::lex_file(const std::string_view &filename)
  */
 std::vector<Token> Lexer::tokenize(const std::string_view &content)
 {
-    const std::vector<Token> tokens;
+    std::vector<Token> tokens;
     size_t pos = 0;
     size_t length = content.length();
 
@@ -133,13 +133,51 @@ std::vector<Token> Lexer::tokenize(const std::string_view &content)
         // Number
         else if (std::isdigit(content[pos]))
         {
-            token_type = TokenType::Number;
+            token_type = TokenType::NumericLiteral;
             token_length = 1;
 
             while (pos + token_length < length &&
                    std::isdigit(content[pos + token_length]))
                 ++token_length;
         }
+
+        // String literal
+        else if (content[pos] == '\"')
+        {
+            token_type = TokenType::Literal;
+            token_length = 1;
+
+            while (pos + token_length < length &&
+                   content[pos + token_length] != '\"')
+            {
+                if (content[pos + token_length] == '\\')
+                {
+                    ++token_length;
+
+                    if (pos + token_length >= length)
+                        throw std::runtime_error("Unterminated string literal");
+                }
+
+                ++token_length;
+            }
+        }
+
+        // Other
+        else
+        {
+            token_type = TokenType::Other;
+            token_length = 1;
+
+            // TODO: Identify other token types
+        }
+
+        // Add the token
+        std::string_view str = content.substr(pos, token_length);
+        Token token(std::string(str), token_type);
+        tokens.push_back(token);
+
+        // Advance to the next token
+        pos += token_length;
     }
 
     return tokens;
@@ -161,7 +199,7 @@ TokenType Lexer::identify_token(const std::string_view &token)
     if (std::find(csharp::m_literals.begin(),
                   csharp::m_literals.end(), token) !=
         csharp::m_literals.end())
-        return TokenType::Literal;
+        return TokenType::NumericLiteral;
 
     if (std::find(csharp::m_operators.begin(),
                   csharp::m_operators.end(), token) !=
@@ -243,7 +281,7 @@ std::string token_to_html(const Token &token)
         html += "identifier";
         break;
 
-    case TokenType::Literal:
+    case TokenType::NumericLiteral:
         html += "literal";
         break;
 
