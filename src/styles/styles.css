@@ -1,0 +1,96 @@
+/* Colors */
+:root {
+  --background-color: #1e1e1e;
+  --text-color: #d4d4d4;
+  --keyword-color: #569cd6;
+  --identifier-color: #9cdcfe;
+  --literal-color: #ce9178;
+  --operator-color: #b5cea8;
+  --separator-color: #bfbfbf;
+  --comment-color: #6a9955;
+  --preprocessor-color: #d4d4d4;
+  --contextual-keyword-color: #4ec9b0;
+  --access-specifier-color: #4ec9b0;
+  --attribute-target-color: #c586c0;
+  --attribute-usage-color: #c586c0;
+  --escaped-identifier-color: #9cdcfe;
+  --interpolated-string-literal-color: #ce9178;
+  --null-literal-color: #569cd6;
+  --verbatim-string-literal-color: #ce9178;
+  --other-color: #d4d4d4;
+}
+
+/* Base styles */
+code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+/* Tokens */
+.Keyword {
+  color: var(--keyword-color);
+  font-weight: bold;
+}
+
+.Identifier {
+  color: var(--identifier-color);
+}
+
+.Literal {
+  color: var(--literal-color);
+}
+
+.Operator {
+  color: var(--operator-color);
+}
+
+.Separator {
+  color: var(--separator-color);
+}
+
+.Comment {
+  color: var(--comment-color);
+  font-style: italic;
+}
+
+.Preprocessor {
+  color: var(--preprocessor-color);
+}
+
+.ContextualKeyword {
+  color: var(--contextual-keyword-color);
+  font-weight: bold;
+}
+
+.AccessSpecifier {
+  color: var(--access-specifier-color);
+}
+
+.AttributeTarget {
+  color: var(--attribute-target-color);
+}
+
+.AttributeUsage {
+  color: var(--attribute-usage-color);
+}
+
+.EscapedIdentifier {
+  color: var(--escaped-identifier-color);
+}
+
+.InterpolatedStringLiteral {
+  color: var(--interpolated-string-literal-color);
+}
+
+.NullLiteral {
+  color: var(--null-literal-color);
+}
+
+.VerbatimStringLiteral {
+  color: var(--verbatim-string-literal-color);
+}
+
+.Other {
+  color: var(--other-color);
+}

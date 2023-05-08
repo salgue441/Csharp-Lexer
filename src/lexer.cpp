@@ -28,6 +28,32 @@ std::vector<Token> Lexer::get_tokens_from_file(
     return m_tokens;
 }
 
+/**
+ * @brief
+ * Lex a list of files and generate the tokens for them
+ * @param files Files to lex
+ * @throw std::exception - If an error occurs while lexing the files
+ */
+void Lexer::lex_files(const std::vector<std::string> &files)
+{
+    try
+    {
+        for (const auto &file : files)
+        {
+            m_threads.emplace_back(&Lexer::lex_file, this, file);
+        }
+
+        for (auto &thread : m_threads)
+        {
+            thread.join();
+        }
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << "Error while lexing files: " << e.what() << std::endl;
+    }
+}
+
 // Private (methods)
 /**
  * @brief
@@ -36,88 +62,87 @@ std::vector<Token> Lexer::get_tokens_from_file(
  */
 void Lexer::lex_file(const std::string_view &filename)
 {
-    std::string current_token;
-
-    for (auto it = filename.begin(); it != filename.end(); ++it)
+    std::ifstream input_file(filename.data());
+    if (!input_file.is_open())
     {
-        // Separator
-        if (std::isspace(*it))
-        {
-            if (!current_token.empty())
-            {
-                auto token_type = identify_token(current_token);
+        throw std::runtime_error("Failed to open file: " +
+                                 std::string(filename));
+    }
 
-                m_tokens.emplace_back(current_token, token_type);
-                current_token.clear();
-            }
+    try
+    {
+        std::stringstream buffer;
+        buffer << input_file.rdbuf();
+        std::string content = buffer.str();
+
+        auto tokens = tokenize(content);
+
+        // Store the tokens
+        std::lock_guard<std::mutex> lock(m_mutex);
+        m_tokens.insert(m_tokens.end(), tokens.begin(),
+                        tokens.end());
+
+        input_file.close();
+    }
+    catch (std::exception &e)
+    {
+        input_file.close();
+
+        std::cerr << "Error while lexing file " << filename << ": "
+                  << e.what() << std::endl;
+    }
+}
+
+/**
+ * @brief
+ * Tokenize a string
+ * @param content - String to tokenize
+ * @return std::vector<Token> - Tokens of the string
+ */
+std::vector<Token> Lexer::tokenize(const std::string_view &content)
+{
+    const std::vector<Token> tokens;
+    size_t pos = 0;
+    size_t length = content.length();
+
+    while (pos < length)
+    {
+        // Skipping whitespace
+        while (pos < length && std::isspace(content[pos]))
+            ++pos;
+
+        if (pos == length)
+            break;
+
+        // Identifying the token
+        TokenType token_type;
+        size_t token_length = 0;
+
+        // Identifier
+        if (std::isalpha(content[pos]) || content[pos] == '_')
+        {
+            token_type = TokenType::Identifier;
+            token_length = 1;
+
+            while (pos + token_length < length &&
+                   (std::isalnum(content[pos + token_length]) ||
+                    content[pos + token_length] == '_'))
+                ++token_length;
         }
 
-        // Operator
-        else if (std::find(csharp::m_operators.begin(),
-                           csharp::m_operators.end(),
-                           current_token + *it) !=
-                 csharp::m_operators.end())
+        // Number
+        else if (std::isdigit(content[pos]))
         {
-            current_token += *it;
-            auto token_type = identify_token(current_token);
+            token_type = TokenType::Number;
+            token_length = 1;
 
-            m_tokens.emplace_back(current_token, token_type);
-            current_token.clear();
-        }
-
-        // Comments
-        else if (std::find(csharp::m_comments.begin(),
-                           csharp::m_comments.end(),
-                           current_token + *it) !=
-                 csharp::m_comments.end())
-        {
-            current_token += *it;
-
-            if (current_token == "//")
-            {
-                while (*it != '\n' && it != filename.end())
-                    ++it;
-
-                --it;
-            }
-
-            else if (current_token == "/*")
-            {
-                while (it != filename.end())
-                {
-                    if (*it == '*' && *(it + 1) == '/')
-                    {
-                        current_token += "*/";
-                        it += 2;
-
-                        break;
-                    }
-                    else
-                        current_token += *it;
-
-                    ++it;
-                }
-
-                auto token_type = identify_token(current_token);
-
-                m_tokens.emplace_back(current_token, token_type);
-                current_token.clear();
-            }
-        }
-
-        // Everything else
-        else
-        {
-            current_token += *it;
+            while (pos + token_length < length &&
+                   std::isdigit(content[pos + token_length]))
+                ++token_length;
         }
     }
 
-    // Add the last token
-    if (!current_token.empty())
-    {
-        auto token_type = identify_token(current_token);
-        m_tokens.emplace_back(current_token, token_type);
-    }
+    return tokens;
 }
 
 /**
@@ -197,4 +222,84 @@ TokenType Lexer::identify_token(const std::string_view &token)
         return TokenType::VerbatimStringLiteral;
 
     return TokenType::Identifier;
+}
+
+/**
+ * @brief
+ * Token to html string
+ * @param token - Token to convert
+ * @return std::string - Html string
+ */
+std::string token_to_html(const Token &token)
+{
+    std::string html = "<span class=\"";
+    switch (token.get_type())
+    {
+    case TokenType::Keyword:
+        html += "keyword";
+        break;
+
+    case TokenType::Identifier:
+        html += "identifier";
+        break;
+
+    case TokenType::Literal:
+        html += "literal";
+        break;
+
+    case TokenType::Operator:
+        html += "operator";
+        break;
+
+    case TokenType::Separator:
+        html += "separator";
+        break;
+
+    case TokenType::Comment:
+        html += "comment";
+        break;
+
+    case TokenType::Preprocessor:
+        html += "preprocessor";
+        break;
+
+    case TokenType::ContextualKeyword:
+        html += "contextual-keyword";
+        break;
+
+    case TokenType::AccessSpecifier:
+        html += "access-specifier";
+        break;
+
+    case TokenType::AttributeTarget:
+        html += "attribute-target";
+        break;
+
+    case TokenType::AttributeUsage:
+        html += "attribute-usage";
+        break;
+
+    case TokenType::EscapedIdentifier:
+        html += "escaped-identifier";
+        break;
+
+    case TokenType::InterpolatedStringLiteral:
+        html += "interpolated-string-literal";
+        break;
+
+    case TokenType::NullLiteral:
+        html += "null-literal";
+        break;
+
+    case TokenType::VerbatimStringLiteral:
+        html += "verbatim-string-literal";
+        break;
+
+    default:
+        html += "other";
+        break;
+    }
+
+    html += "\">" + token.get_value() + "</span>";
+    return html;
 }

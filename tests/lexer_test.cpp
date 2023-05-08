@@ -56,15 +56,14 @@ void LexerTest::SetUp()
 /**
  * @brief
  * Test the lexing of a simple C# program.
+ * @param LexerTest - Test fixture
+ * @param HelloWorld - Test name
  */
 TEST(LexerTest, HelloWorld)
 {
     Lexer lexer;
     std::string filename = "helloworld.cs";
-    std::vector<std::string> files = {filename};
-    lexer.lex_files(files);
 
-    // Define the expected tokens
     std::vector<Token> expected_tokens = {
         Token("using", TokenType::Keyword),
         Token("System", TokenType::Identifier),
@@ -95,6 +94,9 @@ TEST(LexerTest, HelloWorld)
         Token("}", TokenType::Separator),
         Token("}", TokenType::Separator),
     };
+
+    std::vector<std::string> files = {filename};
+    lexer.lex_files(files);
 
     ASSERT_EQ(lexer.get_tokens_from_file(filename), expected_tokens);
 }

@@ -13,6 +13,9 @@
 #ifndef LEXER_H
 #define LEXER_H
 
+// Standard libraries
+#include <iostream>      // For console output
+#include <fstream>       // For file reading
 #include <string>        // For string manipulation
 #include <string_view>   // For efficient string comparison
 #include <vector>        // For tokens
@@ -58,6 +61,7 @@ private:
     std::vector<Token> m_tokens;
 
     // Methods
+    std::vector<Token> tokenize(const std::string_view &);
     void lex_file(const std::string_view &);
     TokenType identify_token(const std::string_view &);
     std::string token_to_html(const Token &);

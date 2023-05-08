@@ -107,6 +107,23 @@ std::string Token::get_type_string() const
         return "InterpolatedStringLiteral";
     case TokenType::EscapedIdentifier:
         return "EscapedIdentifier";
+    case TokenType::ContextualKeyword:
+        return "ContextualKeyword";
+    case TokenType::AccessSpecifier:
+        return "AccessSpecifier";
+    case TokenType::AttributeTarget:
+        return "AttributeTarget";
+    case TokenType::AttributeUsage:
+        return "AttributeUsage";
+    case TokenType::Preprocessor:
+        return "Preprocessor";
+    case TokenType::RegularExpressionLiteral:
+        return "RegularExpressionLiteral";
+    case TokenType::NullLiteral:
+        return "NullLiteral";
+    case TokenType::NumericLiteral:
+        return "NumericLiteral";
+
     default:
         return "Other";
     }
@@ -290,4 +307,26 @@ bool Token::is_nullable() const
 bool Token::is_verbatim_string() const
 {
     return m_type == TokenType::VerbatimStringLiteral;
+}
+
+/**
+ * @brief
+ * Checks if the token is a regular expression
+ * @return true If the token is a regular expression
+ * @return false If the token is not a regular expression
+ */
+bool Token::is_regular_expression() const
+{
+    return m_type == TokenType::RegularExpressionLiteral;
+}
+
+/**
+ * @brief
+ * Checks if the token is a numeric literal
+ * @return true If the token is a numeric literal
+ * @return false If the token is not a numeric literal
+ */
+bool Token::is_numeric_literal() const
+{
+    return m_type == TokenType::NumericLiteral;
 }

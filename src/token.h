@@ -45,6 +45,8 @@ enum class TokenType
     InterpolatedStringLiteral,
     NullLiteral,
     VerbatimStringLiteral,
+    RegularExpressionLiteral,
+    NumericLiteral,
     Other
 };
 
@@ -91,6 +93,8 @@ public:
     bool is_interpolated_string() const;
     bool is_nullable() const;
     bool is_verbatim_string() const;
+    bool is_regular_expression() const;
+    bool is_numeric_literal() const;
 
 private:
     std::string m_value;
