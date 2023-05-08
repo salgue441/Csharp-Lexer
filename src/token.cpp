@@ -19,10 +19,10 @@
  * @param value Value of the token
  * @param type Type of the token
  */
-Token::Token(std::string value, TokenType type)
+Token::Token(std::string value, std::optional<TokenType> type)
 {
     m_value = value;
-    m_type = type;
+    m_type = type.value_or(TokenType::Other);
 }
 
 // Access methods
@@ -109,8 +109,7 @@ std::string Token::to_string() const
 {
     std::ostringstream oss;
 
-    oss << "{ type: " << get_type_string() << ", value: \""
-        << m_value << "\" }";
+    oss << get_type_string() << ": " << m_value;
 
     return oss.str();
 }

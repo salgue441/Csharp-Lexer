@@ -265,80 +265,77 @@ gtest_main/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
-main.o: main.cpp.o
-.PHONY : main.o
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lexer.dir/build.make CMakeFiles/Lexer.dir/main.cpp.o
-.PHONY : main.cpp.o
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lexer.dir/build.make CMakeFiles/Lexer.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lexer.dir/build.make CMakeFiles/Lexer.dir/main.cpp.i
-.PHONY : main.cpp.i
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lexer.dir/build.make CMakeFiles/Lexer.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lexer.dir/build.make CMakeFiles/Lexer.dir/main.cpp.s
-.PHONY : main.cpp.s
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lexer.dir/build.make CMakeFiles/Lexer.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
-tests/token_test.o: tests/token_test.cpp.o
-.PHONY : tests/token_test.o
+src/tests/token_test.o: src/tests/token_test.cpp.o
+.PHONY : src/tests/token_test.o
 
 # target to build an object file
-tests/token_test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/token_test.cpp.o
-.PHONY : tests/token_test.cpp.o
+src/tests/token_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/tests/token_test.cpp.o
+.PHONY : src/tests/token_test.cpp.o
 
-tests/token_test.i: tests/token_test.cpp.i
-.PHONY : tests/token_test.i
+src/tests/token_test.i: src/tests/token_test.cpp.i
+.PHONY : src/tests/token_test.i
 
 # target to preprocess a source file
-tests/token_test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/token_test.cpp.i
-.PHONY : tests/token_test.cpp.i
+src/tests/token_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/tests/token_test.cpp.i
+.PHONY : src/tests/token_test.cpp.i
 
-tests/token_test.s: tests/token_test.cpp.s
-.PHONY : tests/token_test.s
+src/tests/token_test.s: src/tests/token_test.cpp.s
+.PHONY : src/tests/token_test.s
 
 # target to generate assembly for a file
-tests/token_test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/tests/token_test.cpp.s
-.PHONY : tests/token_test.cpp.s
+src/tests/token_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/tests/token_test.cpp.s
+.PHONY : src/tests/token_test.cpp.s
 
-token.o: token.cpp.o
-.PHONY : token.o
+src/token.o: src/token.cpp.o
+.PHONY : src/token.o
 
 # target to build an object file
-token.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lexer.dir/build.make CMakeFiles/Lexer.dir/token.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/token.cpp.o
-.PHONY : token.cpp.o
+src/token.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/token.cpp.o
+.PHONY : src/token.cpp.o
 
-token.i: token.cpp.i
-.PHONY : token.i
+src/token.i: src/token.cpp.i
+.PHONY : src/token.i
 
 # target to preprocess a source file
-token.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lexer.dir/build.make CMakeFiles/Lexer.dir/token.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/token.cpp.i
-.PHONY : token.cpp.i
+src/token.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/token.cpp.i
+.PHONY : src/token.cpp.i
 
-token.s: token.cpp.s
-.PHONY : token.s
+src/token.s: src/token.cpp.s
+.PHONY : src/token.s
 
 # target to generate assembly for a file
-token.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lexer.dir/build.make CMakeFiles/Lexer.dir/token.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/token.cpp.s
-.PHONY : token.cpp.s
+src/token.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/token.cpp.s
+.PHONY : src/token.cpp.s
 
 # Help Target
 help:
@@ -360,15 +357,15 @@ help:
 	@echo "... gtest"
 	@echo "... gtest_main"
 	@echo "... tests"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
-	@echo "... tests/token_test.o"
-	@echo "... tests/token_test.i"
-	@echo "... tests/token_test.s"
-	@echo "... token.o"
-	@echo "... token.i"
-	@echo "... token.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/tests/token_test.o"
+	@echo "... src/tests/token_test.i"
+	@echo "... src/tests/token_test.s"
+	@echo "... src/token.o"
+	@echo "... src/token.i"
+	@echo "... src/token.s"
 .PHONY : help
 
 

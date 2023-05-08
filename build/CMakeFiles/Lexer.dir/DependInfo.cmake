@@ -8,8 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/main.cpp" "CMakeFiles/Lexer.dir/main.cpp.o" "gcc" "CMakeFiles/Lexer.dir/main.cpp.o.d"
-  "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/token.cpp" "CMakeFiles/Lexer.dir/token.cpp.o" "gcc" "CMakeFiles/Lexer.dir/token.cpp.o.d"
+  "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/src/main.cpp" "CMakeFiles/Lexer.dir/src/main.cpp.o" "gcc" "CMakeFiles/Lexer.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links.

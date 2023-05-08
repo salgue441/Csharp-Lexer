@@ -5,9 +5,9 @@ project(Lexer)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Program executable
 add_executable(Lexer 
-    main.cpp
-    token.cpp
+    src/main.cpp
 )
 
 target_include_directories(Lexer PUBLIC 
@@ -31,8 +31,8 @@ FetchContent_MakeAvailable(googletest)
 
 # Add tests target
 add_executable(tests
-    tests/token_test.cpp
-    token.cpp
+    src/tests/token_test.cpp
+    src/token.cpp
 )
 
 target_include_directories(tests PUBLIC 

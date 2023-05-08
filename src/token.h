@@ -58,7 +58,7 @@ class Token
 public:
     // Constructor
     Token() = default;
-    explicit Token(std::string, TokenType);
+    explicit Token(std::string, std::optional<TokenType> = std::nullopt);
 
     // Destructor
     ~Token() = default;

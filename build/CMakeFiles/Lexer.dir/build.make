@@ -69,47 +69,31 @@ include CMakeFiles/Lexer.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Lexer.dir/flags.make
 
-CMakeFiles/Lexer.dir/main.cpp.o: CMakeFiles/Lexer.dir/flags.make
-CMakeFiles/Lexer.dir/main.cpp.o: ../main.cpp
-CMakeFiles/Lexer.dir/main.cpp.o: CMakeFiles/Lexer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Lexer.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Lexer.dir/main.cpp.o -MF CMakeFiles/Lexer.dir/main.cpp.o.d -o CMakeFiles/Lexer.dir/main.cpp.o -c "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/main.cpp"
+CMakeFiles/Lexer.dir/src/main.cpp.o: CMakeFiles/Lexer.dir/flags.make
+CMakeFiles/Lexer.dir/src/main.cpp.o: ../src/main.cpp
+CMakeFiles/Lexer.dir/src/main.cpp.o: CMakeFiles/Lexer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Lexer.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Lexer.dir/src/main.cpp.o -MF CMakeFiles/Lexer.dir/src/main.cpp.o.d -o CMakeFiles/Lexer.dir/src/main.cpp.o -c "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/src/main.cpp"
 
-CMakeFiles/Lexer.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lexer.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/main.cpp" > CMakeFiles/Lexer.dir/main.cpp.i
+CMakeFiles/Lexer.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lexer.dir/src/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/src/main.cpp" > CMakeFiles/Lexer.dir/src/main.cpp.i
 
-CMakeFiles/Lexer.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lexer.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/main.cpp" -o CMakeFiles/Lexer.dir/main.cpp.s
-
-CMakeFiles/Lexer.dir/token.cpp.o: CMakeFiles/Lexer.dir/flags.make
-CMakeFiles/Lexer.dir/token.cpp.o: ../token.cpp
-CMakeFiles/Lexer.dir/token.cpp.o: CMakeFiles/Lexer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Lexer.dir/token.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Lexer.dir/token.cpp.o -MF CMakeFiles/Lexer.dir/token.cpp.o.d -o CMakeFiles/Lexer.dir/token.cpp.o -c "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/token.cpp"
-
-CMakeFiles/Lexer.dir/token.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lexer.dir/token.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/token.cpp" > CMakeFiles/Lexer.dir/token.cpp.i
-
-CMakeFiles/Lexer.dir/token.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lexer.dir/token.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/token.cpp" -o CMakeFiles/Lexer.dir/token.cpp.s
+CMakeFiles/Lexer.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lexer.dir/src/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/src/main.cpp" -o CMakeFiles/Lexer.dir/src/main.cpp.s
 
 # Object files for target Lexer
 Lexer_OBJECTS = \
-"CMakeFiles/Lexer.dir/main.cpp.o" \
-"CMakeFiles/Lexer.dir/token.cpp.o"
+"CMakeFiles/Lexer.dir/src/main.cpp.o"
 
 # External object files for target Lexer
 Lexer_EXTERNAL_OBJECTS =
 
-Lexer: CMakeFiles/Lexer.dir/main.cpp.o
-Lexer: CMakeFiles/Lexer.dir/token.cpp.o
+Lexer: CMakeFiles/Lexer.dir/src/main.cpp.o
 Lexer: CMakeFiles/Lexer.dir/build.make
 Lexer: CMakeFiles/Lexer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Lexer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Lexer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Lexer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

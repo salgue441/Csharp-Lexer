@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/tests/token_test.cpp" "CMakeFiles/tests.dir/tests/token_test.cpp.o" "gcc" "CMakeFiles/tests.dir/tests/token_test.cpp.o.d"
-  "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/token.cpp" "CMakeFiles/tests.dir/token.cpp.o" "gcc" "CMakeFiles/tests.dir/token.cpp.o.d"
+  "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/src/tests/token_test.cpp" "CMakeFiles/tests.dir/src/tests/token_test.cpp.o" "gcc" "CMakeFiles/tests.dir/src/tests/token_test.cpp.o.d"
+  "/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/src/token.cpp" "CMakeFiles/tests.dir/src/token.cpp.o" "gcc" "CMakeFiles/tests.dir/src/token.cpp.o.d"
   )
 
 # Targets to which this target links.
