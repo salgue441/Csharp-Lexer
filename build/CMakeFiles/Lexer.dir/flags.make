@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadlexer/include"
+CXX_INCLUDES = -I"/mnt/c/users/carlo/documents/Tec de Monterrey/semestres/2023/Febrero - Junio/TC2037.601 - Implementacion de Metodos Computacionales/evidencias/threadLexer/include"
 
-CXX_FLAGS = -Wall -Wextra -Werror -fmodules-ts -std=c++20
+CXX_FLAGS = -g -g -O0 -fno-omit-frame-pointer -Wall -Wextra -Werror -fmodules-ts -std=c++20
 

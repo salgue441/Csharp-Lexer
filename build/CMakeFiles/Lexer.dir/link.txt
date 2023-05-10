@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/Lexer.dir/src/main.cpp.o -o Lexer 
+/usr/bin/c++ -g -g -O0 -fno-omit-frame-pointer CMakeFiles/Lexer.dir/src/main.cpp.o -o Lexer 
