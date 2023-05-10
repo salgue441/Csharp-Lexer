@@ -9,24 +9,14 @@
  * @copyright Copyright (c) 2023
  */
 
+// C++ Standard Library
+#include <filesystem>
+#include <iostream>
+#include <string>
+#include <vector>
+
 // Google Test library
 #include <gtest/gtest.h>
 
 // Project files
 #include "../src/lexer.h"
-
-/**
- * @brief
- * Test fixture for the Lexer class
- * @class LexerTest
- * @extends ::testing::Test
- */
-class LexerTest : public ::testing::Test
-{
-protected:
-    Lexer lexer;
-    std::vector<Token> expected_tokens;
-
-    // Methods
-    void SetUp() override;
-};

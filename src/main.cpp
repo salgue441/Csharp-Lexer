@@ -43,16 +43,7 @@ int main(int argc, char **argv)
     }
 
     auto filenames = get_filenames(argv[1]);
-    Lexer lexer;
-
-    /* std::cout << "Input files: " << std::endl;
-
-    for (const auto &filename : filenames)
-    {
-        std::cout << filename << std::endl;
-    }
-
-    std::cout << std::endl; */
+    std::cout << "Found " << filenames.size() << " files" << std::endl;
 }
 
 // Function definitions

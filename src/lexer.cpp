@@ -30,27 +30,31 @@ std::vector<Token> Lexer::get_tokens_from_file(
 
 /**
  * @brief
- * Lex a list of files and generate the tokens for them
- * @param files Files to lex
+ * Lex a list of files and generate the tokens for them. Uses
+ * multithreading to lex the files in parallel time.
+ * @param files Vector of files to lex and generate the tokens for
  * @throw std::exception - If an error occurs while lexing the files
+ * @note This method is thread-safe
  */
 void Lexer::lex_files(const std::vector<std::string> &files)
 {
     try
     {
-        for (const auto &file : files)
-        {
-            m_threads.emplace_back(&Lexer::lex_file, this, file);
-        }
+        // Create the threads
+        std::vector<std::thread> threads;
+        threads.reserve(files.size());
 
-        for (auto &thread : m_threads)
-        {
+        for (const auto &file : files)
+            threads.emplace_back(&Lexer::lex_file, this, file);
+
+        // Wait for the threads to finish
+        for (auto &thread : threads)
             thread.join();
-        }
     }
     catch (std::exception &e)
     {
-        std::cerr << "Error while lexing files: " << e.what() << std::endl;
+        std::cerr << "Error while lexing files: " << e.what()
+                  << std::endl;
     }
 }
 
@@ -59,35 +63,40 @@ void Lexer::lex_files(const std::vector<std::string> &files)
  * @brief
  * Lex a file and generate the tokens for it
  * @param filename - Name of the file to lex
+ * @throw std::exception - If an error occurs while lexing the file
  */
 void Lexer::lex_file(const std::string_view &filename)
 {
-    std::ifstream input_file(filename.data());
-    if (!input_file.is_open())
-    {
-        throw std::runtime_error("Failed to open file: " +
-                                 std::string(filename));
-    }
-
     try
     {
-        std::stringstream buffer;
-        buffer << input_file.rdbuf();
-        std::string content = buffer.str();
+        std::ifstream file(std::string(filename),
+                           std::ios::in | std::ios::binary);
 
+        if (!file)
+            throw std::runtime_error("Unable to open the file" +
+                                     std::string(filename));
+
+        std::ostringstream content_stream;
+        content_stream << file.rdbuf();
+        file.close();
+
+        std::string content = content_stream.str();
         auto tokens = tokenize(content);
+
+        // Identifying the tokens
+        for (auto &token : tokens)
+        {
+            TokenType token_type = identify_token(token.get_value());
+            token.set_type(token_type);
+        }
 
         // Store the tokens
         std::lock_guard<std::mutex> lock(m_mutex);
         m_tokens.insert(m_tokens.end(), tokens.begin(),
                         tokens.end());
-
-        input_file.close();
     }
     catch (std::exception &e)
     {
-        input_file.close();
-
         std::cerr << "Error while lexing file " << filename << ": "
                   << e.what() << std::endl;
     }
@@ -102,82 +111,38 @@ void Lexer::lex_file(const std::string_view &filename)
 std::vector<Token> Lexer::tokenize(const std::string_view &content)
 {
     std::vector<Token> tokens;
-    size_t pos = 0;
-    size_t length = content.length();
+    std::string token;
 
-    while (pos < length)
+    for (auto &character : content)
     {
-        // Skipping whitespace
-        while (pos < length && std::isspace(content[pos]))
-            ++pos;
-
-        if (pos == length)
-            break;
-
-        // Identifying the token
-        TokenType token_type;
-        size_t token_length = 0;
-
-        // Identifier
-        if (std::isalpha(content[pos]) || content[pos] == '_')
+        if (std::isspace(character))
         {
-            token_type = TokenType::Identifier;
-            token_length = 1;
-
-            while (pos + token_length < length &&
-                   (std::isalnum(content[pos + token_length]) ||
-                    content[pos + token_length] == '_'))
-                ++token_length;
-        }
-
-        // Number
-        else if (std::isdigit(content[pos]))
-        {
-            token_type = TokenType::NumericLiteral;
-            token_length = 1;
-
-            while (pos + token_length < length &&
-                   std::isdigit(content[pos + token_length]))
-                ++token_length;
-        }
-
-        // String literal
-        else if (content[pos] == '\"')
-        {
-            token_type = TokenType::Literal;
-            token_length = 1;
-
-            while (pos + token_length < length &&
-                   content[pos + token_length] != '\"')
+            if (!token.empty())
             {
-                if (content[pos + token_length] == '\\')
-                {
-                    ++token_length;
-
-                    if (pos + token_length >= length)
-                        throw std::runtime_error("Unterminated string literal");
-                }
-
-                ++token_length;
+                tokens.emplace_back(token);
+                token.clear();
             }
         }
+        else if (std::ispunct(character))
+        {
+            if (!token.empty() && !std::ispunct(token[0]))
+            {
+                tokens.emplace_back(token);
+                token.clear();
+            }
 
-        // Other
+            token += character;
+
+            if (!token.empty())
+            {
+                tokens.emplace_back(token);
+                token.clear();
+            }
+        }
         else
         {
-            token_type = TokenType::Other;
-            token_length = 1;
-
-            // TODO: Identify other token types
+            token += character;
         }
-
-        // Add the token
-        std::string_view str = content.substr(pos, token_length);
-        Token token(std::string(str), token_type);
-        tokens.push_back(token);
-
-        // Advance to the next token
-        pos += token_length;
     }
 
     return tokens;
