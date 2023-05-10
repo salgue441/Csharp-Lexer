@@ -1,1 +1,0 @@
-/usr/bin/c++ -g -g -O0 -fno-omit-frame-pointer CMakeFiles/tests.dir/tests/token_test.cpp.o CMakeFiles/tests.dir/src/token.cpp.o -o tests  lib/libgtest_maind.a lib/libgtestd.a 
