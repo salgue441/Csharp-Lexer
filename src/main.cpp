@@ -62,21 +62,21 @@ std::vector<std::filesystem::path> get_filenames(
 
     if (!std::filesystem::is_directory(path))
     {
-        std::cerr << "Error: " << input_directory << " is not a valid directory" << std::endl;
+        std::cerr << "Error: " << input_directory
+                  << " is not a valid directory" << std::endl;
+
         exit(1);
     }
 
     for (const auto &entry : std::filesystem::directory_iterator(path))
-    {
         if (entry.path().extension() == ".cs")
-        {
             filenames.push_back(entry.path());
-        }
-    }
 
     if (filenames.empty())
     {
-        std::cerr << "Error: no input files found in " << input_directory << std::endl;
+        std::cerr << "Error: no input files found in "
+                  << input_directory << std::endl;
+
         exit(1);
     }
 
