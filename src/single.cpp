@@ -55,6 +55,7 @@ int main(int argc, char **argv)
 
   for (auto token : tokens)
   {
+    std::cout << token.get_value() << std::endl;
     std::cout << token.to_string() << std::endl;
   }
 }
