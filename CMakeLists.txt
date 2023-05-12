@@ -50,17 +50,17 @@ target_link_libraries(tests PUBLIC
 include(GoogleTest)
 gtest_discover_tests(tests)
 
-# Custom targets for running tests
-add_custom_target(run_tests
-    COMMAND tests
-    DEPENDS tests
+# Custom command for generating output directory and running Lexer
+add_custom_command(
+    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/output
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/output
+    COMMAND Lexer ../input
+    DEPENDS ../input Lexer
     WORKING_DIRECTORY ${CMAKE_PROJECT_DIR}
 )
 
-# Custom target for main target
-add_custom_target(run_lexer
-    COMMAND Lexer ../input ../output
-    DEPENDS Lexer
-    WORKING_DIRECTORY ${CMAKE_PROJECT_DIR}
+# Using the custom command as a dependency for the run target
+add_custom_target(run
+    DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/output
 )
 

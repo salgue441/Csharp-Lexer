@@ -33,7 +33,7 @@ std::vector<std::filesystem::path> get_filenames(const std::string_view &);
  */
 int main(int argc, char **argv)
 {
-    if (argc != 3)
+    if (argc != 2)
     {
         std::cerr
             << "Usage: " << argv[0]
