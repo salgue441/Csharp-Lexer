@@ -6,11 +6,15 @@ project(Lexer)
 # C++ standard
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Main target
 add_executable(Lexer 
     src/main.cpp
+
+    # References
+    src/lexer.cpp
+    src/token.cpp
 )
 
 target_include_directories(Lexer PUBLIC 
@@ -21,6 +25,15 @@ target_compile_options(Lexer PUBLIC
     -Wall 
     -Wextra 
     -Werror
+)
+
+# Custom command for generating output directory and running Lexer
+add_custom_command(
+    TARGET Lexer
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/output
+    COMMAND $<TARGET_FILE:Lexer> ../input
+    WORKING_DIRECTORY ${CMAKE_PROJECT_DIR}
 )
 
 # Google Test Library
@@ -49,18 +62,3 @@ target_link_libraries(tests PUBLIC
 # Register test
 include(GoogleTest)
 gtest_discover_tests(tests)
-
-# Custom command for generating output directory and running Lexer
-add_custom_command(
-    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/output
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/output
-    COMMAND Lexer ../input
-    DEPENDS ../input Lexer
-    WORKING_DIRECTORY ${CMAKE_PROJECT_DIR}
-)
-
-# Using the custom command as a dependency for the run target
-add_custom_target(run
-    DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/output
-)
-

@@ -14,6 +14,7 @@
 #include <string_view>
 #include <filesystem>
 #include <fstream>
+#include <algorithm>
 #include <memory>
 #include <vector>
 
@@ -43,7 +44,18 @@ int main(int argc, char **argv)
     }
 
     auto filenames = get_filenames(argv[1]);
-    std::cout << "Found " << filenames.size() << " files" << std::endl;
+    Lexer lexer;
+
+    // Converting filenames to string
+    std::vector<std::string> filenames_string;
+    std::transform(filenames.begin(), filenames.end(),
+                   std::back_inserter(filenames_string),
+                   [](const std::filesystem::path &path)
+                   {
+                       return path.string();
+                   });
+
+    lexer.start_lexing(filenames_string);
 }
 
 // Function definitions

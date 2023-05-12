@@ -8,7 +8,7 @@ cd build
 cmake ..
 
 # Build the program
-make run
+make Lexer
 
 # Clean up the build files
 make clean

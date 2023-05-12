@@ -14,15 +14,11 @@
 #define LEXER_H
 
 // Standard libraries
-#include <iostream>      // For console output
-#include <fstream>       // For file reading
-#include <string>        // For string manipulation
-#include <string_view>   // For efficient string comparison
-#include <vector>        // For tokens
-#include <unordered_set> // For efficient keyword checking
-#include <thread>        // For multithreading
-#include <mutex>         // For thread synchronization
-#include <optional>      // For optional token type
+#include <thread>
+#include <mutex>
+#include <string_view>
+#include <vector>
+#include <string>
 
 // Project files
 #include "token.h"
@@ -45,26 +41,26 @@ public:
     // Destructor
     ~Lexer() = default;
 
-    // Access methods
+    // Acess Methods
     std::vector<Token> get_tokens() const;
 
     // Methods
-    std::vector<Token> get_tokens_from_file(
-        const std::string_view &);
-    void lex_files(const std::vector<std::string> &);
-    std::string generate_html(const std::vector<std::string> &);
+    void start_lexing(const std::vector<std::string> &);
     void save_to_file(const std::string &, const std::string &);
 
 private:
     std::vector<std::thread> m_threads;
     std::mutex m_mutex;
     std::vector<Token> m_tokens;
+    std::vector<std::string> m_files;
 
     // Methods
-    std::vector<Token> tokenize(const std::string_view &);
+    void lex(const std::vector<std::string> &);
     void lex_file(const std::string_view &);
+    std::vector<Token> tokenize(const std::string_view &);
     TokenType identify_token(const std::string_view &);
     std::string token_to_html(const Token &);
+    std::string generate_html(const std::vector<std::string> &);
 };
 
 #endif //! LEXER_H
