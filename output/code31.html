@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Highlighter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<pre><code>
+<span class="Other">// C# Program to Demonstrate Boxing Operations
+
+using System;
+class sample
+{
+    int x = 10;
+    object obj;
+    void boxmethod()
+    {
+        sample s= new sample();
+        bool b;
+        object ob="CSHARP";
+        b=s.obj is int;
+        Console.WriteLine(b);
+        s.obj = x;
+        b = s.obj is int;
+        Console.WriteLine("{0},{1},{2}",s.obj,s.x,b);
+        s.x = (int)s.obj;
+        s.x = 20;
+        b = s.obj is int;
+        Console.WriteLine("{0},{1},{2}", s.obj, s.x, b);
+        s.obj="CSHARP";
+        b=s.obj is int;
+        Console.WriteLine("{0},{1},{2}",s.obj,s.x,b);
+        Console.ReadLine();
+    }
+    public static void Main()
+    {
+        sample s=new sample();
+        s.boxmethod();
+    }
+}</span></code></pre>
+</body>
+</html>

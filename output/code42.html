@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Highlighter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<pre><code>
+<span class="Other">// C# Program to Display Absolute value of a Number
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+ 
+namespace example
+{
+    internal class Program
+    {
+        private static void Main(string[] args)
+        {
+            int num;
+            Console.Write("Enter a number:");
+            num = Convert.ToInt32(Console.ReadLine());
+            if (num < 0)
+            {
+                num = num * -1;
+            }
+ 
+            Console.WriteLine("Absolute value : " + num);
+            Console.ReadLine();
+        }
+    }
+}</span></code></pre>
+</body>
+</html>

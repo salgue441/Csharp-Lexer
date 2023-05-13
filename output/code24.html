@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Highlighter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<pre><code>
+<span class="Other">// C# Program to Read a Grade & Display the Equivalent Description
+
+using System;
+using System.IO;
+class program
+{
+    public static void Main()
+    {
+        char grade;
+        Console.WriteLine("Enter the Grade in UpperCase \n");
+        grade = Convert.ToChar(Console.ReadLine());
+        switch (grade)
+        {
+        case 'S':
+            Console.WriteLine(" SUPER");
+            break;
+        case 'A':
+            Console.WriteLine(" VERY GOOD");
+            break;
+        case 'B':
+            Console.WriteLine(" FAIR");
+            break;
+        case 'Y':
+            Console.WriteLine(" ABSENT");
+            break;
+        case 'F':
+            Console.WriteLine(" FAIL");
+            break;
+        default:
+            Console.WriteLine("ERROR IN GRADE \n");
+            break;
+            Console.ReadLine();
+        }
+    }
+}</span></code></pre>
+</body>
+</html>

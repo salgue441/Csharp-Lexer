@@ -46,7 +46,7 @@ public:
 
     // Methods
     void start_lexing(const std::vector<std::string> &);
-    void save_to_file(const std::string &, const std::string &);
+    void save(const std::string &filename, const std::vector<Token> &) const;
 
 private:
     std::vector<std::thread> m_threads;
@@ -56,11 +56,12 @@ private:
 
     // Methods
     void lex(const std::vector<std::string> &);
-    void lex_file(const std::string_view &);
+    std::vector<Token> lex_file(const std::string_view &);
     std::vector<Token> tokenize(const std::string_view &);
     TokenType identify_token(const std::string_view &);
-    std::string token_to_html(const Token &);
-    std::string generate_html(const std::vector<std::string> &);
+    std::string token_to_html(const Token &) const;
+    std::string generate_html(const std::vector<Token> &) const;
+    std::string get_output_filename(const std::string &) const;
 };
 
 #endif //! LEXER_H

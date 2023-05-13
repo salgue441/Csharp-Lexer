@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Highlighter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<pre><code>
+<span class="Other">// C# Program to Find and display the Multiplication Table
+
+using System;
+class Multipication
+{
+    static void Main()
+    {
+        int no;
+ 
+        Console.Write("Enter a no : ");
+        no = Convert.ToInt32(Console.ReadLine());
+        while (no <= 0)
+        {
+            Console.WriteLine("You entered an invalid no");
+ 
+            Console.Write("Enter a no great than 0: ");
+            no = Convert.ToInt32(Console.ReadLine());
+        }
+        Console.WriteLine("Multiplication Table :");
+        for (int i = 1; i <= no; i++)
+        {
+            Console.WriteLine("\n");
+ 
+            for (int j = 1; j <= no; j++)
+            {
+                Console.Write("{0,6}", i * j);
+            }
+ 
+        }
+        Console.Read();
+    }
+}</span></code></pre>
+</body>
+</html>

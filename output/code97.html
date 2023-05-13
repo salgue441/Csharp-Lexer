@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Highlighter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<pre><code>
+<span class="Other">// C# Program to Generate Random Numbers
+
+using System;
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Some Random Numbers that are generated are : ");
+        for (int i = 1; i < 10; i++)
+        {
+            Randfunc();
+        }
+    }
+    static Random r = new Random();
+    static void Randfunc()
+    {
+        int n = r.Next();
+        Console.WriteLine(n);
+        Console.ReadLine();
+    }
+}</span></code></pre>
+</body>
+</html>

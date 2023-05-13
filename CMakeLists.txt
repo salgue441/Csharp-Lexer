@@ -31,8 +31,7 @@ target_compile_options(Lexer PUBLIC
 add_custom_command(
     TARGET Lexer
     POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/output
-    COMMAND $<TARGET_FILE:Lexer> ../input
+    COMMAND $<TARGET_FILE:Lexer> ../input 
     WORKING_DIRECTORY ${CMAKE_PROJECT_DIR}
 )
 

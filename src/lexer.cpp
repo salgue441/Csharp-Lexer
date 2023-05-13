@@ -13,6 +13,7 @@
 // Standard libraries
 #include <iostream>
 #include <fstream>
+#include <filesystem>
 
 // Project files
 #include "lexer.h"
@@ -37,7 +38,44 @@ std::vector<Token> Lexer::get_tokens() const
  */
 void Lexer::start_lexing(const std::vector<std::string> &filenames)
 {
-    lex(filenames);
+    try
+    {
+        for (const auto &filename : filenames)
+        {
+            auto tokens = lex_file(filename);
+            save(filename, tokens);
+        }
+    }
+    catch (std::exception &e)
+    {
+        throw std::runtime_error(e.what());
+    }
+}
+
+/**
+ * @brief
+ * Saves the tokens in a HTML file
+ * @param filename Filename to save the tokens
+ * @throw std::runtime_error If the file cannot be opened
+ */
+void Lexer::save(const std::string &filename, const std::vector<Token> &tokens) const
+{
+    try
+    {
+        std::string output_filename = get_output_filename(filename);
+        std::ofstream output_file(output_filename);
+        if (!output_file)
+        {
+            throw std::runtime_error("Cannot open file: " + output_filename);
+        }
+
+        output_file << generate_html(tokens);
+        output_file.close();
+    }
+    catch (std::exception &e)
+    {
+        throw std::runtime_error(e.what());
+    }
 }
 
 // Methods (Private)
@@ -60,43 +98,41 @@ void Lexer::lex(const std::vector<std::string> &filenames)
 
     catch (std::exception &e)
     {
-        std::cerr << e.what() << std::endl;
+        throw std::runtime_error(e.what());
     }
 }
 
 /**
  * @brief
- * Lex a file and generate the tokens
+ * Lex a file and generate the tokens for said file
  * @param filename Filename to lex
  * @throw std::runtime_error If the file cannot be opened
  */
-void Lexer::lex_file(const std::string_view &filename)
+std::vector<Token> Lexer::lex_file(const std::string_view &filename)
 {
     try
     {
-        std::ifstream file(filename.data(), std::ios::in | std::ios::binary);
+        std::ifstream input_file(filename.data(), std::ios::in | std::ios::binary);
+        if (!input_file)
+        {
+            throw std::runtime_error("Cannot open file: " + std::string(filename));
+        }
 
-        if (!file)
-            throw std::runtime_error("Cannot open file" +
-                                     std::string(filename.data()));
+        std::string buffer((std::istreambuf_iterator<char>(input_file)),
+                           std::istreambuf_iterator<char>());
 
-        std::string buffer;
-        std::string line;
+        input_file.close();
 
-        while (std::getline(file, line))
-            buffer += line + '\n';
+        if (buffer.empty())
+        {
+            throw std::runtime_error("File is empty: " + std::string(filename));
+        }
 
-        file.close();
-
-        std::lock_guard<std::mutex> lock(m_mutex);
-        auto tokens = tokenize(buffer);
-
-        m_tokens.insert(m_tokens.end(),
-                        tokens.begin(), tokens.end());
+        return tokenize(buffer);
     }
     catch (std::exception &e)
     {
-        std::cerr << e.what() << std::endl;
+        throw std::runtime_error(e.what());
     }
 }
 
@@ -121,17 +157,25 @@ std::vector<Token> Lexer::tokenize(const std::string_view &buffer)
             std::string_view token(buffer.data() + previous_position,
                                    position - previous_position);
             TokenType type = identify_token(token);
-            m_tokens.emplace_back(token.data(), type);
+            tokens.emplace_back(token.data(), type);
 
             previous_position = position + 1;
             ++position;
+        }
+
+        if (previous_position < buffer.size())
+        {
+            std::string_view token(buffer.data() + previous_position,
+                                   buffer.size() - previous_position);
+            TokenType type = identify_token(token);
+            tokens.emplace_back(token.data(), type);
         }
 
         return tokens;
     }
     catch (std::exception &e)
     {
-        std::cerr << e.what() << std::endl;
+        throw std::runtime_error(e.what());
     }
 
     throw std::runtime_error("Cannot tokenize file");
@@ -217,7 +261,7 @@ TokenType Lexer::identify_token(const std::string_view &token)
  * @param tokens Tokens to convert
  * @return std::string Html code
  */
-std::string Lexer::token_to_html(const Token &token)
+std::string Lexer::token_to_html(const Token &token) const
 {
     std::string html;
 
@@ -297,4 +341,53 @@ std::string Lexer::token_to_html(const Token &token)
     }
 
     return html;
+}
+
+/**
+ * @brief
+ * Generates the HTML code from the tokens vector
+ * @param tokens Tokens to convert
+ * @return std::string Html code
+ */
+std::string Lexer::generate_html(const std::vector<Token> &tokens) const
+{
+    std::string html;
+
+    html += "<!DOCTYPE html>\n";
+    html += "<html lang=\"en\">\n";
+    html += "<head>\n";
+    html += "<meta charset=\"UTF-8\">\n";
+    html += "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n";
+    html += "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
+    html += "<title>Highlighter</title>\n";
+    html += "<link rel=\"stylesheet\" href=\"style.css\">\n";
+    html += "</head>\n";
+    html += "<body>\n";
+    html += "<pre><code>\n";
+
+    for (const auto &token : tokens)
+    {
+        html += token_to_html(token);
+    }
+
+    html += "</code></pre>\n";
+    html += "</body>\n";
+    html += "</html>\n";
+
+    return html;
+}
+
+/**
+ * @brief
+ * Gets the output filename from the input filename
+ * @param inputFilename Input filename
+ * @return std::string Output filename
+ */
+std::string Lexer::get_output_filename(const std::string &inputFilename) const
+{
+    std::filesystem::path path(inputFilename);
+    std::string filename = path.stem().string();
+    std::filesystem::path outputPath = "../output/" + filename + ".html";
+
+    return outputPath.string();
 }
