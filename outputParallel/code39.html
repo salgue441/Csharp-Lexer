@@ -5,31 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Highlighter</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../src/styles/styles.css">
 </head>
-<body>
+<body style=" background-color: var(--background-color); ">
 <pre><code>
-<span class="Other">// C# Program to Print all the Armstrong Numbers from 1 to 1000
-
-using System;
-class Program
-{
-    static void Main()
-    {
-        int a, b, c, d;
-        for (int i = 1; i <= 1000; i++)
-        {
-            a = i / 100;
-            b = (i - a * 100) / 10;
-            c = (i - a * 100 - b * 10);
-            d = a * a * a + b * b * b + c * c * c;
-            if (i == d)
-            {
-                System.Console.WriteLine("{0}", i);
-            }
-        } 
-        Console.Read();
-    }
-}</span></code></pre>
+<span class="Comment">//</span><span class="Other">C#</span><span class="Other">Program</span><span class="Other">to</span><span class="Other">Print</span><span class="Other">all</span><span class="Other">the</span><span class="Other">Armstrong</span><span class="Other">Numbers</span><span class="Other">from</span><span class="Other">1</span><span class="Other">to</span><span class="Other">1000</span><span class="Keyword">using</span><span class="Other">System;</span><span class="Keyword">class</span><span class="Other">Program</span><span class="Separator">{</span><span class="Keyword">static</span><span class="Keyword">void</span><span class="Other">Main()</span><span class="Separator">{</span><span class="Keyword">int</span><span class="Other">a,</span><span class="Other">b,</span><span class="Other">c,</span><span class="Other">d;</span><span class="Keyword">for</span><span class="Other">(int</span><span class="Other">i</span><span class="Other">=</span><span class="Other">1;</span><span class="Other">i</span><span class="Operator"><=</span><span class="Other">1000;</span><span class="Other">i++)</span><span class="Separator">{</span><span class="Other">a</span><span class="Other">=</span><span class="Other">i</span><span class="Operator">/</span><span class="Other">100;</span><span class="Other">b</span><span class="Other">=</span><span class="Other">(i</span><span class="Operator">-</span><span class="Other">a</span><span class="Operator">*</span><span class="Other">100)</span><span class="Operator">/</span><span class="Other">10;</span><span class="Other">c</span><span class="Other">=</span><span class="Other">(i</span><span class="Operator">-</span><span class="Other">a</span><span class="Operator">*</span><span class="Other">100</span><span class="Operator">-</span><span class="Other">b</span><span class="Operator">*</span><span class="Other">10);</span><span class="Other">d</span><span class="Other">=</span><span class="Other">a</span><span class="Operator">*</span><span class="Other">a</span><span class="Operator">*</span><span class="Other">a</span><span class="Operator">+</span><span class="Other">b</span><span class="Operator">*</span><span class="Other">b</span><span class="Operator">*</span><span class="Other">b</span><span class="Operator">+</span><span class="Other">c</span><span class="Operator">*</span><span class="Other">c</span><span class="Operator">*</span><span class="Other">c;</span><span class="Keyword">if</span><span class="Other">(i</span><span class="Operator">==</span><span class="Other">d)</span><span class="Separator">{</span><span class="Other">System.Console.WriteLine("{0}",</span><span class="Other">i);</span><span class="Separator">}</span><span class="Separator">}</span><span class="Other">Console.Read();</span><span class="Separator">}</span><span class="Separator">}</span></code></pre>
 </body>
 </html>

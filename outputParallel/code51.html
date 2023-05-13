@@ -5,41 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Highlighter</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../src/styles/styles.css">
 </head>
-<body>
+<body style=" background-color: var(--background-color); ">
 <pre><code>
-<span class="Other">// C# Program to Find and display the Multiplication Table
-
-using System;
-class Multipication
-{
-    static void Main()
-    {
-        int no;
- 
-        Console.Write("Enter a no : ");
-        no = Convert.ToInt32(Console.ReadLine());
-        while (no <= 0)
-        {
-            Console.WriteLine("You entered an invalid no");
- 
-            Console.Write("Enter a no great than 0: ");
-            no = Convert.ToInt32(Console.ReadLine());
-        }
-        Console.WriteLine("Multiplication Table :");
-        for (int i = 1; i <= no; i++)
-        {
-            Console.WriteLine("\n");
- 
-            for (int j = 1; j <= no; j++)
-            {
-                Console.Write("{0,6}", i * j);
-            }
- 
-        }
-        Console.Read();
-    }
-}</span></code></pre>
+<span class="Comment">//</span><span class="Other">C#</span><span class="Other">Program</span><span class="Other">to</span><span class="Other">Find</span><span class="Other">and</span><span class="Other">display</span><span class="Other">the</span><span class="Other">Multiplication</span><span class="Other">Table</span><span class="Keyword">using</span><span class="Other">System;</span><span class="Keyword">class</span><span class="Other">Multipication</span><span class="Separator">{</span><span class="Keyword">static</span><span class="Keyword">void</span><span class="Other">Main()</span><span class="Separator">{</span><span class="Keyword">int</span><span class="Other">no;</span><span class="Other">Console.Write("Enter</span><span class="Other">a</span><span class="Other">no</span><span class="Operator">:</span><span class="Other">");</span><span class="Other">no</span><span class="Other">=</span><span class="Other">Convert.ToInt32(Console.ReadLine());</span><span class="Keyword">while</span><span class="Other">(no</span><span class="Operator"><=</span><span class="Other">0)</span><span class="Separator">{</span><span class="Other">Console.WriteLine("You</span><span class="Other">entered</span><span class="Other">an</span><span class="Other">invalid</span><span class="Other">no");</span><span class="Other">Console.Write("Enter</span><span class="Other">a</span><span class="Other">no</span><span class="Other">great</span><span class="Other">than</span><span class="Other">0:</span><span class="Other">");</span><span class="Other">no</span><span class="Other">=</span><span class="Other">Convert.ToInt32(Console.ReadLine());</span><span class="Separator">}</span><span class="Other">Console.WriteLine("Multiplication</span><span class="Other">Table</span><span class="Other">:");</span><span class="Keyword">for</span><span class="Other">(int</span><span class="Other">i</span><span class="Other">=</span><span class="Other">1;</span><span class="Other">i</span><span class="Operator"><=</span><span class="Other">no;</span><span class="Other">i++)</span><span class="Separator">{</span><span class="Other">Console.WriteLine("\n");</span><span class="Keyword">for</span><span class="Other">(int</span><span class="Other">j</span><span class="Other">=</span><span class="Other">1;</span><span class="Other">j</span><span class="Operator"><=</span><span class="Other">no;</span><span class="Other">j++)</span><span class="Separator">{</span><span class="Other">Console.Write("{0,6}",</span><span class="Other">i</span><span class="Operator">*</span><span class="Other">j);</span><span class="Separator">}</span><span class="Separator">}</span><span class="Other">Console.Read();</span><span class="Separator">}</span><span class="Separator">}</span></code></pre>
 </body>
 </html>

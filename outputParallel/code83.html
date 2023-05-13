@@ -5,39 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Highlighter</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../src/styles/styles.css">
 </head>
-<body>
+<body style=" background-color: var(--background-color); ">
 <pre><code>
-<span class="Other">// C#  Program to Generate Fibonacci Series
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
- 
-namespace fibonaci
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            int i, count, f1 = 0, f2 = 1, f3 = 0;
-            Console.Write("Enter the Limit : ");
-            count = int.Parse(Console.ReadLine());
-            Console.WriteLine(f1);
-            Console.WriteLine(f2);
-            for (i = 0; i <= count; i++)
-            {
-                f3 = f1 + f2;
-                Console.WriteLine(f3);
-                f1 = f2;
-                f2 = f3;
-            }
-            Console.ReadLine();
- 
-        }
-    }
-}</span></code></pre>
+<span class="Comment">//</span><span class="Other">C#</span><span class="Other">Program</span><span class="Other">to</span><span class="Other">Generate</span><span class="Other">Fibonacci</span><span class="Other">Series</span><span class="Keyword">using</span><span class="Other">System;</span><span class="Keyword">using</span><span class="Other">System.Collections.Generic;</span><span class="Keyword">using</span><span class="Other">System.Linq;</span><span class="Keyword">using</span><span class="Other">System.Text;</span><span class="Keyword">namespace</span><span class="Other">fibonaci</span><span class="Separator">{</span><span class="Keyword">class</span><span class="Other">Program</span><span class="Separator">{</span><span class="Keyword">static</span><span class="Keyword">void</span><span class="Other">Main(string[]</span><span class="Other">args)</span><span class="Separator">{</span><span class="Keyword">int</span><span class="Other">i,</span><span class="Other">count,</span><span class="Other">f1</span><span class="Other">=</span><span class="Other">0,</span><span class="Other">f2</span><span class="Other">=</span><span class="Other">1,</span><span class="Other">f3</span><span class="Other">=</span><span class="Other">0;</span><span class="Other">Console.Write("Enter</span><span class="Other">the</span><span class="Other">Limit</span><span class="Operator">:</span><span class="Other">");</span><span class="Other">count</span><span class="Other">=</span><span class="Other">int.Parse(Console.ReadLine());</span><span class="Other">Console.WriteLine(f1);</span><span class="Other">Console.WriteLine(f2);</span><span class="Keyword">for</span><span class="Other">(i</span><span class="Other">=</span><span class="Other">0;</span><span class="Other">i</span><span class="Operator"><=</span><span class="Other">count;</span><span class="Other">i++)</span><span class="Separator">{</span><span class="Other">f3</span><span class="Other">=</span><span class="Other">f1</span><span class="Operator">+</span><span class="Other">f2;</span><span class="Other">Console.WriteLine(f3);</span><span class="Other">f1</span><span class="Other">=</span><span class="Other">f2;</span><span class="Other">f2</span><span class="Other">=</span><span class="Other">f3;</span><span class="Separator">}</span><span class="Other">Console.ReadLine();</span><span class="Separator">}</span><span class="Separator">}</span><span class="Separator">}</span></code></pre>
 </body>
 </html>

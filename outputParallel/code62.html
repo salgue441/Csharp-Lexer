@@ -5,39 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Highlighter</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../src/styles/styles.css">
 </head>
-<body>
+<body style=" background-color: var(--background-color); ">
 <pre><code>
-<span class="Other">// C# Program to Find Sum of Digits of a Number using Recursion
-
-using System;
-class program
-{
-    public static void Main()
-{
-    int num, result;
-    pro pg = new pro();
-    Console.WriteLine("Enter the Number : ");
-    num=int.Parse(Console.ReadLine());
-    result =pg.sum(num);
-    Console.WriteLine("Sum of Digits in {0} is {1}", num, result);
-    Console.ReadLine();
-}
-}
-class pro
-{
-    public int sum(int num)
-    {
-        if (num != 0)
-        {
-            return (num % 10 + sum(num / 10));
-        }
-        else
-        {
-            return 0;
-        }
-    }
-}</span></code></pre>
+<span class="Comment">//</span><span class="Other">C#</span><span class="Other">Program</span><span class="Other">to</span><span class="Other">Find</span><span class="Other">Sum</span><span class="Other">of</span><span class="Other">Digits</span><span class="Other">of</span><span class="Other">a</span><span class="Other">Number</span><span class="Keyword">using</span><span class="Other">Recursion</span><span class="Keyword">using</span><span class="Other">System;</span><span class="Keyword">class</span><span class="Other">program</span><span class="Separator">{</span><span class="Keyword">public</span><span class="Keyword">static</span><span class="Keyword">void</span><span class="Other">Main()</span><span class="Separator">{</span><span class="Keyword">int</span><span class="Other">num,</span><span class="Other">result;</span><span class="Other">pro</span><span class="Other">pg</span><span class="Other">=</span><span class="Keyword">new</span><span class="Other">pro();</span><span class="Other">Console.WriteLine("Enter</span><span class="Other">the</span><span class="Other">Number</span><span class="Operator">:</span><span class="Other">");</span><span class="Other">num=int.Parse(Console.ReadLine());</span><span class="Other">result</span><span class="Other">=pg.sum(num);</span><span class="Other">Console.WriteLine("Sum</span><span class="Other">of</span><span class="Other">Digits</span><span class="Keyword">in</span><span class="Other">{0}</span><span class="Keyword">is</span><span class="Other">{1}",</span><span class="Other">num,</span><span class="Other">result);</span><span class="Other">Console.ReadLine();</span><span class="Separator">}</span><span class="Separator">}</span><span class="Keyword">class</span><span class="Other">pro</span><span class="Separator">{</span><span class="Keyword">public</span><span class="Keyword">int</span><span class="Other">sum(int</span><span class="Other">num)</span><span class="Separator">{</span><span class="Keyword">if</span><span class="Other">(num</span><span class="Operator">!=</span><span class="Other">0)</span><span class="Separator">{</span><span class="Keyword">return</span><span class="Other">(num</span><span class="Operator">%</span><span class="Other">10</span><span class="Operator">+</span><span class="Other">sum(num</span><span class="Operator">/</span><span class="Other">10));</span><span class="Separator">}</span><span class="Keyword">else</span><span class="Separator">{</span><span class="Keyword">return</span><span class="Other">0;</span><span class="Separator">}</span><span class="Separator">}</span><span class="Separator">}</span></code></pre>
 </body>
 </html>

@@ -5,46 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Highlighter</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../src/styles/styles.css">
 </head>
-<body>
+<body style=" background-color: var(--background-color); ">
 <pre><code>
-<span class="Other">// C# Program to Print Binary Equivalent of an Integer using Recursion
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-class Program
-{
-    public static void Main(string[] args)
-    {
-        int num;
-        prog pg = new prog();
-        Console.WriteLine("Enter a decimal number: ");
-        num = int.Parse(Console.ReadLine());
-        Console.WriteLine("The binary equivalent of num is :");
-        pg.binaryconversion(num);
-        Console.ReadLine();
-    }
-}
-public class prog
-{
-    public int binaryconversion(int num)
-    {
-        int bin;
-        if (num != 0)
-        {
-            bin = (num % 2) + 10 * binaryconversion(num / 2);
-            Console.Write(bin);
-            return 0;
-        }
-        else
-        {
-            return 0;
-        }
- 
-    }
-}</span></code></pre>
+<span class="Comment">//</span><span class="Other">C#</span><span class="Other">Program</span><span class="Other">to</span><span class="Other">Print</span><span class="Other">Binary</span><span class="Other">Equivalent</span><span class="Other">of</span><span class="Other">an</span><span class="Other">Integer</span><span class="Keyword">using</span><span class="Other">Recursion</span><span class="Keyword">using</span><span class="Other">System;</span><span class="Keyword">using</span><span class="Other">System.Collections.Generic;</span><span class="Keyword">using</span><span class="Other">System.Linq;</span><span class="Keyword">using</span><span class="Other">System.Text;</span><span class="Keyword">class</span><span class="Other">Program</span><span class="Separator">{</span><span class="Keyword">public</span><span class="Keyword">static</span><span class="Keyword">void</span><span class="Other">Main(string[]</span><span class="Other">args)</span><span class="Separator">{</span><span class="Keyword">int</span><span class="Other">num;</span><span class="Other">prog</span><span class="Other">pg</span><span class="Other">=</span><span class="Keyword">new</span><span class="Other">prog();</span><span class="Other">Console.WriteLine("Enter</span><span class="Other">a</span><span class="Keyword">decimal</span><span class="Other">number:</span><span class="Other">");</span><span class="Other">num</span><span class="Other">=</span><span class="Other">int.Parse(Console.ReadLine());</span><span class="Other">Console.WriteLine("The</span><span class="Other">binary</span><span class="Other">equivalent</span><span class="Other">of</span><span class="Other">num</span><span class="Keyword">is</span><span class="Other">:");</span><span class="Other">pg.binaryconversion(num);</span><span class="Other">Console.ReadLine();</span><span class="Separator">}</span><span class="Separator">}</span><span class="Keyword">public</span><span class="Keyword">class</span><span class="Other">prog</span><span class="Separator">{</span><span class="Keyword">public</span><span class="Keyword">int</span><span class="Other">binaryconversion(int</span><span class="Other">num)</span><span class="Separator">{</span><span class="Keyword">int</span><span class="Other">bin;</span><span class="Keyword">if</span><span class="Other">(num</span><span class="Operator">!=</span><span class="Other">0)</span><span class="Separator">{</span><span class="Other">bin</span><span class="Other">=</span><span class="Other">(num</span><span class="Operator">%</span><span class="Other">2)</span><span class="Operator">+</span><span class="Other">10</span><span class="Operator">*</span><span class="Other">binaryconversion(num</span><span class="Operator">/</span><span class="Other">2);</span><span class="Other">Console.Write(bin);</span><span class="Keyword">return</span><span class="Other">0;</span><span class="Separator">}</span><span class="Keyword">else</span><span class="Separator">{</span><span class="Keyword">return</span><span class="Other">0;</span><span class="Separator">}</span><span class="Separator">}</span><span class="Separator">}</span></code></pre>
 </body>
 </html>

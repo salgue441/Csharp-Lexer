@@ -5,60 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Highlighter</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../src/styles/styles.css">
 </head>
-<body>
+<body style=" background-color: var(--background-color); ">
 <pre><code>
-<span class="Other">// C# Program to Perform all Basic Arithmetic Operations
-
-using System;
-using System.Collections.Generic;
-using System.Text;
-namespace Program
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            int Num1, Num2, result;
-            char option;
-            Console.Write("Enter the First Number : ");
-            Num1 = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Enter the Second Number : ");
-            Num2 = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Main Menu");
-            Console.WriteLine("1. Addition");
-            Console.WriteLine("2. Subtraction");
-            Console.WriteLine("3. Multiplication");
-            Console.WriteLine("4. Division");
-            Console.Write("Enter the Operation you want to perform : ");
-            option = Convert.ToChar(Console.ReadLine());
-            switch (option)
-            {
-            case '1':
-                result = Num1 + Num2;
-                Console.WriteLine("The result of Addition is : {0}", result);
-                break;
-            case '2':
-                result = Num1 - Num2;
-                Console.WriteLine("The result of Subtraction is : {0}", result);
-                break;
-            case '3':
-                result = Num1 * Num2;
-                Console.WriteLine("The result of Multiplication is : {0}", result);
-                break;
-            case '4':
-                result = Num1 / Num2;
-                Console.WriteLine("The result of Division is : {0}", result);
-                break;
-            default:
-                Console.WriteLine("Invalid Option");
-                break;
-            }
-            Console.ReadLine();
-        }
- 
-    }
-}</span></code></pre>
+<span class="Comment">//</span><span class="Other">C#</span><span class="Other">Program</span><span class="Other">to</span><span class="Other">Perform</span><span class="Other">all</span><span class="Other">Basic</span><span class="Other">Arithmetic</span><span class="Other">Operations</span><span class="Keyword">using</span><span class="Other">System;</span><span class="Keyword">using</span><span class="Other">System.Collections.Generic;</span><span class="Keyword">using</span><span class="Other">System.Text;</span><span class="Keyword">namespace</span><span class="Other">Program</span><span class="Separator">{</span><span class="Keyword">class</span><span class="Other">Program</span><span class="Separator">{</span><span class="Keyword">static</span><span class="Keyword">void</span><span class="Other">Main(string[]</span><span class="Other">args)</span><span class="Separator">{</span><span class="Keyword">int</span><span class="Other">Num1,</span><span class="Other">Num2,</span><span class="Other">result;</span><span class="Keyword">char</span><span class="Other">option;</span><span class="Other">Console.Write("Enter</span><span class="Other">the</span><span class="Other">First</span><span class="Other">Number</span><span class="Operator">:</span><span class="Other">");</span><span class="Other">Num1</span><span class="Other">=</span><span class="Other">Convert.ToInt32(Console.ReadLine());</span><span class="Other">Console.Write("Enter</span><span class="Other">the</span><span class="Other">Second</span><span class="Other">Number</span><span class="Operator">:</span><span class="Other">");</span><span class="Other">Num2</span><span class="Other">=</span><span class="Other">Convert.ToInt32(Console.ReadLine());</span><span class="Other">Console.WriteLine("Main</span><span class="Other">Menu");</span><span class="Other">Console.WriteLine("1.</span><span class="Other">Addition");</span><span class="Other">Console.WriteLine("2.</span><span class="Other">Subtraction");</span><span class="Other">Console.WriteLine("3.</span><span class="Other">Multiplication");</span><span class="Other">Console.WriteLine("4.</span><span class="Other">Division");</span><span class="Other">Console.Write("Enter</span><span class="Other">the</span><span class="Other">Operation</span><span class="Other">you</span><span class="Other">want</span><span class="Other">to</span><span class="Other">perform</span><span class="Operator">:</span><span class="Other">");</span><span class="Other">option</span><span class="Other">=</span><span class="Other">Convert.ToChar(Console.ReadLine());</span><span class="Keyword">switch</span><span class="Other">(option)</span><span class="Separator">{</span><span class="Keyword">case</span><span class="Other">'1':</span><span class="Other">result</span><span class="Other">=</span><span class="Other">Num1</span><span class="Operator">+</span><span class="Other">Num2;</span><span class="Other">Console.WriteLine("The</span><span class="Other">result</span><span class="Other">of</span><span class="Other">Addition</span><span class="Keyword">is</span><span class="Operator">:</span><span class="Other">{0}",</span><span class="Other">result);</span><span class="Other">break;</span><span class="Keyword">case</span><span class="Other">'2':</span><span class="Other">result</span><span class="Other">=</span><span class="Other">Num1</span><span class="Operator">-</span><span class="Other">Num2;</span><span class="Other">Console.WriteLine("The</span><span class="Other">result</span><span class="Other">of</span><span class="Other">Subtraction</span><span class="Keyword">is</span><span class="Operator">:</span><span class="Other">{0}",</span><span class="Other">result);</span><span class="Other">break;</span><span class="Keyword">case</span><span class="Other">'3':</span><span class="Other">result</span><span class="Other">=</span><span class="Other">Num1</span><span class="Operator">*</span><span class="Other">Num2;</span><span class="Other">Console.WriteLine("The</span><span class="Other">result</span><span class="Other">of</span><span class="Other">Multiplication</span><span class="Keyword">is</span><span class="Operator">:</span><span class="Other">{0}",</span><span class="Other">result);</span><span class="Other">break;</span><span class="Keyword">case</span><span class="Other">'4':</span><span class="Other">result</span><span class="Other">=</span><span class="Other">Num1</span><span class="Operator">/</span><span class="Other">Num2;</span><span class="Other">Console.WriteLine("The</span><span class="Other">result</span><span class="Other">of</span><span class="Other">Division</span><span class="Keyword">is</span><span class="Operator">:</span><span class="Other">{0}",</span><span class="Other">result);</span><span class="Other">break;</span><span class="Other">default:</span><span class="Other">Console.WriteLine("Invalid</span><span class="Other">Option");</span><span class="Other">break;</span><span class="Separator">}</span><span class="Other">Console.ReadLine();</span><span class="Separator">}</span><span class="Separator">}</span><span class="Separator">}</span></code></pre>
 </body>
 </html>

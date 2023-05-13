@@ -5,45 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Highlighter</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../src/styles/styles.css">
 </head>
-<body>
+<body style=" background-color: var(--background-color); ">
 <pre><code>
-<span class="Other">// C# Program to Find the Sum of two Binary Numbers 
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-namespace ConsoleApplication
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            int b1, b2;
-            int i = 0, rem = 0;
-            int[] sum = new int[20];
-            Console.WriteLine("Enter the first binary number: ");
-            b1 = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter the second binary number: ");
-            b2 = int.Parse(Console.ReadLine());
-            while (b1 != 0 || b2 != 0)
-            {
-                sum[i++] = (b1 % 10 + b2 % 10 + rem) % 2;
-                rem = (b1 % 10 + b2 % 10 + rem) / 2;
-                b1 = b1 / 10;
-                b2 = b2 / 10;
-            }
-            if (rem != 0)
-                sum[i++] = rem;
-            --i;
-            Console.WriteLine("Sum of two binary numbers: ");
-            while (i >= 0)
-                Console.Write("{0}", sum[i--]);
-            Console.ReadLine();
-        }
-    }
-}</span></code></pre>
+<span class="Comment">//</span><span class="Other">C#</span><span class="Other">Program</span><span class="Other">to</span><span class="Other">Find</span><span class="Other">the</span><span class="Other">Sum</span><span class="Other">of</span><span class="Other">two</span><span class="Other">Binary</span><span class="Other">Numbers</span><span class="Keyword">using</span><span class="Other">System;</span><span class="Keyword">using</span><span class="Other">System.Collections.Generic;</span><span class="Keyword">using</span><span class="Other">System.Linq;</span><span class="Keyword">using</span><span class="Other">System.Text;</span><span class="Keyword">namespace</span><span class="Other">ConsoleApplication</span><span class="Separator">{</span><span class="Keyword">class</span><span class="Other">Program</span><span class="Separator">{</span><span class="Keyword">static</span><span class="Keyword">void</span><span class="Other">Main(string[]</span><span class="Other">args)</span><span class="Separator">{</span><span class="Keyword">int</span><span class="Other">b1,</span><span class="Other">b2;</span><span class="Keyword">int</span><span class="Other">i</span><span class="Other">=</span><span class="Other">0,</span><span class="Other">rem</span><span class="Other">=</span><span class="Other">0;</span><span class="Other">int[]</span><span class="Other">sum</span><span class="Other">=</span><span class="Keyword">new</span><span class="Other">int[20];</span><span class="Other">Console.WriteLine("Enter</span><span class="Other">the</span><span class="Other">first</span><span class="Other">binary</span><span class="Other">number:</span><span class="Other">");</span><span class="Other">b1</span><span class="Other">=</span><span class="Other">int.Parse(Console.ReadLine());</span><span class="Other">Console.WriteLine("Enter</span><span class="Other">the</span><span class="Other">second</span><span class="Other">binary</span><span class="Other">number:</span><span class="Other">");</span><span class="Other">b2</span><span class="Other">=</span><span class="Other">int.Parse(Console.ReadLine());</span><span class="Keyword">while</span><span class="Other">(b1</span><span class="Operator">!=</span><span class="Other">0</span><span class="Operator">||</span><span class="Other">b2</span><span class="Operator">!=</span><span class="Other">0)</span><span class="Separator">{</span><span class="Other">sum[i++]</span><span class="Other">=</span><span class="Other">(b1</span><span class="Operator">%</span><span class="Other">10</span><span class="Operator">+</span><span class="Other">b2</span><span class="Operator">%</span><span class="Other">10</span><span class="Operator">+</span><span class="Other">rem)</span><span class="Operator">%</span><span class="Other">2;</span><span class="Other">rem</span><span class="Other">=</span><span class="Other">(b1</span><span class="Operator">%</span><span class="Other">10</span><span class="Operator">+</span><span class="Other">b2</span><span class="Operator">%</span><span class="Other">10</span><span class="Operator">+</span><span class="Other">rem)</span><span class="Operator">/</span><span class="Other">2;</span><span class="Other">b1</span><span class="Other">=</span><span class="Other">b1</span><span class="Operator">/</span><span class="Other">10;</span><span class="Other">b2</span><span class="Other">=</span><span class="Other">b2</span><span class="Operator">/</span><span class="Other">10;</span><span class="Separator">}</span><span class="Keyword">if</span><span class="Other">(rem</span><span class="Operator">!=</span><span class="Other">0)</span><span class="Other">sum[i++]</span><span class="Other">=</span><span class="Other">rem;</span><span class="Other">--i;</span><span class="Other">Console.WriteLine("Sum</span><span class="Other">of</span><span class="Other">two</span><span class="Other">binary</span><span class="Other">numbers:</span><span class="Other">");</span><span class="Keyword">while</span><span class="Other">(i</span><span class="Operator">>=</span><span class="Other">0)</span><span class="Other">Console.Write("{0}",</span><span class="Other">sum[i--]);</span><span class="Other">Console.ReadLine();</span><span class="Separator">}</span><span class="Separator">}</span><span class="Separator">}</span></code></pre>
 </body>
 </html>

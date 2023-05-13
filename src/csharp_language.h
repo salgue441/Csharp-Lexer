@@ -28,7 +28,7 @@ namespace csharp
      * Array of C# operators for the lexer
      * @constexpr std::array<const char *, 35> operators
      */
-    constexpr std::array<const char *, 40> m_operators = {
+    constexpr std::array<const char *, 38> m_operators = {
         "+", "-", "*", "/", "%", "++", "--", "+=", "-=", "*=", "/=", "%=", "==", "!=", ">", "<", ">=", "<=", "&&", "||", "!", "&", "|", "^", "~", "<<", ">>", ">>=", "<<=", "&=", "|=", "^=", "??", "=>", "is", "as", ":", "::"};
 
     /**

@@ -62,7 +62,7 @@ int main(int argc, char **argv)
     auto executionTime = utils::measure_time([&]()
                                              { lexer.start_lexing(filenames_string); });
 
-    std::cout << "Execution time: " << executionTime / 1000.0
+    std::cout << "Execution time for Parallel Lexer " << executionTime / 1000.0
               << "s" << std::endl;
 }
 

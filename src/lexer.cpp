@@ -124,9 +124,7 @@ std::vector<Token> Lexer::lex_file(const std::string_view &filename)
         input_file.close();
 
         if (buffer.empty())
-        {
             throw std::runtime_error("File is empty: " + std::string(filename));
-        }
 
         return tokenize(buffer);
     }
@@ -138,7 +136,7 @@ std::vector<Token> Lexer::lex_file(const std::string_view &filename)
 
 /**
  * @brief
- * Tokenizes the source code and generates the html code
+ * Tokenizes the source code and generates the html code.
  * @param buffer Source code to tokenize
  * @return std::vector<Token> Vector of html code
  * @throw std::runtime_error If the file cannot be opened
@@ -148,27 +146,13 @@ std::vector<Token> Lexer::tokenize(const std::string_view &buffer)
     try
     {
         std::vector<Token> tokens;
-        std::string_view delimiter{" \t\n\r\f\v"};
-        std::size_t position{};
-        std::size_t previous_position{};
+        std::istringstream iss(buffer.data());
+        std::string token;
 
-        while ((position = buffer.find_last_of(delimiter, position)) != std::string::npos)
+        while (iss >> token)
         {
-            std::string_view token(buffer.data() + previous_position,
-                                   position - previous_position);
-            TokenType type = identify_token(token);
-            tokens.emplace_back(token.data(), type);
-
-            previous_position = position + 1;
-            ++position;
-        }
-
-        if (previous_position < buffer.size())
-        {
-            std::string_view token(buffer.data() + previous_position,
-                                   buffer.size() - previous_position);
-            TokenType type = identify_token(token);
-            tokens.emplace_back(token.data(), type);
+            auto token_type = identify_token(token);
+            tokens.emplace_back(token.data(), token_type);
         }
 
         return tokens;
@@ -177,8 +161,6 @@ std::vector<Token> Lexer::tokenize(const std::string_view &buffer)
     {
         throw std::runtime_error(e.what());
     }
-
-    throw std::runtime_error("Cannot tokenize file");
 }
 
 /**
@@ -189,66 +171,73 @@ std::vector<Token> Lexer::tokenize(const std::string_view &buffer)
  */
 TokenType Lexer::identify_token(const std::string_view &token)
 {
-    if (std::binary_search(csharp::m_keywords.begin(),
-                           csharp::m_keywords.end(), token))
+    if (std::find(csharp::m_keywords.begin(),
+                  csharp::m_keywords.end(), token) !=
+        csharp::m_keywords.end())
         return TokenType::Keyword;
 
-    else if (std::binary_search(csharp::m_operators.begin(),
-                                csharp::m_operators.end(), token))
+    else if (std::find(csharp::m_operators.begin(),
+                       csharp::m_operators.end(), token) !=
+             csharp::m_operators.end())
         return TokenType::Operator;
 
-    else if (std::binary_search(csharp::m_separators.begin(),
-                                csharp::m_separators.end(), token))
+    else if (std::find(csharp::m_separators.begin(),
+                       csharp::m_separators.end(), token) !=
+             csharp::m_separators.end())
         return TokenType::Separator;
 
-    else if (std::binary_search(csharp::m_comments.begin(),
-                                csharp::m_comments.end(), token))
+    else if (std::find(csharp::m_comments.begin(),
+                       csharp::m_comments.end(), token) !=
+             csharp::m_comments.end())
         return TokenType::Comment;
 
-    else if (std::binary_search(csharp::m_literals.begin(),
-                                csharp::m_literals.end(), token))
+    else if (std::find(csharp::m_literals.begin(),
+                       csharp::m_literals.end(), token) != csharp::m_literals.end())
         return TokenType::Literal;
 
-    else if (std::binary_search(csharp::m_preprocessor.begin(),
-                                csharp::m_preprocessor.end(), token))
+    else if (std::find(csharp::m_preprocessor.begin(),
+                       csharp::m_preprocessor.end(), token) !=
+             csharp::m_preprocessor.end())
         return TokenType::Preprocessor;
 
-    else if (std::binary_search(csharp::m_contextual_keywords.begin(),
-                                csharp::m_contextual_keywords.end(),
-                                token))
+    else if (std::find(csharp::m_contextual_keywords.begin(),
+                       csharp::m_contextual_keywords.end(),
+                       token) != csharp::m_contextual_keywords.end())
         return TokenType::ContextualKeyword;
 
-    else if (std::binary_search(csharp::m_access_specifiers.begin(),
-                                csharp::m_access_specifiers.end(),
-                                token))
+    else if (std::find(csharp::m_access_specifiers.begin(),
+                       csharp::m_access_specifiers.end(), token) !=
+             csharp::m_access_specifiers.end())
         return TokenType::AccessSpecifier;
 
-    else if (std::binary_search(csharp::m_attribute_targets.begin(),
-                                csharp::m_attribute_targets.end(),
-                                token))
+    else if (std::find(csharp::m_attribute_targets.begin(),
+                       csharp::m_attribute_targets.end(), token) !=
+             csharp::m_attribute_targets.end())
         return TokenType::AttributeTarget;
 
-    else if (std::binary_search(csharp::m_attribute_usage.begin(),
-                                csharp::m_attribute_usage.end(),
-                                token))
+    else if (std::find(csharp::m_attribute_usage.begin(),
+                       csharp::m_attribute_usage.end(), token) !=
+             csharp::m_attribute_usage.end())
         return TokenType::AttributeUsage;
 
-    else if (std::binary_search(csharp::m_escaped_identifiers.begin(),
-                                csharp::m_escaped_identifiers.end(),
-                                token))
+    else if (std::find(csharp::m_escaped_identifiers.begin(),
+                       csharp::m_escaped_identifiers.end(),
+                       token) != csharp::m_escaped_identifiers.end())
         return TokenType::EscapedIdentifier;
 
-    else if (std::binary_search(csharp::m_interpolated_strings.begin(),
-                                csharp::m_interpolated_strings.end(), token))
+    else if (std::find(csharp::m_interpolated_strings.begin(),
+                       csharp::m_interpolated_strings.end(),
+                       token) != csharp::m_interpolated_strings.end())
         return TokenType::InterpolatedStringLiteral;
 
-    else if (std::binary_search(csharp::m_nullables.begin(),
-                                csharp::m_nullables.end(), token))
+    else if (std::find(csharp::m_nullables.begin(),
+                       csharp::m_nullables.end(), token) !=
+             csharp::m_nullables.end())
         return TokenType::NullLiteral;
 
-    else if (std::binary_search(csharp::m_verbatim_strings.begin(),
-                                csharp::m_verbatim_strings.end(),
-                                token))
+    else if (std::find(csharp::m_verbatim_strings.begin(),
+                       csharp::m_verbatim_strings.end(), token) !=
+             csharp::m_verbatim_strings.end())
         return TokenType::VerbatimStringLiteral;
 
     return TokenType::Other;
@@ -360,9 +349,9 @@ std::string Lexer::generate_html(const std::vector<Token> &tokens) const
     html += "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n";
     html += "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
     html += "<title>Highlighter</title>\n";
-    html += "<link rel=\"stylesheet\" href=\"style.css\">\n";
+    html += "<link rel=\"stylesheet\" href=\"../src/styles/styles.css\">\n";
     html += "</head>\n";
-    html += "<body>\n";
+    html += "<body style=\" background-color: var(--background-color); \">\n";
     html += "<pre><code>\n";
 
     for (const auto &token : tokens)
