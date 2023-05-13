@@ -112,7 +112,9 @@ std::vector<Token> Lexer::lex_file(const std::string_view &filename)
 {
     try
     {
-        std::ifstream input_file(filename.data(), std::ios::in | std::ios::binary);
+        std::ifstream input_file(filename.data(),
+                                 std::ios::in | std::ios::binary);
+
         if (!input_file)
         {
             throw std::runtime_error("Cannot open file: " + std::string(filename));
@@ -351,12 +353,75 @@ std::string Lexer::generate_html(const std::vector<Token> &tokens) const
     html += "<title>Highlighter</title>\n";
     html += "<link rel=\"stylesheet\" href=\"../src/styles/styles.css\">\n";
     html += "</head>\n";
-    html += "<body style=\" background-color: var(--background-color); \">\n";
+    html += "<body style=\"background-color: var(--background-color);\">\n";
     html += "<pre><code>\n";
 
+    int indentationLevel = 0;
+    std::string indentation(indentationLevel * 2, ' ');
+    bool previousTokenWasNewLine = false;
+
+    // Writing the tokens to the html file
     for (const auto &token : tokens)
     {
-        html += token_to_html(token);
+        if (token.get_type() == TokenType::Separator &&
+            token.get_value() == ";")
+        {
+            html += "\n";
+            html += indentation;
+            previousTokenWasNewLine = true;
+        }
+
+        else if (previousTokenWasNewLine &&
+                 token.get_type() == TokenType::Separator &&
+                 token.get_value() == ";")
+        {
+            html += token_to_html(token) + "\n";
+            html += indentation;
+            previousTokenWasNewLine = true;
+            continue;
+        }
+
+        else if (token.get_type() == TokenType::Separator && token.get_value() == "\t")
+        {
+            html += "&emsp;";
+            previousTokenWasNewLine = false;
+        }
+        else if (token.get_type() == TokenType::Separator && token.get_value() == " ")
+        {
+            html += "&nbsp;";
+            previousTokenWasNewLine = false;
+        }
+        else if (token.get_type() == TokenType::Comment)
+        {
+            html += "<br>\n";
+            html += indentation;
+            html += token_to_html(token);
+            html += "<br>\n";
+            html += indentation;
+            previousTokenWasNewLine = true;
+        }
+        else
+        {
+            html += token_to_html(token);
+            previousTokenWasNewLine = false;
+        }
+
+        if (token.get_type() == TokenType::Separator && token.get_value() == "{")
+        {
+            html += "\n";
+            indentationLevel++;
+            indentation = std::string(indentationLevel * 2, ' ');
+            html += indentation;
+            previousTokenWasNewLine = true;
+        }
+        else if (token.get_type() == TokenType::Separator && token.get_value() == "}")
+        {
+            html += "\n";
+            indentationLevel--;
+            indentation = std::string(indentationLevel * 2, ' ');
+            html += indentation;
+            previousTokenWasNewLine = true;
+        }
     }
 
     html += "</code></pre>\n";

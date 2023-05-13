@@ -61,3 +61,10 @@ target_link_libraries(tests PUBLIC
 # Register test
 include(GoogleTest)
 gtest_discover_tests(tests)
+
+# Custom target for running tests
+add_custom_target(run_tests
+    COMMAND tests
+    DEPENDS tests
+    WORKING_DIRECTORY ${CMAKE_PROJECT_DIR}
+)
