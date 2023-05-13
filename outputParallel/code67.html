@@ -9,18 +9,34 @@
 </head>
 <body style="background-color: var(--background-color);">
 <pre><code>
-<br>
-<span class="Comment">//</span><br>
-<span class="Other">C#</span><span class="Other">Program</span><span class="Other">to</span><span class="Other">Display</span><span class="Other">the</span><span class="Other">Factors</span><span class="Other">of</span><span class="Other">the</span><span class="Other">Entered</span><span class="Other">Number</span><span class="Keyword">using</span><span class="Other">System;</span><span class="Keyword">using</span><span class="Other">System.Collections.Generic;</span><span class="Keyword">using</span><span class="Other">System.Linq;</span><span class="Keyword">using</span><span class="Other">System.Text;</span><span class="Keyword">namespace</span><span class="Other">Program</span><span class="Separator">{</span>
-  <span class="Keyword">class</span><span class="Other">Program</span><span class="Separator">{</span>
-    <span class="Keyword">static</span><span class="Keyword">void</span><span class="Other">Main(string[]</span><span class="Other">args)</span><span class="Separator">{</span>
-      <span class="Keyword">int</span><span class="Other">num,</span><span class="Other">x;</span><span class="Other">Console.WriteLine("Enter</span><span class="Other">the</span><span class="Other">Number</span><span class="Other">");</span><span class="Other">num</span><span class="Other">=</span><span class="Other">int.Parse(Console.ReadLine());</span><span class="Other">Console.WriteLine("The</span><span class="Other">Factors</span><span class="Other">are</span><span class="Operator">:</span><span class="Other">");</span><span class="Keyword">for</span><span class="Other">(x</span><span class="Other">=</span><span class="Other">1;</span><span class="Other">x</span><span class="Operator"><=</span><span class="Other">num;</span><span class="Other">x++)</span><span class="Separator">{</span>
-        <span class="Keyword">if</span><span class="Other">(num</span><span class="Operator">%</span><span class="Other">x</span><span class="Operator">==</span><span class="Other">0)</span><span class="Separator">{</span>
-          <span class="Other">Console.WriteLine(x);</span><span class="Separator">}</span>
-        <span class="Separator">}</span>
-      <span class="Other">Console.ReadLine();</span><span class="Separator">}</span>
-    <span class="Separator">}</span>
-  <span class="Separator">}</span>
-</code></pre>
+<span class="Other">// C# Program to Display the Factors of the Entered Number
+
+using System</span><span class="Other">
+using System.Collections.Generic</span><span class="Other">
+using System.Linq</span><span class="Other">
+using System.Text</span><span class="Other">
+ 
+namespace Program
+</span><span class="Other">
+    class Program
+    </span><span class="Other">
+        static void Main(string[] args)
+        </span><span class="Other">
+            int num, x</span><span class="Other">
+            Console.WriteLine("Enter the Number ")</span><span class="Other">
+            num = int.Parse(Console.ReadLine())</span><span class="Other">
+            Console.WriteLine("The Factors are : ")</span><span class="Other">
+            for (x = 1</span><span class="Other"> x <= num</span><span class="Other"> x++)
+            </span><span class="Other">
+                if (num % x == 0)
+                </span><span class="Other">
+                    Console.WriteLine(x)</span><span class="Other">
+                </span><span class="Other">
+            </span><span class="Other">
+            Console.ReadLine()</span><span class="Other">
+ 
+        </span><span class="Other">
+    </span><span class="Other">
+</span></code></pre>
 </body>
 </html>

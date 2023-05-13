@@ -9,14 +9,37 @@
 </head>
 <body style="background-color: var(--background-color);">
 <pre><code>
-<br>
-<span class="Comment">//</span><br>
-<span class="Other">C#</span><span class="Other">Program</span><span class="Other">to</span><span class="Other">Demonstrate</span><span class="Other">Boxing</span><span class="Other">Operations</span><span class="Keyword">using</span><span class="Other">System;</span><span class="Keyword">class</span><span class="Other">sample</span><span class="Separator">{</span>
-  <span class="Keyword">int</span><span class="Other">x</span><span class="Other">=</span><span class="Other">10;</span><span class="Keyword">object</span><span class="Other">obj;</span><span class="Keyword">void</span><span class="Other">boxmethod()</span><span class="Separator">{</span>
-    <span class="Other">sample</span><span class="Other">s=</span><span class="Keyword">new</span><span class="Other">sample();</span><span class="Keyword">bool</span><span class="Other">b;</span><span class="Keyword">object</span><span class="Other">ob="CSHARP";</span><span class="Other">b=s.obj</span><span class="Keyword">is</span><span class="Other">int;</span><span class="Other">Console.WriteLine(b);</span><span class="Other">s.obj</span><span class="Other">=</span><span class="Other">x;</span><span class="Other">b</span><span class="Other">=</span><span class="Other">s.obj</span><span class="Keyword">is</span><span class="Other">int;</span><span class="Other">Console.WriteLine("{0},{1},{2}",s.obj,s.x,b);</span><span class="Other">s.x</span><span class="Other">=</span><span class="Other">(int)s.obj;</span><span class="Other">s.x</span><span class="Other">=</span><span class="Other">20;</span><span class="Other">b</span><span class="Other">=</span><span class="Other">s.obj</span><span class="Keyword">is</span><span class="Other">int;</span><span class="Other">Console.WriteLine("{0},{1},{2}",</span><span class="Other">s.obj,</span><span class="Other">s.x,</span><span class="Other">b);</span><span class="Other">s.obj="CSHARP";</span><span class="Other">b=s.obj</span><span class="Keyword">is</span><span class="Other">int;</span><span class="Other">Console.WriteLine("{0},{1},{2}",s.obj,s.x,b);</span><span class="Other">Console.ReadLine();</span><span class="Separator">}</span>
-  <span class="Keyword">public</span><span class="Keyword">static</span><span class="Keyword">void</span><span class="Other">Main()</span><span class="Separator">{</span>
-    <span class="Other">sample</span><span class="Other">s=new</span><span class="Other">sample();</span><span class="Other">s.boxmethod();</span><span class="Separator">}</span>
-  <span class="Separator">}</span>
-</code></pre>
+<span class="Other">// C# Program to Demonstrate Boxing Operations
+
+using System</span><span class="Other">
+class sample
+</span><span class="Other">
+    int x = 10</span><span class="Other">
+    object obj</span><span class="Other">
+    void boxmethod()
+    </span><span class="Other">
+        sample s= new sample()</span><span class="Other">
+        bool b</span><span class="Other">
+        object ob="CSHARP"</span><span class="Other">
+        b=s.obj is int</span><span class="Other">
+        Console.WriteLine(b)</span><span class="Other">
+        s.obj = x</span><span class="Other">
+        b = s.obj is int</span><span class="Other">
+        Console.WriteLine("</span><span class="Other">0</span><span class="Separator">,</span><span class="Other">1</span><span class="Separator">,</span><span class="Other">2</span><span class="Other">",s.obj,s.x,b)</span><span class="Other">
+        s.x = (int)s.obj</span><span class="Other">
+        s.x = 20</span><span class="Other">
+        b = s.obj is int</span><span class="Other">
+        Console.WriteLine("</span><span class="Other">0</span><span class="Separator">,</span><span class="Other">1</span><span class="Separator">,</span><span class="Other">2</span><span class="Other">", s.obj, s.x, b)</span><span class="Other">
+        s.obj="CSHARP"</span><span class="Other">
+        b=s.obj is int</span><span class="Other">
+        Console.WriteLine("</span><span class="Other">0</span><span class="Separator">,</span><span class="Other">1</span><span class="Separator">,</span><span class="Other">2</span><span class="Other">",s.obj,s.x,b)</span><span class="Other">
+        Console.ReadLine()</span><span class="Other">
+    </span><span class="Other">
+    public static void Main()
+    </span><span class="Other">
+        sample s=new sample()</span><span class="Other">
+        s.boxmethod()</span><span class="Other">
+    </span><span class="Other">
+</span></code></pre>
 </body>
 </html>

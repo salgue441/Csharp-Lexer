@@ -14,6 +14,7 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
+#include <regex>
 
 // Project files
 #include "lexer.h"
@@ -148,15 +149,34 @@ std::vector<Token> Lexer::tokenize(const std::string_view &buffer)
     try
     {
         std::vector<Token> tokens;
-        std::istringstream iss(buffer.data());
-        std::string token;
 
-        while (iss >> token)
+        // Token for identifying parenthesis, brackets, semicolon
+        std::regex tokenRegex("([{};])");
+
+        std::string bufferStr(buffer);
+        std::sregex_token_iterator iter(bufferStr.begin(), bufferStr.end(),
+                                        tokenRegex, -1);
+        std::sregex_token_iterator end;
+
+        while (iter != end)
         {
-            auto token_type = identify_token(token);
-            tokens.emplace_back(token.data(), token_type);
-        }
+            std::string token = *iter++;
 
+            if (token.empty())
+                continue;
+
+            TokenType tokenType = identify_token(token);
+
+            if (tokenType == TokenType::Comment)
+            {
+                std::regex commentRegex("([/][/*].*?[*][/])");
+                std::smatch match;
+                std::regex_search(token, match, commentRegex);
+                token = match.str();
+            }
+
+            tokens.emplace_back(token, tokenType);
+        }
         return tokens;
     }
     catch (std::exception &e)

@@ -9,26 +9,50 @@
 </head>
 <body style="background-color: var(--background-color);">
 <pre><code>
-<br>
-<span class="Comment">//</span><br>
-<span class="Other">C#</span><span class="Other">Program</span><span class="Other">Checks</span><span class="Other">Whether</span><span class="Other">the</span><span class="Other">Entered</span><span class="Other">Number</span><span class="Keyword">is</span><span class="Other">a</span><span class="Other">Amicable</span><span class="Other">Number</span><span class="Other">or</span><span class="Other">Not</span><span class="Keyword">using</span><span class="Other">System;</span><span class="Keyword">using</span><span class="Other">System.Collections.Generic;</span><span class="Keyword">using</span><span class="Other">System.Linq;</span><span class="Keyword">using</span><span class="Other">System.Text;</span><span class="Keyword">namespace</span><span class="Other">Program</span><span class="Separator">{</span>
-  <span class="Keyword">class</span><span class="Other">Program</span><span class="Separator">{</span>
-    <span class="Keyword">public</span><span class="Keyword">static</span><span class="Keyword">void</span><span class="Other">Main(String[]</span><span class="Other">args)</span><span class="Separator">{</span>
-      <span class="Keyword">int</span><span class="Other">num1,</span><span class="Other">num2,</span><span class="Other">sum1</span><span class="Other">=</span><span class="Other">0,</span><span class="Other">sum2</span><span class="Other">=</span><span class="Other">0,</span><span class="Other">i;</span><span class="Other">Console.WriteLine("Enter</span><span class="Other">First</span><span class="Other">Number</span><span class="Operator">:</span><span class="Other">");</span><span class="Other">num1</span><span class="Other">=</span><span class="Other">int.Parse(Console.ReadLine());</span><span class="Other">Console.WriteLine("Enter</span><span class="Other">Second</span><span class="Other">Number</span><span class="Operator">:</span><span class="Other">");</span><span class="Other">num2</span><span class="Other">=</span><span class="Other">int.Parse(Console.ReadLine());</span><span class="Keyword">for</span><span class="Other">(i</span><span class="Other">=</span><span class="Other">1;</span><span class="Other">i</span><span class="Operator"><</span><span class="Other">num1;</span><span class="Other">i++)</span><span class="Separator">{</span>
-        <span class="Keyword">if</span><span class="Other">(num1</span><span class="Operator">%</span><span class="Other">i</span><span class="Operator">==</span><span class="Other">0)</span><span class="Separator">{</span>
-          <span class="Other">sum1</span><span class="Other">=</span><span class="Other">sum1</span><span class="Operator">+</span><span class="Other">i;</span><span class="Separator">}</span>
-        <span class="Separator">}</span>
-      <span class="Keyword">for</span><span class="Other">(i</span><span class="Other">=</span><span class="Other">1;</span><span class="Other">i</span><span class="Operator"><</span><span class="Other">num2;</span><span class="Other">i++)</span><span class="Separator">{</span>
-        <span class="Keyword">if</span><span class="Other">(num2</span><span class="Operator">%</span><span class="Other">i</span><span class="Operator">==</span><span class="Other">0)</span><span class="Separator">{</span>
-          <span class="Other">sum2</span><span class="Other">=</span><span class="Other">sum2</span><span class="Operator">+</span><span class="Other">i;</span><span class="Separator">}</span>
-        <span class="Separator">}</span>
-      <span class="Keyword">if</span><span class="Other">(num1</span><span class="Operator">==</span><span class="Other">sum2</span><span class="Operator">&&</span><span class="Other">num2</span><span class="Operator">==</span><span class="Other">sum1)</span><span class="Separator">{</span>
-        <span class="Other">Console.WriteLine("They</span><span class="Other">are</span><span class="Other">a</span><span class="Other">Pair</span><span class="Other">of</span><span class="Other">Amicable</span><span class="Other">Numbers");</span><span class="Other">Console.ReadLine();</span><span class="Separator">}</span>
-      <span class="Keyword">else</span><span class="Separator">{</span>
-        <span class="Other">Console.WriteLine("They</span><span class="Other">are</span><span class="Other">not</span><span class="Other">Amicable</span><span class="Other">Numbers");</span><span class="Other">Console.ReadLine();</span><span class="Separator">}</span>
-      <span class="Separator">}</span>
-    <span class="Separator">}</span>
-  <span class="Separator">}</span>
-</code></pre>
+<span class="Other">// C# Program Checks Whether the Entered Number is a Amicable Number or Not
+
+using System</span><span class="Other">
+using System.Collections.Generic</span><span class="Other">
+using System.Linq</span><span class="Other">
+using System.Text</span><span class="Other">
+ 
+namespace Program
+</span><span class="Other">
+    class Program
+    </span><span class="Other">
+        public static void Main(String[] args)
+        </span><span class="Other">
+            int num1, num2, sum1 = 0, sum2 = 0, i</span><span class="Other">
+            Console.WriteLine("Enter First Number : ")</span><span class="Other">
+            num1 = int.Parse(Console.ReadLine())</span><span class="Other">
+            Console.WriteLine("Enter Second Number : ")</span><span class="Other">
+            num2 = int.Parse(Console.ReadLine())</span><span class="Other">
+            for (i = 1</span><span class="Other"> i < num1</span><span class="Other"> i++)
+            </span><span class="Other">
+                if (num1 % i == 0)
+                </span><span class="Other">
+                    sum1 = sum1 + i</span><span class="Other">
+                </span><span class="Other">
+            </span><span class="Other">
+            for (i = 1</span><span class="Other"> i < num2</span><span class="Other"> i++)
+            </span><span class="Other">
+                if (num2 % i == 0)
+                </span><span class="Other">
+                    sum2 = sum2 + i</span><span class="Other">
+                </span><span class="Other">
+            </span><span class="Other">
+            if (num1 == sum2 && num2 == sum1)
+            </span><span class="Other">
+                Console.WriteLine("They are a Pair of Amicable Numbers")</span><span class="Other">
+                Console.ReadLine()</span><span class="Other">
+            </span><span class="Other">
+            else
+            </span><span class="Other">
+                Console.WriteLine("They are not Amicable Numbers")</span><span class="Other">
+                Console.ReadLine()</span><span class="Other">
+            </span><span class="Other">
+        </span><span class="Other">
+    </span><span class="Other">
+</span></code></pre>
 </body>
 </html>

@@ -9,16 +9,35 @@
 </head>
 <body style="background-color: var(--background-color);">
 <pre><code>
-<br>
-<span class="Comment">//</span><br>
-<span class="Other">C#</span><span class="Other">Program</span><span class="Other">to</span><span class="Other">Generate</span><span class="Other">Fibonacci</span><span class="Other">Series</span><span class="Keyword">using</span><span class="Other">System;</span><span class="Keyword">using</span><span class="Other">System.Collections.Generic;</span><span class="Keyword">using</span><span class="Other">System.Linq;</span><span class="Keyword">using</span><span class="Other">System.Text;</span><span class="Keyword">namespace</span><span class="Other">fibonaci</span><span class="Separator">{</span>
-  <span class="Keyword">class</span><span class="Other">Program</span><span class="Separator">{</span>
-    <span class="Keyword">static</span><span class="Keyword">void</span><span class="Other">Main(string[]</span><span class="Other">args)</span><span class="Separator">{</span>
-      <span class="Keyword">int</span><span class="Other">i,</span><span class="Other">count,</span><span class="Other">f1</span><span class="Other">=</span><span class="Other">0,</span><span class="Other">f2</span><span class="Other">=</span><span class="Other">1,</span><span class="Other">f3</span><span class="Other">=</span><span class="Other">0;</span><span class="Other">Console.Write("Enter</span><span class="Other">the</span><span class="Other">Limit</span><span class="Operator">:</span><span class="Other">");</span><span class="Other">count</span><span class="Other">=</span><span class="Other">int.Parse(Console.ReadLine());</span><span class="Other">Console.WriteLine(f1);</span><span class="Other">Console.WriteLine(f2);</span><span class="Keyword">for</span><span class="Other">(i</span><span class="Other">=</span><span class="Other">0;</span><span class="Other">i</span><span class="Operator"><=</span><span class="Other">count;</span><span class="Other">i++)</span><span class="Separator">{</span>
-        <span class="Other">f3</span><span class="Other">=</span><span class="Other">f1</span><span class="Operator">+</span><span class="Other">f2;</span><span class="Other">Console.WriteLine(f3);</span><span class="Other">f1</span><span class="Other">=</span><span class="Other">f2;</span><span class="Other">f2</span><span class="Other">=</span><span class="Other">f3;</span><span class="Separator">}</span>
-      <span class="Other">Console.ReadLine();</span><span class="Separator">}</span>
-    <span class="Separator">}</span>
-  <span class="Separator">}</span>
-</code></pre>
+<span class="Other">// C#  Program to Generate Fibonacci Series
+
+using System</span><span class="Other">
+using System.Collections.Generic</span><span class="Other">
+using System.Linq</span><span class="Other">
+using System.Text</span><span class="Other">
+ 
+namespace fibonaci
+</span><span class="Other">
+    class Program
+    </span><span class="Other">
+        static void Main(string[] args)
+        </span><span class="Other">
+            int i, count, f1 = 0, f2 = 1, f3 = 0</span><span class="Other">
+            Console.Write("Enter the Limit : ")</span><span class="Other">
+            count = int.Parse(Console.ReadLine())</span><span class="Other">
+            Console.WriteLine(f1)</span><span class="Other">
+            Console.WriteLine(f2)</span><span class="Other">
+            for (i = 0</span><span class="Other"> i <= count</span><span class="Other"> i++)
+            </span><span class="Other">
+                f3 = f1 + f2</span><span class="Other">
+                Console.WriteLine(f3)</span><span class="Other">
+                f1 = f2</span><span class="Other">
+                f2 = f3</span><span class="Other">
+            </span><span class="Other">
+            Console.ReadLine()</span><span class="Other">
+ 
+        </span><span class="Other">
+    </span><span class="Other">
+</span></code></pre>
 </body>
 </html>

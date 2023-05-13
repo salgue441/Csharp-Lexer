@@ -9,22 +9,39 @@
 </head>
 <body style="background-color: var(--background-color);">
 <pre><code>
-<br>
-<span class="Comment">//</span><br>
-<span class="Other">C#</span><span class="Other">Program</span><span class="Other">to</span><span class="Other">Check</span><span class="Other">Whether</span><span class="Other">the</span><span class="Other">Given</span><span class="Other">Number</span><span class="Keyword">is</span><span class="Other">a</span><span class="Other">Prime</span><span class="Other">number</span><span class="Keyword">if</span><span class="Other">so</span><span class="Other">then</span><span class="Other">Display</span><span class="Other">its</span><span class="Other">Largest</span><span class="Other">Factor</span><span class="Keyword">using</span><span class="Other">System;</span><span class="Keyword">namespace</span><span class="Other">example</span><span class="Separator">{</span>
-  <span class="Keyword">class</span><span class="Other">prime</span><span class="Separator">{</span>
-    <span class="Keyword">public</span><span class="Keyword">static</span><span class="Keyword">void</span><span class="Other">Main()</span><span class="Separator">{</span>
-      <span class="Other">Console.Write("Enter</span><span class="Other">a</span><span class="Other">Number</span><span class="Operator">:</span><span class="Other">");</span><span class="Keyword">int</span><span class="Other">num;</span><span class="Other">num</span><span class="Other">=</span><span class="Other">Convert.ToInt32(Console.ReadLine());</span><span class="Keyword">int</span><span class="Other">k;</span><span class="Other">k</span><span class="Other">=</span><span class="Other">0;</span><span class="Keyword">for</span><span class="Other">(int</span><span class="Other">i</span><span class="Other">=</span><span class="Other">1;</span><span class="Other">i</span><span class="Operator"><=</span><span class="Other">num;</span><span class="Other">i++)</span><span class="Separator">{</span>
-        <span class="Keyword">if</span><span class="Other">(num</span><span class="Operator">%</span><span class="Other">i</span><span class="Operator">==</span><span class="Other">0)</span><span class="Separator">{</span>
-          <span class="Other">k++;</span><span class="Separator">}</span>
-        <span class="Separator">}</span>
-      <span class="Keyword">if</span><span class="Other">(k</span><span class="Operator">==</span><span class="Other">2)</span><span class="Separator">{</span>
-        <span class="Other">Console.WriteLine("Entered</span><span class="Other">Number</span><span class="Keyword">is</span><span class="Other">a</span><span class="Other">Prime</span><span class="Other">Number</span><span class="Other">and</span><span class="Other">"</span><span class="Operator">+</span><span class="Other">"the</span><span class="Other">Largest</span><span class="Other">Factor</span><span class="Keyword">is</span><span class="Other">{0}",num);</span><span class="Separator">}</span>
-      <span class="Keyword">else</span><span class="Separator">{</span>
-        <span class="Other">Console.WriteLine("Not</span><span class="Other">a</span><span class="Other">Prime</span><span class="Other">Number");</span><span class="Separator">}</span>
-      <span class="Other">Console.ReadLine();</span><span class="Separator">}</span>
-    <span class="Separator">}</span>
-  <span class="Separator">}</span>
-</code></pre>
+<span class="Other">// C# Program to Check Whether the Given Number is a Prime number if so then Display its Largest Factor
+
+using System</span><span class="Other">
+namespace example
+</span><span class="Other">
+    class prime
+    </span><span class="Other">
+        public static void Main()
+        </span><span class="Other">
+            Console.Write("Enter a Number : ")</span><span class="Other">
+            int num</span><span class="Other">
+            num = Convert.ToInt32(Console.ReadLine())</span><span class="Other">
+            int k</span><span class="Other">
+            k = 0</span><span class="Other">
+            for (int i = 1</span><span class="Other"> i <= num</span><span class="Other"> i++)
+            </span><span class="Other">
+                if (num % i == 0)
+                </span><span class="Other">
+                    k++</span><span class="Other">
+                </span><span class="Other">
+            </span><span class="Other">
+            if (k == 2)
+            </span><span class="Other">
+                Console.WriteLine("Entered Number is a Prime Number and " + 
+                                  "the Largest Factor is </span><span class="Other">0</span><span class="Other">",num)</span><span class="Other">
+            </span><span class="Other">
+            else
+            </span><span class="Other">
+                Console.WriteLine("Not a Prime Number")</span><span class="Other">
+            </span><span class="Other">
+            Console.ReadLine()</span><span class="Other">
+        </span><span class="Other">
+    </span><span class="Other">
+</span></code></pre>
 </body>
 </html>

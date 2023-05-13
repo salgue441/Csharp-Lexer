@@ -9,16 +9,31 @@
 </head>
 <body style="background-color: var(--background-color);">
 <pre><code>
-<br>
-<span class="Comment">//</span><br>
-<span class="Other">C#</span><span class="Other">Program</span><span class="Other">to</span><span class="Other">Display</span><span class="Other">Absolute</span><span class="Other">value</span><span class="Other">of</span><span class="Other">a</span><span class="Other">Number</span><span class="Keyword">using</span><span class="Other">System;</span><span class="Keyword">using</span><span class="Other">System.Collections.Generic;</span><span class="Keyword">using</span><span class="Other">System.Linq;</span><span class="Keyword">using</span><span class="Other">System.Text;</span><span class="Keyword">namespace</span><span class="Other">example</span><span class="Separator">{</span>
-  <span class="Keyword">internal</span><span class="Keyword">class</span><span class="Other">Program</span><span class="Separator">{</span>
-    <span class="Keyword">private</span><span class="Keyword">static</span><span class="Keyword">void</span><span class="Other">Main(string[]</span><span class="Other">args)</span><span class="Separator">{</span>
-      <span class="Keyword">int</span><span class="Other">num;</span><span class="Other">Console.Write("Enter</span><span class="Other">a</span><span class="Other">number:");</span><span class="Other">num</span><span class="Other">=</span><span class="Other">Convert.ToInt32(Console.ReadLine());</span><span class="Keyword">if</span><span class="Other">(num</span><span class="Operator"><</span><span class="Other">0)</span><span class="Separator">{</span>
-        <span class="Other">num</span><span class="Other">=</span><span class="Other">num</span><span class="Operator">*</span><span class="Other">-1;</span><span class="Separator">}</span>
-      <span class="Other">Console.WriteLine("Absolute</span><span class="Other">value</span><span class="Operator">:</span><span class="Other">"</span><span class="Operator">+</span><span class="Other">num);</span><span class="Other">Console.ReadLine();</span><span class="Separator">}</span>
-    <span class="Separator">}</span>
-  <span class="Separator">}</span>
-</code></pre>
+<span class="Other">// C# Program to Display Absolute value of a Number
+
+using System</span><span class="Other">
+using System.Collections.Generic</span><span class="Other">
+using System.Linq</span><span class="Other">
+using System.Text</span><span class="Other">
+ 
+namespace example
+</span><span class="Other">
+    internal class Program
+    </span><span class="Other">
+        private static void Main(string[] args)
+        </span><span class="Other">
+            int num</span><span class="Other">
+            Console.Write("Enter a number:")</span><span class="Other">
+            num = Convert.ToInt32(Console.ReadLine())</span><span class="Other">
+            if (num < 0)
+            </span><span class="Other">
+                num = num * -1</span><span class="Other">
+            </span><span class="Other">
+ 
+            Console.WriteLine("Absolute value : " + num)</span><span class="Other">
+            Console.ReadLine()</span><span class="Other">
+        </span><span class="Other">
+    </span><span class="Other">
+</span></code></pre>
 </body>
 </html>

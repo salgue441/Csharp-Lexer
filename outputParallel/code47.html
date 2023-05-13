@@ -9,16 +9,26 @@
 </head>
 <body style="background-color: var(--background-color);">
 <pre><code>
-<br>
-<span class="Comment">//</span><br>
-<span class="Other">C#</span><span class="Other">Program</span><span class="Other">to</span><span class="Other">Generate</span><span class="Other">Random</span><span class="Other">Numbers</span><span class="Keyword">using</span><span class="Other">System;</span><span class="Keyword">class</span><span class="Other">Program</span><span class="Separator">{</span>
-  <span class="Keyword">static</span><span class="Keyword">void</span><span class="Other">Main()</span><span class="Separator">{</span>
-    <span class="Other">Console.WriteLine("Some</span><span class="Other">Random</span><span class="Other">Numbers</span><span class="Other">that</span><span class="Other">are</span><span class="Other">generated</span><span class="Other">are</span><span class="Operator">:</span><span class="Other">");</span><span class="Keyword">for</span><span class="Other">(int</span><span class="Other">i</span><span class="Other">=</span><span class="Other">1;</span><span class="Other">i</span><span class="Operator"><</span><span class="Other">10;</span><span class="Other">i++)</span><span class="Separator">{</span>
-      <span class="Other">Randfunc();</span><span class="Separator">}</span>
-    <span class="Separator">}</span>
-  <span class="Keyword">static</span><span class="Other">Random</span><span class="Other">r</span><span class="Other">=</span><span class="Keyword">new</span><span class="Other">Random();</span><span class="Keyword">static</span><span class="Keyword">void</span><span class="Other">Randfunc()</span><span class="Separator">{</span>
-    <span class="Keyword">int</span><span class="Other">n</span><span class="Other">=</span><span class="Other">r.Next();</span><span class="Other">Console.WriteLine(n);</span><span class="Other">Console.ReadLine();</span><span class="Separator">}</span>
-  <span class="Separator">}</span>
-</code></pre>
+<span class="Other">// C# Program to Generate Random Numbers
+
+using System</span><span class="Other">
+class Program
+</span><span class="Other">
+    static void Main()
+    </span><span class="Other">
+        Console.WriteLine("Some Random Numbers that are generated are : ")</span><span class="Other">
+        for (int i = 1</span><span class="Other"> i < 10</span><span class="Other"> i++)
+        </span><span class="Other">
+            Randfunc()</span><span class="Other">
+        </span><span class="Other">
+    </span><span class="Other">
+    static Random r = new Random()</span><span class="Other">
+    static void Randfunc()
+    </span><span class="Other">
+        int n = r.Next()</span><span class="Other">
+        Console.WriteLine(n)</span><span class="Other">
+        Console.ReadLine()</span><span class="Other">
+    </span><span class="Other">
+</span></code></pre>
 </body>
 </html>
