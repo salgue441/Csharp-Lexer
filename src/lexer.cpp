@@ -387,7 +387,7 @@ std::string Lexer::get_output_filename(const std::string &inputFilename) const
 {
     std::filesystem::path path(inputFilename);
     std::string filename = path.stem().string();
-    std::filesystem::path outputPath = "../output/" + filename + ".html";
+    std::filesystem::path outputPath = "../outputParallel/" + filename + ".html";
 
     return outputPath.string();
 }
