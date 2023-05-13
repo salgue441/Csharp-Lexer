@@ -140,6 +140,8 @@ std::vector<Token> Lexer::lex_file(const std::string_view &filename)
 /**
  * @brief
  * Tokenizes the source code and generates the html code.
+ * Uses regex to identify the m_separator tokens in order to highlight
+ * them in the html code.
  * @param buffer Source code to tokenize
  * @return std::vector<Token> Vector of html code
  * @throw std::runtime_error If the file cannot be opened
@@ -149,34 +151,27 @@ std::vector<Token> Lexer::tokenize(const std::string_view &buffer)
     try
     {
         std::vector<Token> tokens;
+        std::regex regex_separator(R"(\s+|\{|\}|\(|\)|\[|\]|;|,|\.|:|\?|<|>|\+|-|\*|/|%|\^|&|\||=|!|~|@|#|\$|`|\\|'|""|\n)");
 
-        // Token for identifying parenthesis, brackets, semicolon
-        std::regex tokenRegex("([{};])");
-
-        std::string bufferStr(buffer);
-        std::sregex_token_iterator iter(bufferStr.begin(), bufferStr.end(),
-                                        tokenRegex, -1);
+        std::string buffer_str(buffer);
+        std::sregex_token_iterator it(buffer_str.begin(), buffer_str.end(),
+                                      regex_separator, -1);
         std::sregex_token_iterator end;
 
-        while (iter != end)
+        while (it != end)
         {
-            std::string token = *iter++;
+            std::string token = *it++;
 
-            if (token.empty())
-                continue;
-
-            TokenType tokenType = identify_token(token);
-
-            if (tokenType == TokenType::Comment)
+            if (!token.empty())
             {
-                std::regex commentRegex("([/][/*].*?[*][/])");
-                std::smatch match;
-                std::regex_search(token, match, commentRegex);
-                token = match.str();
+                TokenType type = identify_token(token);
+                tokens.emplace_back(token, type);
             }
 
-            tokens.emplace_back(token, tokenType);
+            if (it == end)
+                break;
         }
+
         return tokens;
     }
     catch (std::exception &e)
