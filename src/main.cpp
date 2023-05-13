@@ -10,6 +10,7 @@
  *
  */
 
+// C++ standard library
 #include <iostream>
 #include <string_view>
 #include <filesystem>
@@ -20,6 +21,9 @@
 
 // Classes
 #include "lexer.h"
+
+// Utils
+#include "utils.h"
 
 // Function prototypes
 std::vector<std::filesystem::path> get_filenames(const std::string_view &);
@@ -55,11 +59,14 @@ int main(int argc, char **argv)
                        return path.string();
                    });
 
-    lexer.start_lexing(filenames_string);
+    auto executionTime = utils::measure_time([&]()
+                                             { lexer.start_lexing(filenames_string); });
+
+    std::cout << "Execution time: " << executionTime / 1000.0
+              << "s" << std::endl;
 }
 
 // Function definitions
-// Auxiliar functions
 /**
  * @brief
  * Gets the filename from the arguments passed to the program

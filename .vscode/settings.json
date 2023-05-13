@@ -71,6 +71,7 @@
     "unordered_set": "cpp",
     "bitset": "cpp",
     "regex": "cpp",
-    "cinttypes": "cpp"
+    "cinttypes": "cpp",
+    "*.ixx": "cpp"
   }
 }
