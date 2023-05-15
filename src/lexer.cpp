@@ -151,11 +151,11 @@ std::vector<Token> Lexer::tokenize(const std::string_view &buffer)
     try
     {
         std::vector<Token> tokens;
-        std::regex regex_tokenizer(R"([a-zA-Z][a-zA-Z0-9_]+|\s+|\{|\}|\(|\)|\[|\]|;|,|\.|:|\?|<|>|\+|-|\*|/|%|\^|&|=|!|~|@|#|\$|`|\\|'|\n)");
+        std::regex regex_tokenizer(R"([a-zA-Z0-9][a-zA-Z0-9_]+|\s+|\{|\}|\(|\)|\[|\]|\;|\,|\.\:\?\>\<\+\-\*\/\%\^\&\=\!\@\#\$\~\,\_\`\\])");
+        std::string buffer_str(buffer);
 
         auto token_begin = std::sregex_token_iterator(
-            static_cast<std::string>(buffer).begin(),
-            static_cast<std::string>(buffer).end(),
+            buffer_str.begin(), buffer_str.end(),
             regex_tokenizer, -1);
 
         const auto token_end = std::sregex_token_iterator();
@@ -174,9 +174,12 @@ std::vector<Token> Lexer::tokenize(const std::string_view &buffer)
                 break;
         }
 
+        for (const auto &token : tokens)
+            std::cout << token.get_value() << std::endl;
+
         return tokens;
     }
-    catch (std::exception &e)
+    catch (const std::exception &e)
     {
         throw std::runtime_error(e.what());
     }
@@ -359,93 +362,83 @@ std::string Lexer::token_to_html(const Token &token) const
  */
 std::string Lexer::generate_html(const std::vector<Token> &tokens) const
 {
-    std::string html;
+    std::stringstream html;
 
-    html += "<!DOCTYPE html>\n";
-    html += "<html lang=\"en\">\n";
-    html += "<head>\n";
-    html += "<meta charset=\"UTF-8\">\n";
-    html += "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n";
-    html += "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
-    html += "<title>Highlighter</title>\n";
-    html += "<link rel=\"stylesheet\" href=\"../src/styles/styles.css\">\n";
-    html += "</head>\n";
-    html += "<body style=\"background-color: var(--background-color);\">\n";
-    html += "<pre><code>\n";
+    html << R"(
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Highlighter</title>
+            <link rel="stylesheet" href="../src/styles/styles.css">
+        </head>
+        <body style="background-color: var(--background-color);">
+            <pre><code>)";
 
     int indentationLevel = 0;
     std::string indentation(indentationLevel * 2, ' ');
     bool previousTokenWasNewLine = false;
 
-    // Writing the tokens to the html file
+    auto addIndentation = [&html, &indentation]()
+    {
+        html << '\n'
+             << indentation;
+    };
+
+    auto addToken = [&html, &previousTokenWasNewLine, this](const Token &token)
+    {
+        html << token_to_html(token);
+        previousTokenWasNewLine = false;
+    };
+
     for (const auto &token : tokens)
     {
-        if (token.get_type() == TokenType::Separator &&
-            token.get_value() == ";")
+        if (token.get_type() == TokenType::Separator && token.get_value() == ";")
         {
-            html += "\n";
-            html += indentation;
+            addIndentation();
             previousTokenWasNewLine = true;
         }
-
-        else if (previousTokenWasNewLine &&
-                 token.get_type() == TokenType::Separator &&
-                 token.get_value() == ";")
+        else if (previousTokenWasNewLine && token.get_type() == TokenType::Separator && token.get_value() == ";")
         {
-            html += token_to_html(token) + "\n";
-            html += indentation;
+            html << token_to_html(token) << '\n'
+                 << indentation;
             previousTokenWasNewLine = true;
             continue;
         }
-
         else if (token.get_type() == TokenType::Separator && token.get_value() == "\t")
         {
-            html += "&emsp;";
+            html << "&emsp;";
             previousTokenWasNewLine = false;
         }
         else if (token.get_type() == TokenType::Separator && token.get_value() == " ")
         {
-            html += "&nbsp;";
+            html << "&nbsp;";
             previousTokenWasNewLine = false;
         }
         else if (token.get_type() == TokenType::Comment)
         {
-            html += "<br>\n";
-            html += indentation;
-            html += token_to_html(token);
-            html += "<br>\n";
-            html += indentation;
+            html << "<br>";
+            addIndentation();
+            html << token_to_html(token) << "<br>";
+            addIndentation();
             previousTokenWasNewLine = true;
         }
         else
         {
-            html += token_to_html(token);
+            addToken(token);
             previousTokenWasNewLine = false;
         }
 
         if (token.get_type() == TokenType::Separator && token.get_value() == "{")
         {
-            html += "\n";
+            addIndentation();
             indentationLevel++;
             indentation = std::string(indentationLevel * 2, ' ');
-            html += indentation;
-            previousTokenWasNewLine = true;
-        }
-        else if (token.get_type() == TokenType::Separator && token.get_value() == "}")
-        {
-            html += "\n";
-            indentationLevel--;
-            indentation = std::string(indentationLevel * 2, ' ');
-            html += indentation;
             previousTokenWasNewLine = true;
         }
     }
-
-    html += "</code></pre>\n";
-    html += "</body>\n";
-    html += "</html>\n";
-
-    return html;
 }
 
 /**
