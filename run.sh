@@ -4,8 +4,8 @@ if [ ! -d "build" ]; then
 fi
 
 # Output directory
-if [ ! -d "output" ]; then
-  mkdir output
+if [ ! -d "outputSingle" ]; then
+  mkdir outputSingle
 fi
 
 if [ ! -d "outputParallel" ]; then

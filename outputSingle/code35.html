@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Highlighter</title>
+<link rel="stylesheet" href="../src/styles/styles.css">
+</head>
+<body style="background-color: var(--background-color);">
+<pre><code>
+<span class="Other"> </span><span class="Other"> </span><span class="Other">Program</span><span class="Other"> </span><span class="Other">to</span><span class="Other"> </span><span class="Other">Display</span><span class="Other"> </span><span class="Other">All</span><span class="Other"> </span><span class="Other">the</span><span class="Other"> </span><span class="Other">Prime</span><span class="Other"> </span><span class="Other">Numbers</span><span class="Other"> </span><span class="Other">Between</span><span class="Other"> </span><span class="Other"> </span><span class="Other">to</span><span class="Other"> </span><span class="Other">100</span><span class="Other">
+
+</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span><span class="Separator">;</span><span class="Other">
+</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span><span class="Separator">.</span><span class="Other">Collections</span><span class="Separator">.</span><span class="Other">Generic</span><span class="Separator">;</span><span class="Other">
+</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span><span class="Separator">.</span><span class="Other">Linq</span><span class="Separator">;</span><span class="Other">
+</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span><span class="Separator">.</span><span class="Other">Text</span><span class="Separator">;</span><span class="Other">
+</span><span class="Keyword">namespace</span><span class="Other"> </span><span class="Other">PrimeNumber</span><span class="Other">
+</span><span class="Separator">{</span><span class="Other">
+    </span><span class="Keyword">class</span><span class="Other"> </span><span class="Other">Program</span><span class="Other">
+    </span><span class="Separator">{</span><span class="Other">
+        </span><span class="Keyword">static</span><span class="Other"> </span><span class="Keyword">void</span><span class="Other"> </span><span class="Other">Main</span><span class="Separator">(</span><span class="Keyword">string</span><span class="Separator">[</span><span class="Separator">]</span><span class="Other"> </span><span class="Other">args</span><span class="Separator">)</span><span class="Other">
+        </span><span class="Separator">{</span><span class="Other">
+            </span><span class="Keyword">bool</span><span class="Other"> </span><span class="Other">isPrime</span><span class="Other"> </span><span class="Other"> </span><span class="Keyword">true</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">"</span><span class="Other">Prime</span><span class="Other"> </span><span class="Other">Numbers</span><span class="Other"> </span><span class="Other"> </span><span class="Other">"</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Keyword">for</span><span class="Other"> </span><span class="Separator">(</span><span class="Keyword">int</span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Separator">;</span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other">100</span><span class="Separator">;</span><span class="Other"> </span><span class="Separator">)</span><span class="Other">
+            </span><span class="Separator">{</span><span class="Other">
+                </span><span class="Keyword">for</span><span class="Other"> </span><span class="Separator">(</span><span class="Keyword">int</span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Separator">;</span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other">100</span><span class="Separator">;</span><span class="Other"> </span><span class="Separator">)</span><span class="Other">
+                </span><span class="Separator">{</span><span class="Other">
+ 
+                    </span><span class="Keyword">if</span><span class="Other"> </span><span class="Separator">(</span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Separator">)</span><span class="Other">
+                    </span><span class="Separator">{</span><span class="Other">
+                        </span><span class="Other">isPrime</span><span class="Other"> </span><span class="Other"> </span><span class="Keyword">false</span><span class="Separator">;</span><span class="Other">
+                        </span><span class="Keyword">break</span><span class="Separator">;</span><span class="Other">
+                    </span><span class="Separator">}</span><span class="Other">
+ 
+                </span><span class="Separator">}</span><span class="Other">
+                </span><span class="Keyword">if</span><span class="Other"> </span><span class="Separator">(</span><span class="Other">isPrime</span><span class="Separator">)</span><span class="Other">
+                </span><span class="Separator">{</span><span class="Other">
+                    </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">Write</span><span class="Separator">(</span><span class="Other">"</span><span class="Other">"</span><span class="Other"> </span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+                </span><span class="Separator">}</span><span class="Other">
+                </span><span class="Other">isPrime</span><span class="Other"> </span><span class="Other"> </span><span class="Keyword">true</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Separator">}</span><span class="Other">
+            </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">ReadKey</span><span class="Separator">(</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+        </span><span class="Separator">}</span><span class="Other">
+    </span><span class="Separator">}</span><span class="Other">
+</span><span class="Separator">}</span></code></pre>
+</body>
+</html>

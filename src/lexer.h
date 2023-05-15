@@ -47,7 +47,8 @@ public:
     std::vector<Token> get_tokens() const;
 
     // Methods
-    void start_lexing(const std::vector<std::string> &);
+    void start_single(const std::vector<std::string> &);
+    void start_parallel(const std::vector<std::string> &);
 
 private:
     std::vector<std::thread> m_threads;
@@ -71,8 +72,12 @@ private:
     std::string generate_html(const std::vector<Token> &) const;
 
     // File methods
-    void save(const std::string &filename, const std::vector<Token> &) const;
-    std::string get_output_filename(const std::string &) const;
+    void save_single(const std::string &filename,
+                     const std::vector<Token> &) const;
+    void save_parallel(const std::string &filename,
+                       const std::vector<Token> &) const;
+    std::string get_output_filename_single(const std::string &) const;
+    std::string get_output_filename_parallel(const std::string &) const;
 };
 
 #endif //! LEXER_H

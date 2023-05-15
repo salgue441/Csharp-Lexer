@@ -59,10 +59,16 @@ int main(int argc, char **argv)
                        return path.string();
                    });
 
-    auto executionTime = utils::measure_time([&]()
-                                             { lexer.start_lexing(filenames_string); });
+    auto single_time = utils::measure_time([&]()
+                                           { lexer.start_single(filenames_string); });
 
-    std::cout << "Execution time for Parallel Lexer " << executionTime / 1000.0
+    auto parallel_time = utils::measure_time([&]()
+                                             { lexer.start_parallel(filenames_string); });
+
+    std::cout << "Execution time for Single thread Lexer " << single_time / 1000.0
+              << "s" << std::endl;
+
+    std::cout << "Execution time for Parallel Lexer " << parallel_time / 1000.0
               << "s" << std::endl;
 }
 
