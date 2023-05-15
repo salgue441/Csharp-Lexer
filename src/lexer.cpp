@@ -364,38 +364,37 @@ std::string Lexer::generate_html(const std::vector<Token> &tokens) const
 {
     std::stringstream html;
 
-    html << R"(
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Highlighter</title>
-            <link rel="stylesheet" href="../src/styles/styles.css">
-        </head>
-        <body style="background-color: var(--background-color);">
-            <pre><code>)";
+    html << "<!DOCTYPE html>\n";
+    html << "<html lang=\"en\">\n";
+    html << "<head>\n";
+    html << "<meta charset=\"UTF-8\">\n";
+    html << "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n";
+    html << "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
+    html << "<title>Highlighter</title>\n";
+    html << "<link rel=\"stylesheet\" href=\"../src/styles/styles.css\">\n";
+    html << "</head>\n";
+    html << "<body style=\"background-color: var(--background-color);\">\n";
+    html << "<pre><code>\n";
 
     int indentationLevel = 0;
     std::string indentation(indentationLevel * 2, ' ');
     bool previousTokenWasNewLine = false;
 
-    auto addIndentation = [&html, &indentation]()
+    auto addIndentation = [&]()
     {
         html << '\n'
              << indentation;
     };
 
-    auto addToken = [&html, &previousTokenWasNewLine, this](const Token &token)
+    auto addToken = [&](const Token &token)
     {
         html << token_to_html(token);
-        previousTokenWasNewLine = false;
     };
 
     for (const auto &token : tokens)
     {
-        if (token.get_type() == TokenType::Separator && token.get_value() == ";")
+        if (token.get_type() == TokenType::Separator &&
+            token.get_value() == ";")
         {
             addIndentation();
             previousTokenWasNewLine = true;
@@ -407,12 +406,14 @@ std::string Lexer::generate_html(const std::vector<Token> &tokens) const
             previousTokenWasNewLine = true;
             continue;
         }
-        else if (token.get_type() == TokenType::Separator && token.get_value() == "\t")
+        else if (token.get_type() == TokenType::Separator &&
+                 token.get_value() == "\t")
         {
             html << "&emsp;";
             previousTokenWasNewLine = false;
         }
-        else if (token.get_type() == TokenType::Separator && token.get_value() == " ")
+        else if (token.get_type() == TokenType::Separator &&
+                 token.get_value() == " ")
         {
             html << "&nbsp;";
             previousTokenWasNewLine = false;
@@ -431,14 +432,29 @@ std::string Lexer::generate_html(const std::vector<Token> &tokens) const
             previousTokenWasNewLine = false;
         }
 
-        if (token.get_type() == TokenType::Separator && token.get_value() == "{")
+        if (token.get_type() == TokenType::Separator &&
+            token.get_value() == "{")
         {
             addIndentation();
             indentationLevel++;
             indentation = std::string(indentationLevel * 2, ' ');
             previousTokenWasNewLine = true;
         }
+        else if (token.get_type() == TokenType::Separator &&
+                 token.get_value() == "}")
+        {
+            addIndentation();
+            indentationLevel--;
+            indentation = std::string(indentationLevel * 2, ' ');
+            previousTokenWasNewLine = true;
+        }
     }
+
+    html << "</code></pre>\n";
+    html << "</body>\n";
+    html << "</html>\n";
+
+    return html.str();
 }
 
 /**
@@ -451,7 +467,8 @@ std::string Lexer::get_output_filename(const std::string &inputFilename) const
 {
     std::filesystem::path path(inputFilename);
     std::string filename = path.stem().string();
-    std::filesystem::path outputPath = "../outputParallel/" + filename + ".html";
+    std::filesystem::path outputPath =
+        "../outputParallel/" + filename + ".html";
 
     return outputPath.string();
 }
