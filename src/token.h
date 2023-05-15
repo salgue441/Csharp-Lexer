@@ -75,6 +75,7 @@ public:
 
     // Operator overload
     bool operator==(const Token &) const;
+    friend std::ostream &operator<<(std::ostream &, const Token &);
 
     // Functions
     std::string to_string() const;

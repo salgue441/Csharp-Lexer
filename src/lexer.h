@@ -19,6 +19,7 @@
 #include <string_view>
 #include <vector>
 #include <string>
+#include <regex>
 
 // Project files
 #include "token.h"
@@ -53,6 +54,9 @@ private:
     std::mutex m_mutex;
     std::vector<Token> m_tokens;
     std::vector<std::string> m_files;
+
+    // Regex
+    static std::regex m_regex_tokenizer;
 
     // Methods
     void lex(const std::vector<std::string> &);

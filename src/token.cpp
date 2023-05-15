@@ -80,6 +80,19 @@ bool Token::operator==(const Token &other) const
     return m_value == other.m_value && m_type == other.m_type;
 }
 
+/**
+ * @brief
+ * Operator overload for the << operator
+ * @param os Output stream
+ * @param token Token to print
+ * @return std::ostream& Output stream
+ */
+std::ostream &operator<<(std::ostream &os, const Token &token)
+{
+    os << token.to_string();
+    return os;
+}
+
 // Private methods
 /**
  * @brief
@@ -137,7 +150,7 @@ std::string Token::to_string() const
 {
     std::ostringstream oss;
 
-    oss << get_type_string() << ": " << m_value;
+    oss << "Value: " << m_value << ", Type: " << get_type_string() << "\n";
 
     return oss.str();
 }

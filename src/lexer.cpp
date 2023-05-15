@@ -14,11 +14,13 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
-#include <regex>
 
 // Project files
 #include "lexer.h"
 #include "csharp_language.h"
+
+// Regex
+std::regex Lexer::m_regex_tokenizer(R"([a-zA-Z0-9][a-zA-Z0-9_]+|\s+|\{|\}|\(|\)|\[|\]|\;|\,|\.\:\?\>\<\+\-\*\/\%\^\&\=\!\@\#\$\~\,\_\`\\])");
 
 // Access Methods
 /**
@@ -151,31 +153,25 @@ std::vector<Token> Lexer::tokenize(const std::string_view &buffer)
     try
     {
         std::vector<Token> tokens;
-        std::regex regex_tokenizer(R"([a-zA-Z0-9][a-zA-Z0-9_]+|\s+|\{|\}|\(|\)|\[|\]|\;|\,|\.\:\?\>\<\+\-\*\/\%\^\&\=\!\@\#\$\~\,\_\`\\])");
+
         std::string buffer_str(buffer);
 
         auto token_begin = std::sregex_token_iterator(
             buffer_str.begin(), buffer_str.end(),
-            regex_tokenizer, -1);
+            m_regex_tokenizer, -1);
 
         const auto token_end = std::sregex_token_iterator();
 
-        while (token_begin != token_end)
+        for (auto it{token_begin}; it != token_end; ++it)
         {
-            const std::string token = *token_begin++;
+            const std::string token = it->str();
 
             if (!token.empty())
             {
                 TokenType token_type = identify_token(token);
                 tokens.emplace_back(token, token_type);
             }
-
-            if (token_begin == token_end)
-                break;
         }
-
-        for (const auto &token : tokens)
-            std::cout << token.get_value() << std::endl;
 
         return tokens;
     }

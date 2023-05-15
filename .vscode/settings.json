@@ -72,6 +72,7 @@
     "bitset": "cpp",
     "regex": "cpp",
     "cinttypes": "cpp",
-    "*.ixx": "cpp"
+    "*.ixx": "cpp",
+    "filesystem": "cpp"
   }
 }
