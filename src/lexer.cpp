@@ -55,32 +55,6 @@ void Lexer::start_lexing(const std::vector<std::string> &filenames)
     }
 }
 
-/**
- * @brief
- * Saves the tokens in a HTML file
- * @param filename Filename to save the tokens
- * @throw std::runtime_error If the file cannot be opened
- */
-void Lexer::save(const std::string &filename, const std::vector<Token> &tokens) const
-{
-    try
-    {
-        std::string output_filename = get_output_filename(filename);
-        std::ofstream output_file(output_filename);
-        if (!output_file)
-        {
-            throw std::runtime_error("Cannot open file: " + output_filename);
-        }
-
-        output_file << generate_html(tokens);
-        output_file.close();
-    }
-    catch (std::exception &e)
-    {
-        throw std::runtime_error(e.what());
-    }
-}
-
 // Methods (Private)
 /**
  * @brief
@@ -338,16 +312,30 @@ std::string Lexer::token_to_html(const Token &token) const
         {TokenType::Other, "<span class=\"Other\">"}};
 
     std::string html;
-    TokenType type = token.get_type();
+    TokenType token_type = token.get_type();
 
-    // Add the html tag
-    html += htmlTags.at(type);
+    // Lambda function to check if there are tokens inside a string
+    auto has_tokens = [](const std::string &str)
+    {
+        for (char c : str)
+            if (c == '<' || c == '>')
+                return true;
 
-    // Escape the token string
-    html += escape_html(token.get_value());
+        return false;
+    };
 
-    // Add the closing tag
-    html += "</span>";
+    // Check if the token is a string literal
+    if (token_type == TokenType::Literal && has_tokens(token.get_value()))
+    {
+        std::string highlighted_value = escape_html(token.get_value());
+        std::string opening_tag = htmlTags.at(TokenType::Literal);
+        html += opening_tag + highlighted_value + "</span>";
+    }
+    else
+    {
+        std::string opening_tag = htmlTags.at(token_type);
+        html += opening_tag + token.get_value() + "</span>";
+    }
 
     return html;
 }
@@ -400,4 +388,31 @@ std::string Lexer::get_output_filename(const std::string &inputFilename) const
         "../outputParallel/" + filename + ".html";
 
     return outputPath.string();
+}
+
+/**
+ * @brief
+ * Saves the tokens in a HTML file
+ * @param filename Filename to save the tokens
+ * @throw std::runtime_error If the file cannot be opened
+ */
+void Lexer::save(const std::string &filename, const std::vector<Token> &tokens) const
+{
+    try
+    {
+        std::string output_filename =
+            get_output_filename(filename);
+        std::ofstream output_file(output_filename,
+                                  std::ios::out | std::ios::trunc);
+
+        if (!output_file)
+            throw std::runtime_error("Cannot open file: " + output_filename);
+
+        output_file << generate_html(tokens);
+        output_file.close();
+    }
+    catch (std::exception &e)
+    {
+        throw std::runtime_error(e.what());
+    }
 }

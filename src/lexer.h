@@ -48,28 +48,30 @@ public:
 
     // Methods
     void start_lexing(const std::vector<std::string> &);
-    void save(const std::string &filename, const std::vector<Token> &) const;
 
 private:
     std::vector<std::thread> m_threads;
     std::mutex m_mutex;
     std::vector<Token> m_tokens;
     std::vector<std::string> m_files;
-
-    // Regex
     static std::regex m_regex_tokenizer;
 
-    // Token map
-
-    // Methods
+    // Lexer methods
     void lex(const std::vector<std::string> &);
     std::vector<Token> lex_file(const std::string_view &);
+
+    // Token methods
     std::vector<Token> tokenize(const std::string_view &);
     std::unordered_map<std::string_view, TokenType> create_token_map() const;
     TokenType identify_token(const std::string_view &);
+
+    // HTML methods
     std::string escape_html(const std::string &) const;
     std::string token_to_html(const Token &) const;
     std::string generate_html(const std::vector<Token> &) const;
+
+    // File methods
+    void save(const std::string &filename, const std::vector<Token> &) const;
     std::string get_output_filename(const std::string &) const;
 };
 
