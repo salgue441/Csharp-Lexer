@@ -51,14 +51,11 @@ public:
     void start_parallel(const std::vector<std::string> &);
 
 private:
-    std::vector<std::thread> m_threads;
-    std::mutex m_mutex;
     std::vector<Token> m_tokens;
     std::vector<std::string> m_files;
     static std::regex m_regex_tokenizer;
 
     // Lexer methods
-    void lex(const std::vector<std::string> &);
     std::vector<Token> lex_file(const std::string_view &);
 
     // Token methods
@@ -74,10 +71,7 @@ private:
     // File methods
     void save_single(const std::string &filename,
                      const std::vector<Token> &) const;
-    void save_parallel(const std::string &filename,
-                       const std::vector<Token> &) const;
     std::string get_output_filename_single(const std::string &) const;
-    std::string get_output_filename_parallel(const std::string &) const;
 };
 
 #endif //! LEXER_H

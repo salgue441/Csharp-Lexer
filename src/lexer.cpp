@@ -13,6 +13,7 @@
 // Standard libraries
 #include <iostream>
 #include <fstream>
+#include <future>
 #include <filesystem>
 
 // Project files
@@ -55,51 +56,7 @@ void Lexer::start_single(const std::vector<std::string> &filenames)
     }
 }
 
-/**
- * @brief
- * Starts the lexing of the files with parallel threads
- * @param filenames Vector of filenames
- */
-void Lexer::start_parallel(const std::vector<std::string> &filenames)
-{
-    try
-    {
-        lex(filenames);
-
-        for (const auto &filename : filenames)
-            save_parallel(filename, m_tokens);
-    }
-
-    catch (std::exception &e)
-    {
-        throw std::runtime_error(e.what());
-    }
-}
-
 // Methods (Private)
-/**
- * @brief
- * Lex the files with parallel threads
- * @param filenames Vector of filenames
- */
-void Lexer::lex(const std::vector<std::string> &filenames)
-{
-    try
-    {
-        for (const auto &filename : filenames)
-            m_threads.emplace_back(&Lexer::lex_file, this,
-                                   filename);
-
-        for (auto &thread : m_threads)
-            thread.join();
-    }
-
-    catch (std::exception &e)
-    {
-        throw std::runtime_error(e.what());
-    }
-}
-
 /**
  * @brief
  * Lex a file and generate the tokens for said file
@@ -147,7 +104,6 @@ std::vector<Token> Lexer::tokenize(const std::string_view &buffer)
 {
     try
     {
-        std::vector<Token> tokens;
         std::string buffer_str(buffer);
 
         auto token_begin = std::sregex_token_iterator(
@@ -163,11 +119,11 @@ std::vector<Token> Lexer::tokenize(const std::string_view &buffer)
             if (!token.empty())
             {
                 TokenType token_type = identify_token(token);
-                tokens.emplace_back(token, token_type);
+                m_tokens.emplace_back(token, token_type);
             }
         }
 
-        return tokens;
+        return m_tokens;
     }
     catch (const std::exception &e)
     {
@@ -413,22 +369,6 @@ std::string Lexer::get_output_filename_single(const std::string &inputFilename) 
 
 /**
  * @brief
- * Gets the output filename from the input filename
- * @param inputFilename Input filename
- * @return std::string Output filename
- */
-std::string Lexer::get_output_filename_parallel(const std::string &inputFilename) const
-{
-    std::filesystem::path path(inputFilename);
-    std::string filename = path.stem().string();
-    std::filesystem::path outputPath =
-        "../outputParallel/" + filename + ".html";
-
-    return outputPath.string();
-}
-
-/**
- * @brief
  * Saves the tokens in a HTML file
  * @param filename Filename to save the tokens
  * @throw std::runtime_error If the file cannot be opened
@@ -439,33 +379,6 @@ void Lexer::save_single(const std::string &filename, const std::vector<Token> &t
     {
         std::string output_filename =
             get_output_filename_single(filename);
-        std::ofstream output_file(output_filename,
-                                  std::ios::out | std::ios::trunc);
-
-        if (!output_file)
-            throw std::runtime_error("Cannot open file: " + output_filename);
-
-        output_file << generate_html(tokens);
-        output_file.close();
-    }
-    catch (std::exception &e)
-    {
-        throw std::runtime_error(e.what());
-    }
-}
-
-/**
- * @brief
- * Saves the tokens in a HTML file
- * @param filename Filename to save the tokens
- * @throw std::runtime_error If the file cannot be opened
- */
-void Lexer::save_parallel(const std::string &filename, const std::vector<Token> &tokens) const
-{
-    try
-    {
-        std::string output_filename =
-            get_output_filename_parallel(filename);
         std::ofstream output_file(output_filename,
                                   std::ios::out | std::ios::trunc);
 
