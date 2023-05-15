@@ -20,6 +20,7 @@
 #include <vector>
 #include <string>
 #include <regex>
+#include <unordered_map>
 
 // Project files
 #include "token.h"
@@ -58,10 +59,13 @@ private:
     // Regex
     static std::regex m_regex_tokenizer;
 
+    // Token map
+
     // Methods
     void lex(const std::vector<std::string> &);
     std::vector<Token> lex_file(const std::string_view &);
     std::vector<Token> tokenize(const std::string_view &);
+    std::unordered_map<std::string_view, TokenType> create_token_map() const;
     TokenType identify_token(const std::string_view &);
     std::string token_to_html(const Token &) const;
     std::string generate_html(const std::vector<Token> &) const;

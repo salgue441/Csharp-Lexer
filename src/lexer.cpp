@@ -182,80 +182,100 @@ std::vector<Token> Lexer::tokenize(const std::string_view &buffer)
 
 /**
  * @brief
+ * Creates the unordered map with the csharp constexpr arrays
+ * @return std::unordered_map<std::string, std::string> Unordered map with the csharp constexpr arrays
+ */
+std::unordered_map<std::string_view, TokenType> Lexer::create_token_map() const
+{
+    std::unordered_map<std::string_view, TokenType> token_map;
+    std::size_t size{};
+
+    // Calculate the size of the arrays
+    size += csharp::m_keywords.size();
+    size += csharp::m_operators.size();
+    size += csharp::m_separators.size();
+    size += csharp::m_comments.size();
+    size += csharp::m_literals.size();
+    size += csharp::m_preprocessor.size();
+    size += csharp::m_contextual_keywords.size();
+    size += csharp::m_access_specifiers.size();
+    size += csharp::m_attribute_targets.size();
+    size += csharp::m_attribute_usage.size();
+    size += csharp::m_escaped_identifiers.size();
+    size += csharp::m_interpolated_strings.size();
+    size += csharp::m_nullables.size();
+    size += csharp::m_verbatim_strings.size();
+
+    // Reserve the size of the unordered map
+    token_map.reserve(size);
+
+    // Insert the arrays into the unordered map
+    for (const auto &keyword : csharp::m_keywords)
+        token_map.emplace(keyword, TokenType::Keyword);
+
+    for (const auto &operator_ : csharp::m_operators)
+        token_map.emplace(operator_, TokenType::Operator);
+
+    for (const auto &separator : csharp::m_separators)
+        token_map.emplace(separator, TokenType::Separator);
+
+    for (const auto &comment : csharp::m_comments)
+        token_map.emplace(comment, TokenType::Comment);
+
+    for (const auto &literal : csharp::m_literals)
+        token_map.emplace(literal, TokenType::Literal);
+
+    for (const auto &preprocessor : csharp::m_preprocessor)
+        token_map.emplace(preprocessor, TokenType::Preprocessor);
+
+    for (const auto &contextual_keyword : csharp::m_contextual_keywords)
+        token_map.emplace(contextual_keyword,
+                          TokenType::ContextualKeyword);
+
+    for (const auto &access_specifier : csharp::m_access_specifiers)
+        token_map.emplace(access_specifier,
+                          TokenType::AccessSpecifier);
+
+    for (const auto &attribute_target : csharp::m_attribute_targets)
+        token_map.emplace(attribute_target,
+                          TokenType::AttributeTarget);
+
+    for (const auto &attribute_usage : csharp::m_attribute_usage)
+        token_map.emplace(attribute_usage,
+                          TokenType::AttributeUsage);
+
+    for (const auto &escaped_identifier : csharp::m_escaped_identifiers)
+        token_map.emplace(escaped_identifier,
+                          TokenType::EscapedIdentifier);
+
+    for (const auto &interpolated_string : csharp::m_interpolated_strings)
+        token_map.emplace(interpolated_string,
+                          TokenType::InterpolatedStringLiteral);
+
+    for (const auto &nullable : csharp::m_nullables)
+        token_map.emplace(nullable, TokenType::NullLiteral);
+
+    for (const auto &verbatim_string : csharp::m_verbatim_strings)
+        token_map.emplace(verbatim_string,
+                          TokenType::VerbatimStringLiteral);
+
+    return token_map;
+}
+
+/**
+ * @brief
  * Identify the token type based of the Token class
  * @param token Token to identify
  * @return TokenType Type of the token
  */
 TokenType Lexer::identify_token(const std::string_view &token)
 {
-    if (std::find(csharp::m_keywords.begin(),
-                  csharp::m_keywords.end(), token) !=
-        csharp::m_keywords.end())
-        return TokenType::Keyword;
+    static const std::unordered_map<std::string_view, TokenType>
+        token_map = create_token_map();
+    const auto it = token_map.find(token);
 
-    else if (std::find(csharp::m_operators.begin(),
-                       csharp::m_operators.end(), token) !=
-             csharp::m_operators.end())
-        return TokenType::Operator;
-
-    else if (std::find(csharp::m_separators.begin(),
-                       csharp::m_separators.end(), token) !=
-             csharp::m_separators.end())
-        return TokenType::Separator;
-
-    else if (std::find(csharp::m_comments.begin(),
-                       csharp::m_comments.end(), token) !=
-             csharp::m_comments.end())
-        return TokenType::Comment;
-
-    else if (std::find(csharp::m_literals.begin(),
-                       csharp::m_literals.end(), token) != csharp::m_literals.end())
-        return TokenType::Literal;
-
-    else if (std::find(csharp::m_preprocessor.begin(),
-                       csharp::m_preprocessor.end(), token) !=
-             csharp::m_preprocessor.end())
-        return TokenType::Preprocessor;
-
-    else if (std::find(csharp::m_contextual_keywords.begin(),
-                       csharp::m_contextual_keywords.end(),
-                       token) != csharp::m_contextual_keywords.end())
-        return TokenType::ContextualKeyword;
-
-    else if (std::find(csharp::m_access_specifiers.begin(),
-                       csharp::m_access_specifiers.end(), token) !=
-             csharp::m_access_specifiers.end())
-        return TokenType::AccessSpecifier;
-
-    else if (std::find(csharp::m_attribute_targets.begin(),
-                       csharp::m_attribute_targets.end(), token) !=
-             csharp::m_attribute_targets.end())
-        return TokenType::AttributeTarget;
-
-    else if (std::find(csharp::m_attribute_usage.begin(),
-                       csharp::m_attribute_usage.end(), token) !=
-             csharp::m_attribute_usage.end())
-        return TokenType::AttributeUsage;
-
-    else if (std::find(csharp::m_escaped_identifiers.begin(),
-                       csharp::m_escaped_identifiers.end(),
-                       token) != csharp::m_escaped_identifiers.end())
-        return TokenType::EscapedIdentifier;
-
-    else if (std::find(csharp::m_interpolated_strings.begin(),
-                       csharp::m_interpolated_strings.end(),
-                       token) != csharp::m_interpolated_strings.end())
-        return TokenType::InterpolatedStringLiteral;
-
-    else if (std::find(csharp::m_nullables.begin(),
-                       csharp::m_nullables.end(), token) !=
-             csharp::m_nullables.end())
-        return TokenType::NullLiteral;
-
-    else if (std::find(csharp::m_verbatim_strings.begin(),
-                       csharp::m_verbatim_strings.end(), token) !=
-             csharp::m_verbatim_strings.end())
-        return TokenType::VerbatimStringLiteral;
+    if (it != token_map.end())
+        return it->second;
 
     return TokenType::Other;
 }
