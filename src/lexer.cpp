@@ -20,7 +20,7 @@
 #include "csharp_language.h"
 
 // Regex
-std::regex Lexer::m_regex_tokenizer(R"([a-zA-Z0-9][a-zA-Z0-9_]+|\s+|\{|\}|\(|\)|\[|\]|\;|\,|\.\:\?\>\<\+\-\*\/\%\^\&\=\!\@\#\$\~\,\_\`\\])");
+std::regex Lexer::m_regex_tokenizer(R"([a-zA-Z0-9][a-zA-Z0-9_]+|\s+|\{|\}|\(|\)|\[|\]|\;|\,|\.|\:\?\>\<\+\-\*\/\%\^\&\=\!\@\#\$\~\,\_\`\\|\"|\"])");
 
 // Access Methods
 /**
@@ -217,7 +217,8 @@ std::unordered_map<std::string_view, TokenType> Lexer::create_token_map() const
     auto insert_range = [&](const auto &container, TokenType type)
     {
         for (const auto &item : container)
-            token_map.emplace_hint(token_map.end(), item, type);
+            token_map.emplace_hint(token_map.end(),
+                                   item, type);
     };
 
     insert_range(csharp::m_keywords, TokenType::Keyword);
@@ -240,7 +241,8 @@ std::unordered_map<std::string_view, TokenType> Lexer::create_token_map() const
     insert_range(csharp::m_interpolated_strings,
                  TokenType::InterpolatedStringLiteral);
     insert_range(csharp::m_nullables, TokenType::NullLiteral);
-    insert_range(csharp::m_verbatim_strings, TokenType::VerbatimStringLiteral);
+    insert_range(csharp::m_verbatim_strings,
+                 TokenType::VerbatimStringLiteral);
 
     return token_map;
 }
@@ -261,6 +263,46 @@ TokenType Lexer::identify_token(const std::string_view &token)
         return it->second;
 
     return TokenType::Other;
+}
+
+/**
+ * @brief
+ * Utility function used to escape special characters in the html code.
+ * @param str String to escape
+ * @return std::string Escaped string
+ */
+std::string Lexer::escape_html(const std::string &input) const
+{
+    std::stringstream escaped;
+    escaped.str(std::string{});
+    escaped << std::noskipws;
+
+    for (char c : input)
+    {
+        switch (c)
+        {
+        case '&':
+            escaped << "&amp;";
+            break;
+        case '\"':
+            escaped << "&quot;";
+            break;
+        case '\'':
+            escaped << "&#39;";
+            break;
+        case '<':
+            escaped << "&lt;";
+            break;
+        case '>':
+            escaped << "&gt;";
+            break;
+        default:
+            escaped << c;
+            break;
+        }
+    }
+
+    return escaped.str();
 }
 
 /**
@@ -295,8 +337,17 @@ std::string Lexer::token_to_html(const Token &token) const
         {TokenType::NumericLiteral, "<span class=\"NumericLiteral\">"},
         {TokenType::Other, "<span class=\"Other\">"}};
 
-    std::string html = htmlTags.at(token.get_type()) +
-                       token.get_value() + "</span>";
+    std::string html;
+    TokenType type = token.get_type();
+
+    // Add the html tag
+    html += htmlTags.at(type);
+
+    // Escape the token string
+    html += escape_html(token.get_value());
+
+    // Add the closing tag
+    html += "</span>";
 
     return html;
 }
@@ -309,99 +360,30 @@ std::string Lexer::token_to_html(const Token &token) const
  */
 std::string Lexer::generate_html(const std::vector<Token> &tokens) const
 {
-    std::stringstream html;
+    std::string html;
 
-    html << "<!DOCTYPE html>\n";
-    html << "<html lang=\"en\">\n";
-    html << "<head>\n";
-    html << "<meta charset=\"UTF-8\">\n";
-    html << "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n";
-    html << "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
-    html << "<title>Highlighter</title>\n";
-    html << "<link rel=\"stylesheet\" href=\"../src/styles/styles.css\">\n";
-    html << "</head>\n";
-    html << "<body style=\"background-color: var(--background-color);\">\n";
-    html << "<pre><code>\n";
+    // Reserve space for the html string
+    html.reserve(2048);
 
-    int indentationLevel = 0;
-    std::string indentation(indentationLevel * 2, ' ');
-    bool previousTokenWasNewLine = false;
-
-    auto addIndentation = [&]()
-    {
-        html << '\n'
-             << indentation;
-    };
-
-    auto addToken = [&](const Token &token)
-    {
-        html << token_to_html(token);
-    };
+    // Add the html header
+    html += "<!DOCTYPE html>\n"
+            "<html lang=\"en\">\n"
+            "<head>\n"
+            "<meta charset=\"UTF-8\">\n"
+            "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n"
+            "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+            "<title>Highlighter</title>\n"
+            "<link rel=\"stylesheet\" href=\"../src/styles/styles.css\">\n"
+            "</head>\n"
+            "<body style=\"background-color: var(--background-color);\">\n"
+            "<pre><code>\n";
 
     for (const auto &token : tokens)
-    {
-        if (token.get_type() == TokenType::Separator &&
-            token.get_value() == ";")
-        {
-            addIndentation();
-            previousTokenWasNewLine = true;
-        }
-        else if (previousTokenWasNewLine && token.get_type() == TokenType::Separator && token.get_value() == ";")
-        {
-            html << token_to_html(token) << '\n'
-                 << indentation;
-            previousTokenWasNewLine = true;
-            continue;
-        }
-        else if (token.get_type() == TokenType::Separator &&
-                 token.get_value() == "\t")
-        {
-            html << "&emsp;";
-            previousTokenWasNewLine = false;
-        }
-        else if (token.get_type() == TokenType::Separator &&
-                 token.get_value() == " ")
-        {
-            html << "&nbsp;";
-            previousTokenWasNewLine = false;
-        }
-        else if (token.get_type() == TokenType::Comment)
-        {
-            html << "<br>";
-            addIndentation();
-            html << token_to_html(token) << "<br>";
-            addIndentation();
-            previousTokenWasNewLine = true;
-        }
-        else
-        {
-            addToken(token);
-            previousTokenWasNewLine = false;
-        }
+        html += token_to_html(token);
 
-        if (token.get_type() == TokenType::Separator &&
-            token.get_value() == "{")
-        {
-            addIndentation();
-            indentationLevel++;
-            indentation = std::string(indentationLevel * 2, ' ');
-            previousTokenWasNewLine = true;
-        }
-        else if (token.get_type() == TokenType::Separator &&
-                 token.get_value() == "}")
-        {
-            addIndentation();
-            indentationLevel--;
-            indentation = std::string(indentationLevel * 2, ' ');
-            previousTokenWasNewLine = true;
-        }
-    }
+    html += "</code></pre>\n</body>\n</html>\n";
 
-    html << "</code></pre>\n";
-    html << "</body>\n";
-    html << "</html>\n";
-
-    return html.str();
+    return html;
 }
 
 /**

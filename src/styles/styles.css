@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Victor+Mono:wght@300;400;700&display=swap");
+
 /* Colors */
 :root {
   --background-color: #1e1e1e;
@@ -22,7 +24,7 @@
 
 /* Base styles */
 code {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Victor Mono", monospace;
   font-size: 1em;
   line-height: 1.5em;
 }

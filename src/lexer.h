@@ -67,6 +67,7 @@ private:
     std::vector<Token> tokenize(const std::string_view &);
     std::unordered_map<std::string_view, TokenType> create_token_map() const;
     TokenType identify_token(const std::string_view &);
+    std::string escape_html(const std::string &) const;
     std::string token_to_html(const Token &) const;
     std::string generate_html(const std::vector<Token> &) const;
     std::string get_output_filename(const std::string &) const;

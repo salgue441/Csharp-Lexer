@@ -11,62 +11,38 @@
 <pre><code>
 <span class="Other"> </span><span class="Other"> </span><span class="Other">Program</span><span class="Other"> </span><span class="Other">to</span><span class="Other"> </span><span class="Other">Read</span><span class="Other"> </span><span class="Other"> </span><span class="Other">Grade</span><span class="Other"> </span><span class="Other"> </span><span class="Other">Display</span><span class="Other"> </span><span class="Other">the</span><span class="Other"> </span><span class="Other">Equivalent</span><span class="Other"> </span><span class="Other">Description</span><span class="Other">
 
-</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span>
-<span class="Other">
-</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span><span class="Other">IO</span>
-<span class="Other">
+</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span><span class="Separator">;</span><span class="Other">
+</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span><span class="Separator">.</span><span class="Other">IO</span><span class="Separator">;</span><span class="Other">
 </span><span class="Keyword">class</span><span class="Other"> </span><span class="Other">program</span><span class="Other">
-</span><span class="Separator">{</span>
-<span class="Other">
+</span><span class="Separator">{</span><span class="Other">
     </span><span class="Keyword">public</span><span class="Other"> </span><span class="Keyword">static</span><span class="Other"> </span><span class="Keyword">void</span><span class="Other"> </span><span class="Other">Main</span><span class="Separator">(</span><span class="Separator">)</span><span class="Other">
-    </span><span class="Separator">{</span>
-  <span class="Other">
-        </span><span class="Keyword">char</span><span class="Other"> </span><span class="Other">grade</span>
-    <span class="Other">
-        </span><span class="Other">Console</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">Enter</span><span class="Other"> </span><span class="Other">the</span><span class="Other"> </span><span class="Other">Grade</span><span class="Other"> </span><span class="Keyword">in</span><span class="Other"> </span><span class="Other">UpperCase</span><span class="Other"> </span><span class="Separator">)</span>
-    <span class="Other">
-        </span><span class="Other">grade</span><span class="Other"> </span><span class="Other"> </span><span class="Other">Convert</span><span class="Other">ToChar</span><span class="Separator">(</span><span class="Other">Console</span><span class="Other">ReadLine</span><span class="Separator">(</span><span class="Separator">)</span><span class="Separator">)</span>
-    <span class="Other">
+    </span><span class="Separator">{</span><span class="Other">
+        </span><span class="Keyword">char</span><span class="Other"> </span><span class="Other">grade</span><span class="Separator">;</span><span class="Other">
+        </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">"</span><span class="Other">Enter</span><span class="Other"> </span><span class="Other">the</span><span class="Other"> </span><span class="Other">Grade</span><span class="Other"> </span><span class="Keyword">in</span><span class="Other"> </span><span class="Other">UpperCase</span><span class="Other"> </span><span class="Other">"</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+        </span><span class="Other">grade</span><span class="Other"> </span><span class="Other"> </span><span class="Other">Convert</span><span class="Separator">.</span><span class="Other">ToChar</span><span class="Separator">(</span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">ReadLine</span><span class="Separator">(</span><span class="Separator">)</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
         </span><span class="Keyword">switch</span><span class="Other"> </span><span class="Separator">(</span><span class="Other">grade</span><span class="Separator">)</span><span class="Other">
-        </span><span class="Separator">{</span>
-    <span class="Other">
+        </span><span class="Separator">{</span><span class="Other">
         </span><span class="Keyword">case</span><span class="Other"> </span><span class="Other">
-            </span><span class="Other">Console</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other"> </span><span class="Other">SUPER</span><span class="Separator">)</span>
-      <span class="Other">
-            </span><span class="Keyword">break</span>
-      <span class="Other">
+            </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">"</span><span class="Other"> </span><span class="Other">SUPER</span><span class="Other">"</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Keyword">break</span><span class="Separator">;</span><span class="Other">
         </span><span class="Keyword">case</span><span class="Other"> </span><span class="Other">
-            </span><span class="Other">Console</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other"> </span><span class="Other">VERY</span><span class="Other"> </span><span class="Other">GOOD</span><span class="Separator">)</span>
-      <span class="Other">
-            </span><span class="Keyword">break</span>
-      <span class="Other">
+            </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">"</span><span class="Other"> </span><span class="Other">VERY</span><span class="Other"> </span><span class="Other">GOOD</span><span class="Other">"</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Keyword">break</span><span class="Separator">;</span><span class="Other">
         </span><span class="Keyword">case</span><span class="Other"> </span><span class="Other">
-            </span><span class="Other">Console</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other"> </span><span class="Other">FAIR</span><span class="Separator">)</span>
-      <span class="Other">
-            </span><span class="Keyword">break</span>
-      <span class="Other">
+            </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">"</span><span class="Other"> </span><span class="Other">FAIR</span><span class="Other">"</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Keyword">break</span><span class="Separator">;</span><span class="Other">
         </span><span class="Keyword">case</span><span class="Other"> </span><span class="Other">
-            </span><span class="Other">Console</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other"> </span><span class="Other">ABSENT</span><span class="Separator">)</span>
-      <span class="Other">
-            </span><span class="Keyword">break</span>
-      <span class="Other">
+            </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">"</span><span class="Other"> </span><span class="Other">ABSENT</span><span class="Other">"</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Keyword">break</span><span class="Separator">;</span><span class="Other">
         </span><span class="Keyword">case</span><span class="Other"> </span><span class="Other">
-            </span><span class="Other">Console</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other"> </span><span class="Other">FAIL</span><span class="Separator">)</span>
-      <span class="Other">
-            </span><span class="Keyword">break</span>
-      <span class="Other">
+            </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">"</span><span class="Other"> </span><span class="Other">FAIL</span><span class="Other">"</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Keyword">break</span><span class="Separator">;</span><span class="Other">
         </span><span class="Keyword">default</span><span class="Other">
-            </span><span class="Other">Console</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">ERROR</span><span class="Other"> </span><span class="Other">IN</span><span class="Other"> </span><span class="Other">GRADE</span><span class="Other"> </span><span class="Separator">)</span>
-      <span class="Other">
-            </span><span class="Keyword">break</span>
-      <span class="Other">
-            </span><span class="Other">Console</span><span class="Other">ReadLine</span><span class="Separator">(</span><span class="Separator">)</span>
-      <span class="Other">
-        </span><span class="Separator">}</span>
-      <span class="Other">
-    </span><span class="Separator">}</span>
-    <span class="Other">
-</span><span class="Separator">}</span>
-  </code></pre>
+            </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">"</span><span class="Other">ERROR</span><span class="Other"> </span><span class="Other">IN</span><span class="Other"> </span><span class="Other">GRADE</span><span class="Other"> </span><span class="Other">"</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Keyword">break</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">ReadLine</span><span class="Separator">(</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+        </span><span class="Separator">}</span><span class="Other">
+    </span><span class="Separator">}</span><span class="Other">
+</span><span class="Separator">}</span></code></pre>
 </body>
 </html>

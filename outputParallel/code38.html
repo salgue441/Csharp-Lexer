@@ -11,59 +11,35 @@
 <pre><code>
 <span class="Other"> </span><span class="Other"> </span><span class="Other">Program</span><span class="Other"> </span><span class="Other">to</span><span class="Other"> </span><span class="Other">Check</span><span class="Other"> </span><span class="Other">Whether</span><span class="Other"> </span><span class="Other">the</span><span class="Other"> </span><span class="Other">Entered</span><span class="Other"> </span><span class="Other">Number</span><span class="Other"> </span><span class="Keyword">is</span><span class="Other"> </span><span class="Other">an</span><span class="Other"> </span><span class="Other">Armstrong</span><span class="Other"> </span><span class="Other">Number</span><span class="Other"> </span><span class="Other">or</span><span class="Other"> </span><span class="Other">Not</span><span class="Other">
  
-</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span>
-<span class="Other">
-</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span><span class="Other">Collections</span><span class="Other">Generic</span>
-<span class="Other">
-</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span><span class="Other">Linq</span>
-<span class="Other">
-</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span><span class="Other">Text</span>
-<span class="Other">
+</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span><span class="Separator">;</span><span class="Other">
+</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span><span class="Separator">.</span><span class="Other">Collections</span><span class="Separator">.</span><span class="Other">Generic</span><span class="Separator">;</span><span class="Other">
+</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span><span class="Separator">.</span><span class="Other">Linq</span><span class="Separator">;</span><span class="Other">
+</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span><span class="Separator">.</span><span class="Other">Text</span><span class="Separator">;</span><span class="Other">
  
 </span><span class="Keyword">namespace</span><span class="Other"> </span><span class="Other">ConsoleApplication6</span><span class="Other">
-</span><span class="Separator">{</span>
-<span class="Other">
+</span><span class="Separator">{</span><span class="Other">
     </span><span class="Keyword">class</span><span class="Other"> </span><span class="Other">Program</span><span class="Other">
-    </span><span class="Separator">{</span>
-  <span class="Other">
+    </span><span class="Separator">{</span><span class="Other">
         </span><span class="Keyword">static</span><span class="Other"> </span><span class="Keyword">void</span><span class="Other"> </span><span class="Other">Main</span><span class="Separator">(</span><span class="Keyword">string</span><span class="Separator">[</span><span class="Separator">]</span><span class="Other"> </span><span class="Other">args</span><span class="Separator">)</span><span class="Other">
-        </span><span class="Separator">{</span>
-    <span class="Other">
-            </span><span class="Keyword">int</span><span class="Other"> </span><span class="Other">number</span><span class="Separator">,</span><span class="Other"> </span><span class="Other">remainder</span><span class="Separator">,</span><span class="Other"> </span><span class="Other">sum</span><span class="Other"> </span><span class="Other"> </span>
-      <span class="Other">
-            </span><span class="Other">Console</span><span class="Other">Write</span><span class="Separator">(</span><span class="Other">enter</span><span class="Other"> </span><span class="Other">the</span><span class="Other"> </span><span class="Other">Number</span><span class="Separator">)</span>
-      <span class="Other">
-            </span><span class="Other">number</span><span class="Other"> </span><span class="Other"> </span><span class="Keyword">int</span><span class="Other">Parse</span><span class="Separator">(</span><span class="Other">Console</span><span class="Other">ReadLine</span><span class="Separator">(</span><span class="Separator">)</span><span class="Separator">)</span>
-      <span class="Other">
-            </span><span class="Keyword">for</span><span class="Other"> </span><span class="Separator">(</span><span class="Keyword">int</span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other">number</span>
-      <span class="Other"> </span><span class="Other"> </span><span class="Other"> </span>
-      <span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Separator">)</span><span class="Other">
-            </span><span class="Separator">{</span>
-      <span class="Other">
-                </span><span class="Other">remainder</span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span>
-        <span class="Other">
-                </span><span class="Other">sum</span><span class="Other"> </span><span class="Other"> </span><span class="Other">sum</span><span class="Other"> </span><span class="Other"> </span><span class="Other">remainder</span><span class="Other">remainder</span><span class="Other">remainder</span>
-        <span class="Other">
+        </span><span class="Separator">{</span><span class="Other">
+            </span><span class="Keyword">int</span><span class="Other"> </span><span class="Other">number</span><span class="Separator">,</span><span class="Other"> </span><span class="Other">remainder</span><span class="Separator">,</span><span class="Other"> </span><span class="Other">sum</span><span class="Other"> </span><span class="Other"> </span><span class="Separator">;</span><span class="Other">
+            </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">Write</span><span class="Separator">(</span><span class="Other">"</span><span class="Other">enter</span><span class="Other"> </span><span class="Other">the</span><span class="Other"> </span><span class="Other">Number</span><span class="Other">"</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Other">number</span><span class="Other"> </span><span class="Other"> </span><span class="Keyword">int</span><span class="Separator">.</span><span class="Other">Parse</span><span class="Separator">(</span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">ReadLine</span><span class="Separator">(</span><span class="Separator">)</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Keyword">for</span><span class="Other"> </span><span class="Separator">(</span><span class="Keyword">int</span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other">number</span><span class="Separator">;</span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Separator">;</span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Separator">)</span><span class="Other">
+            </span><span class="Separator">{</span><span class="Other">
+                </span><span class="Other">remainder</span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Separator">;</span><span class="Other">
+                </span><span class="Other">sum</span><span class="Other"> </span><span class="Other"> </span><span class="Other">sum</span><span class="Other"> </span><span class="Other"> </span><span class="Other">remainder</span><span class="Other">remainder</span><span class="Other">remainder</span><span class="Separator">;</span><span class="Other">
  
-            </span><span class="Separator">}</span>
-        <span class="Other">
+            </span><span class="Separator">}</span><span class="Other">
             </span><span class="Keyword">if</span><span class="Other"> </span><span class="Separator">(</span><span class="Other">sum</span><span class="Other"> </span><span class="Other"> </span><span class="Other">number</span><span class="Separator">)</span><span class="Other">
-            </span><span class="Separator">{</span>
-      <span class="Other">
-                </span><span class="Other">Console</span><span class="Other">Write</span><span class="Separator">(</span><span class="Other">Entered</span><span class="Other"> </span><span class="Other">Number</span><span class="Other"> </span><span class="Keyword">is</span><span class="Other"> </span><span class="Other">an</span><span class="Other"> </span><span class="Other">Armstrong</span><span class="Other"> </span><span class="Other">Number</span><span class="Separator">)</span>
-        <span class="Other">
-            </span><span class="Separator">}</span>
-        <span class="Other">
+            </span><span class="Separator">{</span><span class="Other">
+                </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">Write</span><span class="Separator">(</span><span class="Other">"</span><span class="Other">Entered</span><span class="Other"> </span><span class="Other">Number</span><span class="Other"> </span><span class="Keyword">is</span><span class="Other"> </span><span class="Other">an</span><span class="Other"> </span><span class="Other">Armstrong</span><span class="Other"> </span><span class="Other">Number</span><span class="Other">"</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Separator">}</span><span class="Other">
             </span><span class="Keyword">else</span><span class="Other">
-                </span><span class="Other">Console</span><span class="Other">Write</span><span class="Separator">(</span><span class="Other">Entered</span><span class="Other"> </span><span class="Other">Number</span><span class="Other"> </span><span class="Keyword">is</span><span class="Other"> </span><span class="Other">not</span><span class="Other"> </span><span class="Other">an</span><span class="Other"> </span><span class="Other">Armstrong</span><span class="Other"> </span><span class="Other">Number</span><span class="Separator">)</span>
-      <span class="Other">
-            </span><span class="Other">Console</span><span class="Other">ReadLine</span><span class="Separator">(</span><span class="Separator">)</span>
-      <span class="Other">
-        </span><span class="Separator">}</span>
-      <span class="Other">
-     </span><span class="Separator">}</span>
-    <span class="Other">
-  </span><span class="Separator">}</span>
-  </code></pre>
+                </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">Write</span><span class="Separator">(</span><span class="Other">"</span><span class="Other">Entered</span><span class="Other"> </span><span class="Other">Number</span><span class="Other"> </span><span class="Keyword">is</span><span class="Other"> </span><span class="Other">not</span><span class="Other"> </span><span class="Other">an</span><span class="Other"> </span><span class="Other">Armstrong</span><span class="Other"> </span><span class="Other">Number</span><span class="Other">"</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">ReadLine</span><span class="Separator">(</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+        </span><span class="Separator">}</span><span class="Other">
+     </span><span class="Separator">}</span><span class="Other">
+  </span><span class="Separator">}</span></code></pre>
 </body>
 </html>

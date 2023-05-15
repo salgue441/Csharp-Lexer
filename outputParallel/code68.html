@@ -11,101 +11,57 @@
 <pre><code>
 <span class="Other"> </span><span class="Other"> </span><span class="Other">Program</span><span class="Other"> </span><span class="Other">to</span><span class="Other"> </span><span class="Other">Find</span><span class="Other"> </span><span class="Other">Multiplication</span><span class="Other"> </span><span class="Other">of</span><span class="Other"> </span><span class="Other">two</span><span class="Other"> </span><span class="Other">Binary</span><span class="Other"> </span><span class="Other">Numbers</span><span class="Other">
 
-</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span>
-<span class="Other">
+</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span><span class="Separator">;</span><span class="Other">
 </span><span class="Keyword">class</span><span class="Other"> </span><span class="Other">program</span><span class="Other">
-</span><span class="Separator">{</span>
-<span class="Other">
+</span><span class="Separator">{</span><span class="Other">
     </span><span class="Keyword">public</span><span class="Other"> </span><span class="Keyword">static</span><span class="Other"> </span><span class="Keyword">void</span><span class="Other"> </span><span class="Other">Main</span><span class="Separator">(</span><span class="Separator">)</span><span class="Other">
-    </span><span class="Separator">{</span>
-  <span class="Other">
+    </span><span class="Separator">{</span><span class="Other">
  
-        </span><span class="Keyword">int</span><span class="Other"> </span><span class="Other">binary1</span><span class="Separator">,</span><span class="Other"> </span><span class="Other">binary2</span><span class="Separator">,</span><span class="Other"> </span><span class="Other">multiply</span><span class="Other"> </span><span class="Other"> </span>
-    <span class="Other">
-        </span><span class="Keyword">int</span><span class="Other"> </span><span class="Other">digit</span><span class="Separator">,</span><span class="Other"> </span><span class="Other">factor</span><span class="Other"> </span><span class="Other"> </span>
-    <span class="Other">
-        </span><span class="Other">prog</span><span class="Other"> </span><span class="Other">pg</span><span class="Other"> </span><span class="Other"> </span><span class="Keyword">new</span><span class="Other"> </span><span class="Other">prog</span><span class="Separator">(</span><span class="Separator">)</span>
-    <span class="Other">
-        </span><span class="Other">Console</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">Enter</span><span class="Other"> </span><span class="Other">the</span><span class="Other"> </span><span class="Other">first</span><span class="Other"> </span><span class="Other">binary</span><span class="Other"> </span><span class="Other">number</span><span class="Other"> </span><span class="Separator">)</span>
-    <span class="Other">
-        </span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Keyword">int</span><span class="Other">Parse</span><span class="Separator">(</span><span class="Other">Console</span><span class="Other">ReadLine</span><span class="Separator">(</span><span class="Separator">)</span><span class="Separator">)</span>
-    <span class="Other">
-        </span><span class="Other">Console</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">Enter</span><span class="Other"> </span><span class="Other">the</span><span class="Other"> </span><span class="Other">second</span><span class="Other"> </span><span class="Other">binary</span><span class="Other"> </span><span class="Other">number</span><span class="Other"> </span><span class="Separator">)</span>
-    <span class="Other">
-        </span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Keyword">int</span><span class="Other">Parse</span><span class="Separator">(</span><span class="Other">Console</span><span class="Other">ReadLine</span><span class="Separator">(</span><span class="Separator">)</span><span class="Separator">)</span>
-    <span class="Other">
+        </span><span class="Keyword">int</span><span class="Other"> </span><span class="Other">binary1</span><span class="Separator">,</span><span class="Other"> </span><span class="Other">binary2</span><span class="Separator">,</span><span class="Other"> </span><span class="Other">multiply</span><span class="Other"> </span><span class="Other"> </span><span class="Separator">;</span><span class="Other">
+        </span><span class="Keyword">int</span><span class="Other"> </span><span class="Other">digit</span><span class="Separator">,</span><span class="Other"> </span><span class="Other">factor</span><span class="Other"> </span><span class="Other"> </span><span class="Separator">;</span><span class="Other">
+        </span><span class="Other">prog</span><span class="Other"> </span><span class="Other">pg</span><span class="Other"> </span><span class="Other"> </span><span class="Keyword">new</span><span class="Other"> </span><span class="Other">prog</span><span class="Separator">(</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+        </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">"</span><span class="Other">Enter</span><span class="Other"> </span><span class="Other">the</span><span class="Other"> </span><span class="Other">first</span><span class="Other"> </span><span class="Other">binary</span><span class="Other"> </span><span class="Other">number</span><span class="Other"> </span><span class="Other">"</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+        </span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Keyword">int</span><span class="Separator">.</span><span class="Other">Parse</span><span class="Separator">(</span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">ReadLine</span><span class="Separator">(</span><span class="Separator">)</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+        </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">"</span><span class="Other">Enter</span><span class="Other"> </span><span class="Other">the</span><span class="Other"> </span><span class="Other">second</span><span class="Other"> </span><span class="Other">binary</span><span class="Other"> </span><span class="Other">number</span><span class="Other"> </span><span class="Other">"</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+        </span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Keyword">int</span><span class="Separator">.</span><span class="Other">Parse</span><span class="Separator">(</span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">ReadLine</span><span class="Separator">(</span><span class="Separator">)</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
         </span><span class="Keyword">while</span><span class="Other"> </span><span class="Separator">(</span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Separator">)</span><span class="Other">
-        </span><span class="Separator">{</span>
-    <span class="Other">
-            </span><span class="Other">digit</span><span class="Other"> </span><span class="Other">  </span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span>
-      <span class="Other">
+        </span><span class="Separator">{</span><span class="Other">
+            </span><span class="Other">digit</span><span class="Other"> </span><span class="Other">  </span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Separator">;</span><span class="Other">
             </span><span class="Keyword">if</span><span class="Other"> </span><span class="Separator">(</span><span class="Other">digit</span><span class="Other"> </span><span class="Other"> </span><span class="Separator">)</span><span class="Other">
-            </span><span class="Separator">{</span>
-      <span class="Other">
-                </span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Other">factor</span>
-        <span class="Other">
-                </span><span class="Other">multiply</span><span class="Other"> </span><span class="Other"> </span><span class="Other">pg</span><span class="Other">binaryproduct</span><span class="Separator">(</span><span class="Other">binary1</span><span class="Separator">,</span><span class="Other"> </span><span class="Other">multiply</span><span class="Separator">)</span>
-        <span class="Other">
-            </span><span class="Separator">}</span>
-        <span class="Other">
-            </span><span class="Keyword">else</span><span class="Other"> </span><span class="Separator">{</span>
-      <span class="Other">
-                </span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Other">factor</span>
-        <span class="Other">
-                </span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span>
-        <span class="Other">
-                </span><span class="Other">factor</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span>
-        <span class="Other">
-            </span><span class="Separator">}</span>
-        <span class="Other">
-            </span><span class="Other">Console</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">Product</span><span class="Other"> </span><span class="Other">of</span><span class="Other"> </span><span class="Other">two</span><span class="Other"> </span><span class="Other">binary</span><span class="Other"> </span><span class="Other">numbers</span><span class="Other"> </span><span class="Separator">{</span>
-      <span class="Separator">}</span>
-        <span class="Separator">,</span><span class="Other"> </span><span class="Other">multiply</span><span class="Separator">)</span>
-      <span class="Other">
-            </span><span class="Other">Console</span><span class="Other">ReadLine</span><span class="Separator">(</span><span class="Separator">)</span>
-      <span class="Other">
-        </span><span class="Separator">}</span>
-      <span class="Other">
-    </span><span class="Separator">}</span>
-    <span class="Other">
+            </span><span class="Separator">{</span><span class="Other">
+                </span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Other">factor</span><span class="Separator">;</span><span class="Other">
+                </span><span class="Other">multiply</span><span class="Other"> </span><span class="Other"> </span><span class="Other">pg</span><span class="Separator">.</span><span class="Other">binaryproduct</span><span class="Separator">(</span><span class="Other">binary1</span><span class="Separator">,</span><span class="Other"> </span><span class="Other">multiply</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Separator">}</span><span class="Other">
+            </span><span class="Keyword">else</span><span class="Other"> </span><span class="Separator">{</span><span class="Other">
+                </span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Other">factor</span><span class="Separator">;</span><span class="Other">
+                </span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Separator">;</span><span class="Other">
+                </span><span class="Other">factor</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Separator">}</span><span class="Other">
+            </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">"</span><span class="Other">Product</span><span class="Other"> </span><span class="Other">of</span><span class="Other"> </span><span class="Other">two</span><span class="Other"> </span><span class="Other">binary</span><span class="Other"> </span><span class="Other">numbers</span><span class="Other"> </span><span class="Separator">{</span><span class="Separator">}</span><span class="Other">"</span><span class="Separator">,</span><span class="Other"> </span><span class="Other">multiply</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Other">Console</span><span class="Separator">.</span><span class="Other">ReadLine</span><span class="Separator">(</span><span class="Separator">)</span><span class="Separator">;</span><span class="Other">
+        </span><span class="Separator">}</span><span class="Other">
+    </span><span class="Separator">}</span><span class="Other">
 </span><span class="Keyword">class</span><span class="Other"> </span><span class="Other">prog</span><span class="Other">
-</span><span class="Separator">{</span>
-  <span class="Other">
+</span><span class="Separator">{</span><span class="Other">
     </span><span class="Keyword">public</span><span class="Other"> </span><span class="Keyword">int</span><span class="Other"> </span><span class="Other">binaryproduct</span><span class="Separator">(</span><span class="Keyword">int</span><span class="Other"> </span><span class="Other">binary1</span><span class="Separator">,</span><span class="Other"> </span><span class="Keyword">int</span><span class="Other"> </span><span class="Other">binary2</span><span class="Separator">)</span><span class="Other">
-    </span><span class="Separator">{</span>
-    <span class="Other">
-        </span><span class="Keyword">int</span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Separator">,</span><span class="Other"> </span><span class="Other">remainder</span><span class="Other"> </span><span class="Other"> </span>
-      <span class="Other">
-        </span><span class="Keyword">int</span><span class="Separator">[</span><span class="Separator">]</span><span class="Other"> </span><span class="Other">sum</span><span class="Other"> </span><span class="Other"> </span><span class="Keyword">new</span><span class="Other"> </span><span class="Keyword">int</span><span class="Separator">[</span><span class="Other">20</span><span class="Separator">]</span>
-      <span class="Other">
-        </span><span class="Keyword">int</span><span class="Other"> </span><span class="Other">binaryprod</span><span class="Other"> </span><span class="Other"> </span>
-      <span class="Other"> 
+    </span><span class="Separator">{</span><span class="Other">
+        </span><span class="Keyword">int</span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Separator">,</span><span class="Other"> </span><span class="Other">remainder</span><span class="Other"> </span><span class="Other"> </span><span class="Separator">;</span><span class="Other">
+        </span><span class="Keyword">int</span><span class="Separator">[</span><span class="Separator">]</span><span class="Other"> </span><span class="Other">sum</span><span class="Other"> </span><span class="Other"> </span><span class="Keyword">new</span><span class="Other"> </span><span class="Keyword">int</span><span class="Separator">[</span><span class="Other">20</span><span class="Separator">]</span><span class="Separator">;</span><span class="Other">
+        </span><span class="Keyword">int</span><span class="Other"> </span><span class="Other">binaryprod</span><span class="Other"> </span><span class="Other"> </span><span class="Separator">;</span><span class="Other"> 
         </span><span class="Keyword">while</span><span class="Other"> </span><span class="Separator">(</span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other"> </span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Separator">)</span><span class="Other">
-        </span><span class="Separator">{</span>
-      <span class="Other">
-            </span><span class="Other">sum</span><span class="Separator">[</span><span class="Separator">]</span><span class="Other"> </span><span class="Separator">(</span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Other"> </span><span class="Other"> </span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Other"> </span><span class="Other"> </span><span class="Other">remainder</span><span class="Separator">)</span><span class="Other"> </span><span class="Other"> </span>
-        <span class="Other">
-            </span><span class="Other">remainder</span><span class="Other"> </span><span class="Separator">(</span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Other"> </span><span class="Other"> </span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Other"> </span><span class="Other"> </span><span class="Other">remainder</span><span class="Separator">)</span><span class="Other"> </span><span class="Other"> </span>
-        <span class="Other">
-            </span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span>
-        <span class="Other">
-            </span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span>
-        <span class="Other">
-        </span><span class="Separator">}</span>
-        <span class="Other">
+        </span><span class="Separator">{</span><span class="Other">
+            </span><span class="Other">sum</span><span class="Separator">[</span><span class="Separator">]</span><span class="Other"> </span><span class="Separator">(</span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Other"> </span><span class="Other"> </span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Other"> </span><span class="Other"> </span><span class="Other">remainder</span><span class="Separator">)</span><span class="Other"> </span><span class="Other"> </span><span class="Separator">;</span><span class="Other">
+            </span><span class="Other">remainder</span><span class="Other"> </span><span class="Separator">(</span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Other"> </span><span class="Other"> </span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Other"> </span><span class="Other"> </span><span class="Other">remainder</span><span class="Separator">)</span><span class="Other"> </span><span class="Other"> </span><span class="Separator">;</span><span class="Other">
+            </span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Other">binary1</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Other">binary2</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Separator">;</span><span class="Other">
+        </span><span class="Separator">}</span><span class="Other">
         </span><span class="Keyword">if</span><span class="Other"> </span><span class="Separator">(</span><span class="Other">remainder</span><span class="Other"> </span><span class="Other"> </span><span class="Separator">)</span><span class="Other">
-            </span><span class="Other">sum</span><span class="Separator">[</span><span class="Separator">]</span><span class="Other"> </span><span class="Other"> </span><span class="Other">remainder</span>
-      <span class="Other">
-            </span>
-      <span class="Other">
+            </span><span class="Other">sum</span><span class="Separator">[</span><span class="Separator">]</span><span class="Other"> </span><span class="Other"> </span><span class="Other">remainder</span><span class="Separator">;</span><span class="Other">
+            </span><span class="Separator">;</span><span class="Other">
         </span><span class="Keyword">while</span><span class="Other"> </span><span class="Separator">(</span><span class="Other"> </span><span class="Other"> </span><span class="Separator">)</span><span class="Other">
-           </span><span class="Other">binaryprod</span><span class="Other"> </span><span class="Other"> </span><span class="Other">binaryprod</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Other"> </span><span class="Other"> </span><span class="Other">sum</span><span class="Separator">[</span><span class="Separator">]</span>
-      <span class="Other">
-        </span><span class="Keyword">return</span><span class="Other"> </span><span class="Other">binaryprod</span>
-      <span class="Other">
-    </span><span class="Separator">}</span>
-      <span class="Other">
-</span><span class="Separator">}</span>
-    </code></pre>
+           </span><span class="Other">binaryprod</span><span class="Other"> </span><span class="Other"> </span><span class="Other">binaryprod</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Other"> </span><span class="Other"> </span><span class="Other">sum</span><span class="Separator">[</span><span class="Separator">]</span><span class="Separator">;</span><span class="Other">
+        </span><span class="Keyword">return</span><span class="Other"> </span><span class="Other">binaryprod</span><span class="Separator">;</span><span class="Other">
+    </span><span class="Separator">}</span><span class="Other">
+</span><span class="Separator">}</span></code></pre>
 </body>
 </html>
