@@ -9,8 +9,54 @@
 </head>
 <body style="background-color: var(--background-color);">
 <pre><code>
-<br>
-<span class="Comment">//</span><br>
-<span class="Other">C#</span><span class="Other">a</span><span class="Operator">&</span><span class="Other">a</span><span class="Other">=</span><span class="Other">0</span><span class="Separator">.</span><span class="Other">"</span><span class="Other">\n"</span><span class="Other">=</span><span class="Separator">.</span><span class="Separator">.</span><span class="Other">=</span><span class="Operator">></span><span class="Other">0</span><span class="Other">=</span><span class="Operator">%</span><span class="Other">=</span><span class="Operator">*</span><span class="Operator">+</span><span class="Operator">/=</span><span class="Separator">.</span><span class="Other">"</span><span class="Other">=</span><span class="Other">0</span><span class="Other">"</span><span class="Separator">.</span><span class="Other">"</span><span class="Other">=</span><span class="Other">0</span><span class="Other">"</span><span class="Operator">==</span><span class="Separator">.</span><span class="Other">"</span><span class="Other">a</span><span class="Other">\n"</span><span class="Separator">.</span><span class="Other">"</span><span class="Other">a</span><span class="Other">\n"</span><span class="Separator">.</span></code></pre>
+<span class="Other"> </span><span class="Other"> </span><span class="Other">Program</span><span class="Other"> </span><span class="Other">to</span><span class="Other"> </span><span class="Other">Reverse</span><span class="Other"> </span><span class="Other"> </span><span class="Other">Number</span><span class="Other"> </span><span class="Other"> </span><span class="Other">Check</span><span class="Other"> </span><span class="Keyword">if</span><span class="Other"> </span><span class="Other">it</span><span class="Other"> </span><span class="Keyword">is</span><span class="Other"> </span><span class="Other"> </span><span class="Other">Palindrome</span><span class="Other">
+
+</span><span class="Keyword">using</span><span class="Other"> </span><span class="Other">System</span>
+<span class="Other">
+</span><span class="Keyword">class</span><span class="Other"> </span><span class="Other">program</span><span class="Other">
+</span><span class="Separator">{</span>
+<span class="Other">
+    </span><span class="Keyword">public</span><span class="Other"> </span><span class="Keyword">static</span><span class="Other"> </span><span class="Keyword">void</span><span class="Other"> </span><span class="Other">Main</span><span class="Separator">(</span><span class="Separator">)</span><span class="Other">
+    </span><span class="Separator">{</span>
+  <span class="Other">
+        </span><span class="Keyword">int</span><span class="Other"> </span><span class="Other">num</span><span class="Separator">,</span><span class="Other"> </span><span class="Other">temp</span><span class="Separator">,</span><span class="Other"> </span><span class="Other">remainder</span><span class="Separator">,</span><span class="Other"> </span><span class="Other">reverse</span><span class="Other"> </span><span class="Other"> </span>
+    <span class="Other">
+        </span><span class="Other">Console</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">Enter</span><span class="Other"> </span><span class="Other">an</span><span class="Other"> </span><span class="Other">integer</span><span class="Other"> </span><span class="Separator">)</span>
+    <span class="Other">
+        </span><span class="Other">num</span><span class="Other"> </span><span class="Other"> </span><span class="Keyword">int</span><span class="Other">Parse</span><span class="Separator">(</span><span class="Other">Console</span><span class="Other">ReadLine</span><span class="Separator">(</span><span class="Separator">)</span><span class="Separator">)</span>
+    <span class="Other">
+        </span><span class="Other">temp</span><span class="Other"> </span><span class="Other"> </span><span class="Other">num</span>
+    <span class="Other">
+        </span><span class="Keyword">while</span><span class="Other"> </span><span class="Separator">(</span><span class="Other">num</span><span class="Other"> </span><span class="Other"> </span><span class="Separator">)</span><span class="Other">
+        </span><span class="Separator">{</span>
+    <span class="Other">
+            </span><span class="Other">remainder</span><span class="Other"> </span><span class="Other"> </span><span class="Other">num</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span>
+      <span class="Other">
+            </span><span class="Other">reverse</span><span class="Other"> </span><span class="Other"> </span><span class="Other">reverse</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span><span class="Other"> </span><span class="Other"> </span><span class="Other">remainder</span>
+      <span class="Other">
+            </span><span class="Other">num</span><span class="Other"> </span><span class="Other"> </span><span class="Other">10</span>
+      <span class="Other">
+        </span><span class="Separator">}</span>
+      <span class="Other">
+        </span><span class="Other">Console</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">Given</span><span class="Other"> </span><span class="Other">number</span><span class="Other"> </span><span class="Keyword">is</span><span class="Other"> </span><span class="Other"> </span><span class="Separator">{</span>
+    <span class="Separator">}</span>
+      <span class="Separator">,</span><span class="Other"> </span><span class="Other">temp</span><span class="Separator">)</span>
+    <span class="Other">
+        </span><span class="Other">Console</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">Its</span><span class="Other"> </span><span class="Other">reverse</span><span class="Other"> </span><span class="Keyword">is</span><span class="Other">  </span><span class="Other"> </span><span class="Separator">{</span>
+    <span class="Separator">}</span>
+      <span class="Separator">,</span><span class="Other"> </span><span class="Other">reverse</span><span class="Separator">)</span>
+    <span class="Other">
+        </span><span class="Keyword">if</span><span class="Other"> </span><span class="Separator">(</span><span class="Other">temp</span><span class="Other"> </span><span class="Other"> </span><span class="Other">reverse</span><span class="Separator">)</span><span class="Other">
+            </span><span class="Other">Console</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">Number</span><span class="Other"> </span><span class="Keyword">is</span><span class="Other"> </span><span class="Other"> </span><span class="Other">palindrome</span><span class="Other"> </span><span class="Separator">)</span>
+    <span class="Other">
+        </span><span class="Keyword">else</span><span class="Other">
+            </span><span class="Other">Console</span><span class="Other">WriteLine</span><span class="Separator">(</span><span class="Other">Number</span><span class="Other"> </span><span class="Keyword">is</span><span class="Other"> </span><span class="Other">not</span><span class="Other"> </span><span class="Other"> </span><span class="Other">palindrome</span><span class="Other"> </span><span class="Separator">)</span>
+    <span class="Other">
+        </span><span class="Other">Console</span><span class="Other">ReadLine</span><span class="Separator">(</span><span class="Separator">)</span>
+    <span class="Other">
+    </span><span class="Separator">}</span>
+    <span class="Other">
+</span><span class="Separator">}</span>
+  </code></pre>
 </body>
 </html>

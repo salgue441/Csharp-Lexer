@@ -153,12 +153,11 @@ std::vector<Token> Lexer::tokenize(const std::string_view &buffer)
     try
     {
         std::vector<Token> tokens;
-
         std::string buffer_str(buffer);
 
         auto token_begin = std::sregex_token_iterator(
             buffer_str.begin(), buffer_str.end(),
-            m_regex_tokenizer, -1);
+            m_regex_tokenizer);
 
         const auto token_end = std::sregex_token_iterator();
 
