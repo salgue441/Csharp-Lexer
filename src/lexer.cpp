@@ -151,24 +151,26 @@ std::vector<Token> Lexer::tokenize(const std::string_view &buffer)
     try
     {
         std::vector<Token> tokens;
-        std::regex regex_separator(R"(\s+|\{|\}|\(|\)|\[|\]|;|,|\.|:|\?|<|>|\+|-|\*|/|%|\^|&|\||=|!|~|@|#|\$|`|\\|'|""|\n)");
+        std::regex regex_tokenizer(R"([a-zA-Z][a-zA-Z0-9_]+|\s+|\{|\}|\(|\)|\[|\]|;|,|\.|:|\?|<|>|\+|-|\*|/|%|\^|&|=|!|~|@|#|\$|`|\\|'|\n)");
 
-        std::string buffer_str(buffer);
-        std::sregex_token_iterator it(buffer_str.begin(), buffer_str.end(),
-                                      regex_separator, -1);
-        std::sregex_token_iterator end;
+        auto token_begin = std::sregex_token_iterator(
+            static_cast<std::string>(buffer).begin(),
+            static_cast<std::string>(buffer).end(),
+            regex_tokenizer, -1);
 
-        while (it != end)
+        const auto token_end = std::sregex_token_iterator();
+
+        while (token_begin != token_end)
         {
-            std::string token = *it++;
+            const std::string token = *token_begin++;
 
             if (!token.empty())
             {
-                TokenType type = identify_token(token);
-                tokens.emplace_back(token, type);
+                TokenType token_type = identify_token(token);
+                tokens.emplace_back(token, token_type);
             }
 
-            if (it == end)
+            if (token_begin == token_end)
                 break;
         }
 
