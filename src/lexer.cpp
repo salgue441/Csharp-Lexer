@@ -272,82 +272,31 @@ TokenType Lexer::identify_token(const std::string_view &token)
  */
 std::string Lexer::token_to_html(const Token &token) const
 {
-    std::string html;
+    static const std::unordered_map<TokenType, std::string> htmlTags = {
+        {TokenType::Keyword, "<span class=\"Keyword\">"},
+        {TokenType::Identifier, "<span class=\"Identifier\">"},
+        {TokenType::Literal, "<span class=\"Literal\">"},
+        {TokenType::Operator, "<span class=\"Operator\">"},
+        {TokenType::Separator, "<span class=\"Separator\">"},
+        {TokenType::Comment, "<span class=\"Comment\">"},
+        {TokenType::Preprocessor, "<span class=\"Preprocessor\">"},
+        {TokenType::ContextualKeyword, "<span class=\"ContextualKeyword\">"},
+        {TokenType::AccessSpecifier, "<span class=\"AccessSpecifier\">"},
+        {TokenType::AttributeTarget, "<span class=\"AttributeTarget\">"},
+        {TokenType::AttributeUsage, "<span class=\"AttributeUsage\">"},
+        {TokenType::EscapedIdentifier, "<span class=\"EscapedIdentifier\">"},
+        {TokenType::InterpolatedStringLiteral,
+         "<span class=\"InterpolatedStringLiteral\">"},
+        {TokenType::NullLiteral, "<span class=\"NullLiteral\">"},
+        {TokenType::VerbatimStringLiteral,
+         "<span class=\"VerbatimStringLiteral\">"},
+        {TokenType::RegularExpressionLiteral,
+         "<span class=\"RegularExpressionLiteral\">"},
+        {TokenType::NumericLiteral, "<span class=\"NumericLiteral\">"},
+        {TokenType::Other, "<span class=\"Other\">"}};
 
-    switch (token.get_type())
-    {
-    case TokenType::Keyword:
-        html += "<span class=\"Keyword\">" + token.get_value() + "</span>";
-        break;
-
-    case TokenType::Identifier:
-        html += "<span class=\"Identifier\">" + token.get_value() + "</span>";
-        break;
-
-    case TokenType::Literal:
-        html += "<span class=\"Literal\">" + token.get_value() + "</span>";
-        break;
-
-    case TokenType::Operator:
-        html += "<span class=\"Operator\">" + token.get_value() + "</span>";
-        break;
-
-    case TokenType::Separator:
-        html += "<span class=\"Separator\">" + token.get_value() + "</span>";
-        break;
-
-    case TokenType::Comment:
-        html += "<span class=\"Comment\">" + token.get_value() + "</span>";
-        break;
-
-    case TokenType::Preprocessor:
-        html += "<span class=\"Preprocessor\">" + token.get_value() + "</span>";
-        break;
-
-    case TokenType::ContextualKeyword:
-        html += "<span class=\"ContextualKeyword\">" + token.get_value() + "</span>";
-        break;
-
-    case TokenType::AccessSpecifier:
-        html += "<span class=\"AccessSpecifier\">" + token.get_value() + "</span>";
-        break;
-
-    case TokenType::AttributeTarget:
-        html += "<span class=\"AttributeTarget\">" + token.get_value() + "</span>";
-        break;
-
-    case TokenType::AttributeUsage:
-        html += "<span class=\"AttributeUsage\">" + token.get_value() + "</span>";
-        break;
-
-    case TokenType::EscapedIdentifier:
-        html += "<span class=\"EscapedIdentifier\">" + token.get_value() + "</span>";
-        break;
-
-    case TokenType::InterpolatedStringLiteral:
-        html += "<span class=\"InterpolatedStringLiteral\">" + token.get_value() + "</span>";
-        break;
-
-    case TokenType::NullLiteral:
-        html += "<span class=\"NullLiteral\">" + token.get_value() + "</span>";
-        break;
-
-    case TokenType::VerbatimStringLiteral:
-        html += "<span class=\"VerbatimStringLiteral\">" + token.get_value() + "</span>";
-        break;
-
-    case TokenType::RegularExpressionLiteral:
-        html += "<span class=\"RegularExpressionLiteral\">" + token.get_value() + "</span>";
-        break;
-
-    case TokenType::NumericLiteral:
-        html += "<span class=\"NumericLiteral\">" + token.get_value() + "</span>";
-        break;
-
-    case TokenType::Other:
-        html += "<span class=\"Other\">" + token.get_value() + "</span>";
-        break;
-    }
+    std::string html = htmlTags.at(token.get_type()) +
+                       token.get_value() + "</span>";
 
     return html;
 }
