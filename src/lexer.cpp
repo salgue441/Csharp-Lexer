@@ -188,76 +188,59 @@ std::vector<Token> Lexer::tokenize(const std::string_view &buffer)
 std::unordered_map<std::string_view, TokenType> Lexer::create_token_map() const
 {
     std::unordered_map<std::string_view, TokenType> token_map;
-    std::size_t size{};
 
-    // Calculate the size of the arrays
-    size += csharp::m_keywords.size();
-    size += csharp::m_operators.size();
-    size += csharp::m_separators.size();
-    size += csharp::m_comments.size();
-    size += csharp::m_literals.size();
-    size += csharp::m_preprocessor.size();
-    size += csharp::m_contextual_keywords.size();
-    size += csharp::m_access_specifiers.size();
-    size += csharp::m_attribute_targets.size();
-    size += csharp::m_attribute_usage.size();
-    size += csharp::m_escaped_identifiers.size();
-    size += csharp::m_interpolated_strings.size();
-    size += csharp::m_nullables.size();
-    size += csharp::m_verbatim_strings.size();
+    // Reserve space for the unordered map
+    std::size_t size = csharp::m_keywords.size() +
+                       csharp::m_operators.size() +
+                       csharp::m_separators.size() +
+                       csharp::m_comments.size() +
+                       csharp::m_literals.size() +
+                       csharp::m_preprocessor.size() +
+                       csharp::m_contextual_keywords.size() +
+                       csharp::m_access_specifiers.size() +
+                       csharp::m_attribute_targets.size() +
+                       csharp::m_attribute_usage.size() +
+                       csharp::m_escaped_identifiers.size() +
+                       csharp::m_interpolated_strings.size() +
+                       csharp::m_nullables.size() +
+                       csharp::m_verbatim_strings.size();
 
-    // Reserve the size of the unordered map
     token_map.reserve(size);
 
-    // Insert the arrays into the unordered map
-    for (const auto &keyword : csharp::m_keywords)
-        token_map.emplace(keyword, TokenType::Keyword);
+    /**
+     * @brief
+     * Inserts the elements of a container into the unordered map
+     * @param container Container to insert
+     * @param type TokenType of the container
+     * @return void
+     */
+    auto insert_range = [&](const auto &container, TokenType type)
+    {
+        for (const auto &item : container)
+            token_map.emplace_hint(token_map.end(), item, type);
+    };
 
-    for (const auto &operator_ : csharp::m_operators)
-        token_map.emplace(operator_, TokenType::Operator);
-
-    for (const auto &separator : csharp::m_separators)
-        token_map.emplace(separator, TokenType::Separator);
-
-    for (const auto &comment : csharp::m_comments)
-        token_map.emplace(comment, TokenType::Comment);
-
-    for (const auto &literal : csharp::m_literals)
-        token_map.emplace(literal, TokenType::Literal);
-
-    for (const auto &preprocessor : csharp::m_preprocessor)
-        token_map.emplace(preprocessor, TokenType::Preprocessor);
-
-    for (const auto &contextual_keyword : csharp::m_contextual_keywords)
-        token_map.emplace(contextual_keyword,
-                          TokenType::ContextualKeyword);
-
-    for (const auto &access_specifier : csharp::m_access_specifiers)
-        token_map.emplace(access_specifier,
-                          TokenType::AccessSpecifier);
-
-    for (const auto &attribute_target : csharp::m_attribute_targets)
-        token_map.emplace(attribute_target,
-                          TokenType::AttributeTarget);
-
-    for (const auto &attribute_usage : csharp::m_attribute_usage)
-        token_map.emplace(attribute_usage,
-                          TokenType::AttributeUsage);
-
-    for (const auto &escaped_identifier : csharp::m_escaped_identifiers)
-        token_map.emplace(escaped_identifier,
-                          TokenType::EscapedIdentifier);
-
-    for (const auto &interpolated_string : csharp::m_interpolated_strings)
-        token_map.emplace(interpolated_string,
-                          TokenType::InterpolatedStringLiteral);
-
-    for (const auto &nullable : csharp::m_nullables)
-        token_map.emplace(nullable, TokenType::NullLiteral);
-
-    for (const auto &verbatim_string : csharp::m_verbatim_strings)
-        token_map.emplace(verbatim_string,
-                          TokenType::VerbatimStringLiteral);
+    insert_range(csharp::m_keywords, TokenType::Keyword);
+    insert_range(csharp::m_operators, TokenType::Operator);
+    insert_range(csharp::m_separators, TokenType::Separator);
+    insert_range(csharp::m_comments, TokenType::Comment);
+    insert_range(csharp::m_literals, TokenType::Literal);
+    insert_range(csharp::m_preprocessor,
+                 TokenType::Preprocessor);
+    insert_range(csharp::m_contextual_keywords,
+                 TokenType::ContextualKeyword);
+    insert_range(csharp::m_access_specifiers,
+                 TokenType::AccessSpecifier);
+    insert_range(csharp::m_attribute_targets,
+                 TokenType::AttributeTarget);
+    insert_range(csharp::m_attribute_usage,
+                 TokenType::AttributeUsage);
+    insert_range(csharp::m_escaped_identifiers,
+                 TokenType::EscapedIdentifier);
+    insert_range(csharp::m_interpolated_strings,
+                 TokenType::InterpolatedStringLiteral);
+    insert_range(csharp::m_nullables, TokenType::NullLiteral);
+    insert_range(csharp::m_verbatim_strings, TokenType::VerbatimStringLiteral);
 
     return token_map;
 }
