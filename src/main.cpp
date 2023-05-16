@@ -62,8 +62,18 @@ int main(int argc, char **argv)
     auto single_time = utils::measure_time([&]()
                                            { lexer.start_single(filenames_string); });
 
-    std::cout << "Execution time for Single thread Lexer " << single_time / 1000.0
-              << "s" << std::endl;
+    auto multi_time = utils::measure_time([&]()
+                                          { lexer.start_multi(filenames_string); });
+
+    std::cout
+        << "Execution time for Single thread Lexer "
+        << single_time / 1000.0
+        << "s" << std::endl;
+
+    std::cout
+        << "Execution time for Multi thread Lexer "
+        << multi_time / 1000.0
+        << "s" << std::endl;
 }
 
 // Function definitions

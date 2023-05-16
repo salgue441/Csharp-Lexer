@@ -9,6 +9,37 @@
 </head>
 <body style="background-color: var(--background-color);">
 <pre><code>
-</code></pre>
+<span class="Other">// C# Program to Demonstrate Boxing Operations<span class="Other">
+
+<span class="Keyword">using<span class="Other"> <span class="Other">System<span class="Separator">;<span class="Other">
+<span class="Keyword">class<span class="Other"> <span class="Other">sample<span class="Other">
+<span class="Separator">{<span class="Other">
+    <span class="Keyword">int<span class="Other"> <span class="Other">x<span class="Other"> <span class="Other">=<span class="Other"> <span class="Other">10<span class="Separator">;<span class="Other">
+    <span class="Keyword">object<span class="Other"> <span class="Other">obj<span class="Separator">;<span class="Other">
+    <span class="Keyword">void<span class="Other"> <span class="Other">boxmethod<span class="Separator">(<span class="Separator">)<span class="Other">
+    <span class="Separator">{<span class="Other">
+        <span class="Other">sample<span class="Other"> <span class="Other">s<span class="Other">=<span class="Other"> <span class="Keyword">new<span class="Other"> <span class="Other">sample<span class="Separator">(<span class="Separator">)<span class="Separator">;<span class="Other">
+        <span class="Keyword">bool<span class="Other"> <span class="Other">b<span class="Separator">;<span class="Other">
+        <span class="Keyword">object<span class="Other"> <span class="Other">ob<span class="Other">=<span class="Other">&quot;<span class="Other">CSHARP<span class="Other">&quot;<span class="Separator">;<span class="Other">
+        <span class="Other">b<span class="Other">=<span class="Other">s<span class="Separator">.<span class="Other">obj<span class="Other"> <span class="Keyword">is<span class="Other"> <span class="Keyword">int<span class="Separator">;<span class="Other">
+        <span class="Other">Console<span class="Separator">.<span class="Other">WriteLine<span class="Separator">(<span class="Other">b<span class="Separator">)<span class="Separator">;<span class="Other">
+        <span class="Other">s<span class="Separator">.<span class="Other">obj<span class="Other"> <span class="Other">=<span class="Other"> <span class="Other">x<span class="Separator">;<span class="Other">
+        <span class="Other">b<span class="Other"> <span class="Other">=<span class="Other"> <span class="Other">s<span class="Separator">.<span class="Other">obj<span class="Other"> <span class="Keyword">is<span class="Other"> <span class="Keyword">int<span class="Separator">;<span class="Other">
+        <span class="Other">Console<span class="Separator">.<span class="Other">WriteLine<span class="Separator">(<span class="Other">&quot;<span class="Separator">{<span class="Other">0<span class="Separator">}<span class="Separator">,<span class="Separator">{<span class="Other">1<span class="Separator">}<span class="Separator">,<span class="Separator">{<span class="Other">2<span class="Separator">}<span class="Other">&quot;<span class="Separator">,<span class="Other">s<span class="Separator">.<span class="Other">obj<span class="Separator">,<span class="Other">s<span class="Separator">.<span class="Other">x<span class="Separator">,<span class="Other">b<span class="Separator">)<span class="Separator">;<span class="Other">
+        <span class="Other">s<span class="Separator">.<span class="Other">x<span class="Other"> <span class="Other">=<span class="Other"> <span class="Separator">(<span class="Keyword">int<span class="Separator">)<span class="Other">s<span class="Separator">.<span class="Other">obj<span class="Separator">;<span class="Other">
+        <span class="Other">s<span class="Separator">.<span class="Other">x<span class="Other"> <span class="Other">=<span class="Other"> <span class="Other">20<span class="Separator">;<span class="Other">
+        <span class="Other">b<span class="Other"> <span class="Other">=<span class="Other"> <span class="Other">s<span class="Separator">.<span class="Other">obj<span class="Other"> <span class="Keyword">is<span class="Other"> <span class="Keyword">int<span class="Separator">;<span class="Other">
+        <span class="Other">Console<span class="Separator">.<span class="Other">WriteLine<span class="Separator">(<span class="Other">&quot;<span class="Separator">{<span class="Other">0<span class="Separator">}<span class="Separator">,<span class="Separator">{<span class="Other">1<span class="Separator">}<span class="Separator">,<span class="Separator">{<span class="Other">2<span class="Separator">}<span class="Other">&quot;<span class="Separator">,<span class="Other"> <span class="Other">s<span class="Separator">.<span class="Other">obj<span class="Separator">,<span class="Other"> <span class="Other">s<span class="Separator">.<span class="Other">x<span class="Separator">,<span class="Other"> <span class="Other">b<span class="Separator">)<span class="Separator">;<span class="Other">
+        <span class="Other">s<span class="Separator">.<span class="Other">obj<span class="Other">=<span class="Other">&quot;<span class="Other">CSHARP<span class="Other">&quot;<span class="Separator">;<span class="Other">
+        <span class="Other">b<span class="Other">=<span class="Other">s<span class="Separator">.<span class="Other">obj<span class="Other"> <span class="Keyword">is<span class="Other"> <span class="Keyword">int<span class="Separator">;<span class="Other">
+        <span class="Other">Console<span class="Separator">.<span class="Other">WriteLine<span class="Separator">(<span class="Other">&quot;<span class="Separator">{<span class="Other">0<span class="Separator">}<span class="Separator">,<span class="Separator">{<span class="Other">1<span class="Separator">}<span class="Separator">,<span class="Separator">{<span class="Other">2<span class="Separator">}<span class="Other">&quot;<span class="Separator">,<span class="Other">s<span class="Separator">.<span class="Other">obj<span class="Separator">,<span class="Other">s<span class="Separator">.<span class="Other">x<span class="Separator">,<span class="Other">b<span class="Separator">)<span class="Separator">;<span class="Other">
+        <span class="Other">Console<span class="Separator">.<span class="Other">ReadLine<span class="Separator">(<span class="Separator">)<span class="Separator">;<span class="Other">
+    <span class="Separator">}<span class="Other">
+    <span class="Keyword">public<span class="Other"> <span class="Keyword">static<span class="Other"> <span class="Keyword">void<span class="Other"> <span class="Other">Main<span class="Separator">(<span class="Separator">)<span class="Other">
+    <span class="Separator">{<span class="Other">
+        <span class="Other">sample<span class="Other"> <span class="Other">s<span class="Other">=<span class="Keyword">new<span class="Other"> <span class="Other">sample<span class="Separator">(<span class="Separator">)<span class="Separator">;<span class="Other">
+        <span class="Other">s<span class="Separator">.<span class="Other">boxmethod<span class="Separator">(<span class="Separator">)<span class="Separator">;<span class="Other">
+    <span class="Separator">}<span class="Other">
+<span class="Separator">}</code></pre>
 </body>
 </html>

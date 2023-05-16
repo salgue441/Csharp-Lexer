@@ -48,11 +48,11 @@ public:
 
     // Methods
     void start_single(const std::vector<std::string> &);
-    void start_parallel(const std::vector<std::string> &);
+    void start_multi(const std::vector<std::string> &);
 
 private:
     std::vector<Token> m_tokens;
-    std::vector<std::string> m_files;
+    std::mutex m_file_mutex;
     static std::regex m_regex_tokenizer;
 
     // Lexer methods
@@ -71,7 +71,10 @@ private:
     // File methods
     void save_single(const std::string &filename,
                      const std::vector<Token> &) const;
+    void save_multiple(const std::string &filename,
+                       const std::vector<Token> &) const;
     std::string get_output_filename_single(const std::string &) const;
+    std::string get_output_filename_multiple(const std::string &) const;
 };
 
 #endif //! LEXER_H

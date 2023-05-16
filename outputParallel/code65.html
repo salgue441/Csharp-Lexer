@@ -9,6 +9,31 @@
 </head>
 <body style="background-color: var(--background-color);">
 <pre><code>
-</code></pre>
+<span class="Other">// C# Program to Reverse a Number &amp; Check if it is a Palindrome<span class="Other">
+
+<span class="Keyword">using<span class="Other"> <span class="Other">System<span class="Separator">;<span class="Other">
+<span class="Keyword">class<span class="Other"> <span class="Other">program<span class="Other">
+<span class="Separator">{<span class="Other">
+    <span class="Keyword">public<span class="Other"> <span class="Keyword">static<span class="Other"> <span class="Keyword">void<span class="Other"> <span class="Other">Main<span class="Separator">(<span class="Separator">)<span class="Other">
+    <span class="Separator">{<span class="Other">
+        <span class="Keyword">int<span class="Other"> <span class="Other">num<span class="Separator">,<span class="Other"> <span class="Other">temp<span class="Separator">,<span class="Other"> <span class="Other">remainder<span class="Separator">,<span class="Other"> <span class="Other">reverse<span class="Other"> <span class="Other">=<span class="Other"> <span class="Other">0<span class="Separator">;<span class="Other">
+        <span class="Other">Console<span class="Separator">.<span class="Other">WriteLine<span class="Separator">(<span class="Other">&quot;<span class="Other">Enter<span class="Other"> <span class="Other">an<span class="Other"> <span class="Other">integer<span class="Other"> <span class="Other">\<span class="Other">n<span class="Other">&quot;<span class="Separator">)<span class="Separator">;<span class="Other">
+        <span class="Other">num<span class="Other"> <span class="Other">=<span class="Other"> <span class="Keyword">int<span class="Separator">.<span class="Other">Parse<span class="Separator">(<span class="Other">Console<span class="Separator">.<span class="Other">ReadLine<span class="Separator">(<span class="Separator">)<span class="Separator">)<span class="Separator">;<span class="Other">
+        <span class="Other">temp<span class="Other"> <span class="Other">=<span class="Other"> <span class="Other">num<span class="Separator">;<span class="Other">
+        <span class="Keyword">while<span class="Other"> <span class="Separator">(<span class="Other">num<span class="Other"> <span class="Operator">&gt;<span class="Other"> <span class="Other">0<span class="Separator">)<span class="Other">
+        <span class="Separator">{<span class="Other">
+            <span class="Other">remainder<span class="Other"> <span class="Other">=<span class="Other"> <span class="Other">num<span class="Other"> <span class="Operator">%<span class="Other"> <span class="Other">10<span class="Separator">;<span class="Other">
+            <span class="Other">reverse<span class="Other"> <span class="Other">=<span class="Other"> <span class="Other">reverse<span class="Other"> <span class="Operator">*<span class="Other"> <span class="Other">10<span class="Other"> <span class="Operator">+<span class="Other"> <span class="Other">remainder<span class="Separator">;<span class="Other">
+            <span class="Other">num<span class="Other"> <span class="Operator">/<span class="Other">=<span class="Other"> <span class="Other">10<span class="Separator">;<span class="Other">
+        <span class="Separator">}<span class="Other">
+        <span class="Other">Console<span class="Separator">.<span class="Other">WriteLine<span class="Separator">(<span class="Other">&quot;<span class="Other">Given<span class="Other"> <span class="Other">number<span class="Other"> <span class="Keyword">is<span class="Other"> <span class="Other">=<span class="Other"> <span class="Separator">{<span class="Other">0<span class="Separator">}<span class="Other">&quot;<span class="Separator">,<span class="Other"> <span class="Other">temp<span class="Separator">)<span class="Separator">;<span class="Other">
+        <span class="Other">Console<span class="Separator">.<span class="Other">WriteLine<span class="Separator">(<span class="Other">&quot;<span class="Other">Its<span class="Other"> <span class="Other">reverse<span class="Other"> <span class="Keyword">is<span class="Other">  <span class="Other">=<span class="Other"> <span class="Separator">{<span class="Other">0<span class="Separator">}<span class="Other">&quot;<span class="Separator">,<span class="Other"> <span class="Other">reverse<span class="Separator">)<span class="Separator">;<span class="Other">
+        <span class="Keyword">if<span class="Other"> <span class="Separator">(<span class="Other">temp<span class="Other"> <span class="Other">=<span class="Other">=<span class="Other"> <span class="Other">reverse<span class="Separator">)<span class="Other">
+            <span class="Other">Console<span class="Separator">.<span class="Other">WriteLine<span class="Separator">(<span class="Other">&quot;<span class="Other">Number<span class="Other"> <span class="Keyword">is<span class="Other"> <span class="Other">a<span class="Other"> <span class="Other">palindrome<span class="Other"> <span class="Other">\<span class="Other">n<span class="Other">&quot;<span class="Separator">)<span class="Separator">;<span class="Other">
+        <span class="Keyword">else<span class="Other">
+            <span class="Other">Console<span class="Separator">.<span class="Other">WriteLine<span class="Separator">(<span class="Other">&quot;<span class="Other">Number<span class="Other"> <span class="Keyword">is<span class="Other"> <span class="Other">not<span class="Other"> <span class="Other">a<span class="Other"> <span class="Other">palindrome<span class="Other"> <span class="Other">\<span class="Other">n<span class="Other">&quot;<span class="Separator">)<span class="Separator">;<span class="Other">
+        <span class="Other">Console<span class="Separator">.<span class="Other">ReadLine<span class="Separator">(<span class="Separator">)<span class="Separator">;<span class="Other">
+    <span class="Separator">}<span class="Other">
+<span class="Separator">}</code></pre>
 </body>
 </html>

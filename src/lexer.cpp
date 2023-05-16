@@ -18,10 +18,9 @@
 
 // Project files
 #include "lexer.h"
-#include "csharp_language.h"
 
 // Regex
-std::regex Lexer::m_regex_tokenizer(R"([a-zA-Z0-9][a-zA-Z0-9_]+|\s+|\{|\}|\(|\)|\[|\]|\;|\,|\.|\:\?\>\<\+\-\*\/\%\^\&\=\!\@\#\$\~\,\_\`\\|\"|\"])");
+std::regex Lexer::m_regex_tokenizer(R"(\w+|\s+|\/\/[^\n]*|\/\*[\s\S]*?\*\/|[{}()\[\];,.:?><+\-*/%&=!@#$~,_`\\|\"]|=)");
 
 // Access Methods
 /**
@@ -56,6 +55,41 @@ void Lexer::start_single(const std::vector<std::string> &filenames)
     }
 }
 
+/**
+ * @brief
+ * Starts the parallel lexer functionality
+ * @param filenames Vector of filenames
+ */
+void Lexer::start_multi(const std::vector<std::string> &filenames)
+{
+    std::vector<std::thread> threads;
+    threads.resize(std::thread::hardware_concurrency());
+
+    try
+    {
+        for (const auto &filename : filenames)
+        {
+            auto tokens = lex_file(filename);
+
+            std::lock_guard<std::mutex> lock(m_file_mutex);
+            threads.emplace_back(std::thread(&Lexer::save_multiple, this,
+                                             filename, tokens));
+        }
+
+        for (auto &thread : threads)
+        {
+            if (thread.joinable())
+                thread.join();
+        }
+
+        threads.clear();
+    }
+    catch (std::exception &e)
+    {
+        throw std::runtime_error(e.what());
+    }
+}
+
 // Methods (Private)
 /**
  * @brief
@@ -72,7 +106,8 @@ std::vector<Token> Lexer::lex_file(const std::string_view &filename)
 
         if (!input_file)
         {
-            throw std::runtime_error("Cannot open file: " + std::string(filename));
+            throw std::runtime_error("Cannot open file: " +
+                                     std::string(filename));
         }
 
         std::string buffer((std::istreambuf_iterator<char>(input_file)),
@@ -112,6 +147,8 @@ std::vector<Token> Lexer::tokenize(const std::string_view &buffer)
 
         const auto token_end = std::sregex_token_iterator();
 
+        std::vector<Token> tokens;
+
         for (auto it{token_begin}; it != token_end; ++it)
         {
             const std::string token = it->str();
@@ -119,11 +156,11 @@ std::vector<Token> Lexer::tokenize(const std::string_view &buffer)
             if (!token.empty())
             {
                 TokenType token_type = identify_token(token);
-                m_tokens.emplace_back(token, token_type);
+                tokens.emplace_back(token, token_type);
             }
         }
 
-        return m_tokens;
+        return tokens;
     }
     catch (const std::exception &e)
     {
@@ -291,28 +328,11 @@ std::string Lexer::token_to_html(const Token &token) const
     std::string html;
     TokenType token_type = token.get_type();
 
-    // Lambda function to check if there are tokens inside a string
-    auto has_tokens = [](const std::string &str)
-    {
-        for (char c : str)
-            if (c == '<' || c == '>')
-                return true;
+    // Add the html tag
+    html += htmlTags.at(token_type);
 
-        return false;
-    };
-
-    // Check if the token is a string literal
-    if (token_type == TokenType::Literal && has_tokens(token.get_value()))
-    {
-        std::string highlighted_value = escape_html(token.get_value());
-        std::string opening_tag = htmlTags.at(TokenType::Literal);
-        html += opening_tag + highlighted_value + "</span>";
-    }
-    else
-    {
-        std::string opening_tag = htmlTags.at(token_type);
-        html += opening_tag + token.get_value() + "</span>";
-    }
+    // Escape the token string
+    html += escape_html(token.get_value());
 
     return html;
 }
@@ -361,8 +381,27 @@ std::string Lexer::get_output_filename_single(const std::string &inputFilename) 
 {
     std::filesystem::path path(inputFilename);
     std::string filename = path.stem().string();
+
     std::filesystem::path outputPath =
         "../outputSingle/" + filename + ".html";
+
+    return outputPath.string();
+}
+
+/**
+ * @brief
+ * Gets the output filename from the output filename
+ * @param inputFilename Input filename
+ * @return std::string Output filename
+ */
+std::string Lexer::get_output_filename_multiple(
+    const std::string &inputFilename) const
+{
+    std::filesystem::path path(inputFilename);
+    std::string filename = path.stem().string();
+
+    std::filesystem::path outputPath =
+        "../outputParallel/" + filename + ".html";
 
     return outputPath.string();
 }
@@ -373,12 +412,41 @@ std::string Lexer::get_output_filename_single(const std::string &inputFilename) 
  * @param filename Filename to save the tokens
  * @throw std::runtime_error If the file cannot be opened
  */
-void Lexer::save_single(const std::string &filename, const std::vector<Token> &tokens) const
+void Lexer::save_single(const std::string &filename,
+                        const std::vector<Token> &tokens) const
 {
     try
     {
         std::string output_filename =
             get_output_filename_single(filename);
+        std::ofstream output_file(output_filename,
+                                  std::ios::out | std::ios::trunc);
+
+        if (!output_file)
+            throw std::runtime_error("Cannot open file: " + output_filename);
+
+        output_file << generate_html(tokens);
+        output_file.close();
+    }
+    catch (std::exception &e)
+    {
+        throw std::runtime_error(e.what());
+    }
+}
+
+/**
+ * @brief
+ * Saves the tokens in a HTML file
+ * @param filename Filename to save the tokens
+ * @throw std::runtime_error If the file cannot be opened
+ */
+void Lexer::save_multiple(const std::string &filename,
+                          const std::vector<Token> &tokens) const
+{
+    try
+    {
+        std::string output_filename =
+            get_output_filename_multiple(filename);
         std::ofstream output_file(output_filename,
                                   std::ios::out | std::ios::trunc);
 
