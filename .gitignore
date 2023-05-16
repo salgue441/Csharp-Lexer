@@ -4,3 +4,6 @@ build/
 # Outputs
 outputParallel/
 outputSingle/
+
+# Visual studio code
+.vscode/
