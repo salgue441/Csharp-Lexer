@@ -22,6 +22,8 @@ Pedro
 C# lexer made with modern C++. This project consists of a lexer that can read a C# file
 and tokenize it. The tokens are then saved in a html file corresponsing to the input file.
 
+The program compares the speeds of single threaded and multithreaded lexers.
+
 ## How to use
 
 ### Requirements
