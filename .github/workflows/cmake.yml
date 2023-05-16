@@ -24,7 +24,6 @@ jobs:
             mkdir build
           fi
 
-          # Output directory
           if [ ! -d "outputSingle" ]; then
             mkdir outputSingle
           fi
@@ -33,13 +32,26 @@ jobs:
             mkdir outputParallel
           fi
 
-          # Configure build with cmake
           cd build
           cmake ..
 
-          # Build the program
           make Lexer
 
-          # Clean up the build files
           make clean
           cd ..
+
+    - name: Test script
+      working-directory: ${{github.workspace}}
+      run: |
+        if [ ! -d "build" ]; then
+          mkdir build
+        fi
+
+        cd build
+        cmake ..
+
+        make run_tests
+
+        make clean
+        cd ..
+
