@@ -11,9 +11,7 @@
  */
 
 // Standard libraries
-#include <iostream>
 #include <fstream>
-#include <future>
 #include <filesystem>
 
 // Project files
