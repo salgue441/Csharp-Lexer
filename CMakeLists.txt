@@ -13,8 +13,8 @@ add_executable(Lexer
     src/main.cpp
 
     # References
-    src/lexer.cpp
-    src/token.cpp
+    src/lexer/lexer.cpp
+    src/token/token.cpp
 )
 
 target_include_directories(Lexer PUBLIC 
@@ -47,7 +47,7 @@ FetchContent_MakeAvailable(googletest)
 # Add tests target
 add_executable(tests
     tests/token_test.cpp
-    src/token.cpp
+    src/token/token.cpp
 )
 
 target_include_directories(tests PUBLIC 

@@ -12,16 +12,15 @@ Pedro
 
 ## Autores
 
-| Nombre                            | Matrícula | GitHub                                     |
-| --------------------------------- | --------- | ------------------------------------------ |
-| Carlos Rodrigo Salguero Alcántara | A00833341 | [salgue441](https://github.com/ salgue441) |
-| Sergio Garnica Gonzalez           | A01704025 | [sgarnica1](https://github.com/sgarnica1)  |
+| Nombre                            | Matrícula | GitHub                                    |
+| --------------------------------- | --------- | ----------------------------------------- |
+| Carlos Rodrigo Salguero Alcántara | A00833341 | [salgue441](https://github.com/salgue441) |
+| Sergio Garnica Gonzalez           | A01704025 | [sgarnica1](https://github.com/sgarnica1) |
 
 ## About
 
-This project is a C# lexer made in C++. It uses threads to read multiple files
-at the same time and then it uses a finite state machine to identify the tokens
-in the files.
+C# lexer made with modern C++. This project consists of a lexer that can read a C# file
+and tokenize it. The tokens are then saved in a html file corresponsing to the input file.
 
 ## How to use
 

@@ -20,10 +20,10 @@
 #include <vector>
 
 // Classes
-#include "lexer.h"
+#include "lexer/lexer.h"
 
 // Utils
-#include "utils.h"
+#include "utils/utils.h"
 
 // Function prototypes
 std::vector<std::filesystem::path> get_filenames(const std::string_view &);

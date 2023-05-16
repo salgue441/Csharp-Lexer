@@ -1,2 +1,6 @@
 # .gitignore
 build/
+
+# Outputs
+outputParallel/
+outputSingle/
