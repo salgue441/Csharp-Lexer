@@ -23,7 +23,9 @@
  * @brief
  * Regex for tokenizing the source code
  */
-std::regex Lexer::m_regex_tokenizer(R"(\w+|\s+|\/\/[^\n]*|\/\*[\s\S]*?\*\/|[{}()\[\];,.:?><+\-*/%&=!@#$~,_`\\|\""]|=|\"[^\"]*\")");
+std::regex Lexer::m_regex_tokenizer(
+    R"(\w+|\s+|\/\/[^\n]*|\/\*[\s\S]*?\*\/|[{}()\[\];,.:?><+\-*/%&=!@#$~,_`\\|\"]|=|\"[^\"]*\"|'[^']*')",
+    std::regex_constants::optimize);
 
 // Access Methods
 /**
@@ -262,6 +264,12 @@ TokenType Lexer::identify_token(const std::string_view &token)
 
     if (it != token_map.end())
         return it->second;
+
+    // If comment
+    if (token.find("//") != std::string::npos ||
+        token.find("/*") != std::string::npos ||
+        token.find("*/") != std::string::npos)
+        return TokenType::Comment;
 
     return TokenType::Other;
 }
