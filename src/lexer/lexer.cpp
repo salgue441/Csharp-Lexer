@@ -13,6 +13,7 @@
 // Standard libraries
 #include <fstream>
 #include <filesystem>
+#include <iostream>
 
 // Project files
 #include "lexer.h"
@@ -22,7 +23,7 @@
  * @brief
  * Regex for tokenizing the source code
  */
-std::regex Lexer::m_regex_tokenizer(R"(\w+|\s+|\/\/[^\n]*|\/\*[\s\S]*?\*\/|[{}()\[\];,.:?><+\-*/%&=!@#$~,_`\\|\"]|=)");
+std::regex Lexer::m_regex_tokenizer(R"(\w+|\s+|\/\/[^\n]*|\/\*[\s\S]*?\*\/|[{}()\[\];,.:?><+\-*/%&=!@#$~,_`\\|\""]|=|\"[^\"]*\")");
 
 // Access Methods
 /**
@@ -314,7 +315,7 @@ std::string Lexer::escape_html(const std::string &input) const
  */
 std::string Lexer::token_to_html(const Token &token) const
 {
-    static const std::unordered_map<TokenType, std::string> htmlTags = {
+    static const std::unordered_map<TokenType, std::string> html_tags = {
         {TokenType::Keyword, "<span class=\"Keyword\">"},
         {TokenType::Identifier, "<span class=\"Identifier\">"},
         {TokenType::Literal, "<span class=\"Literal\">"},
@@ -341,7 +342,7 @@ std::string Lexer::token_to_html(const Token &token) const
     TokenType token_type = token.get_type();
 
     // Add the html tag
-    html += htmlTags.at(token_type);
+    html += html_tags.at(token_type);
 
     // Escape the token string
     html += escape_html(token.get_value());
