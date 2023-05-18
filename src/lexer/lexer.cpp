@@ -271,6 +271,11 @@ TokenType Lexer::identify_token(const std::string_view &token)
         token.find("*/") != std::string::npos)
         return TokenType::Comment;
 
+    // If literal
+    if (token.find("\"") != std::string::npos ||
+        token.find("\'") != std::string::npos)
+        return TokenType::Literal;
+
     return TokenType::Other;
 }
 
