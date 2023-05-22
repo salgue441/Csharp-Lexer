@@ -10,6 +10,10 @@
  *
  */
 
+// C++ standard libraries
+#include <unordered_map>
+
+// Project files
 #include "token.h"
 
 // Constructor
@@ -80,84 +84,52 @@ bool Token::operator==(const Token &other) const
     return m_value == other.m_value && m_type == other.m_type;
 }
 
+// Methods (Private)
 /**
  * @brief
- * Operator overload for the << operator
- * @param os Output stream
- * @param token Token to print
- * @return std::ostream& Output stream
+ * Get the string representation of the token type
+ * @param type Type of the token
+ * @return std::string String representation of the token type
  */
-std::ostream &operator<<(std::ostream &os, const Token &token)
+std::string Token::get_type_string(TokenType type) const
 {
-    os << token.to_string();
-    return os;
+    static const std::unordered_map<TokenType, std::string> type_strings = {
+        {TokenType::Keyword, "Keyword"},
+        {TokenType::Identifier, "Identifier"},
+        {TokenType::Literal, "Literal"},
+        {TokenType::Operator, "Operator"},
+        {TokenType::Separator, "Separator"},
+        {TokenType::Comment, "Comment"},
+        {TokenType::Preprocessor, "Preprocessor"},
+        {TokenType::ContextualKeyword, "ContextualKeyword"},
+        {TokenType::AccessSpecifier, "AccessSpecifier"},
+        {TokenType::AttributeTarget, "AttributeTarget"},
+        {TokenType::AttributeUsage, "AttributeUsage"},
+        {TokenType::EscapedIdentifier, "EscapedIdentifier"},
+        {TokenType::InterpolatedStringLiteral, "InterpolatedStringLiteral"},
+        {TokenType::NullLiteral, "NullLiteral"},
+        {TokenType::VerbatimStringLiteral, "VerbatimStringLiteral"},
+        {TokenType::RegularExpressionLiteral, "RegularExpressionLiteral"},
+        {TokenType::NumericLiteral, "NumericLiteral"},
+        {TokenType::Other, "Other"}};
+
+    return type_strings.at(type);
 }
 
-// Private methods
+// Methods (Public)
 /**
  * @brief
- * Gets the string representation of the token type
- */
-std::string Token::get_type_string() const
-{
-    switch (m_type)
-    {
-    case TokenType::Keyword:
-        return "Keyword";
-    case TokenType::Identifier:
-        return "Identifier";
-    case TokenType::Operator:
-        return "Operator";
-    case TokenType::Separator:
-        return "Separator";
-    case TokenType::Comment:
-        return "Comment";
-    case TokenType::VerbatimStringLiteral:
-        return "VerbatimStringLiteral";
-    case TokenType::InterpolatedStringLiteral:
-        return "InterpolatedStringLiteral";
-    case TokenType::EscapedIdentifier:
-        return "EscapedIdentifier";
-    case TokenType::ContextualKeyword:
-        return "ContextualKeyword";
-    case TokenType::AccessSpecifier:
-        return "AccessSpecifier";
-    case TokenType::AttributeTarget:
-        return "AttributeTarget";
-    case TokenType::AttributeUsage:
-        return "AttributeUsage";
-    case TokenType::Preprocessor:
-        return "Preprocessor";
-    case TokenType::RegularExpressionLiteral:
-        return "RegularExpressionLiteral";
-    case TokenType::NullLiteral:
-        return "NullLiteral";
-    case TokenType::NumericLiteral:
-        return "NumericLiteral";
-
-    default:
-        return "Other";
-    }
-}
-
-// Public methods
-/**
- * @brief
- * Prints the token in a readable format
- * @return std::string String with the token
+ * Get the string representation of the token
+ * @return std::string String representation of the token
  */
 std::string Token::to_string() const
 {
-    std::ostringstream oss;
-
-    oss << "Value: " << m_value << ", Type: " << get_type_string() << "\n";
-
-    return oss.str();
+    return "Token: " + m_value + " (" + get_type_string(m_type) + ")";
 }
 
 /**
  * @brief
- * Checks if a token is a keyword
+ * Checks if the token is a keyword
  * @return true If the token is a keyword
  * @return false If the token is not a keyword
  */
@@ -168,7 +140,7 @@ bool Token::is_keyword() const
 
 /**
  * @brief
- * Checks if a token is an identifier
+ * Checks if the token is an identifier
  * @return true If the token is an identifier
  * @return false If the token is not an identifier
  */
@@ -179,7 +151,7 @@ bool Token::is_identifier() const
 
 /**
  * @brief
- * Checks if a token is a literal
+ * Checks if the token is a literal
  * @return true If the token is a literal
  * @return false If the token is not a literal
  */
@@ -190,7 +162,7 @@ bool Token::is_literal() const
 
 /**
  * @brief
- * Checks if a token is an operator
+ * Checks if the token is an operator
  * @return true If the token is an operator
  * @return false If the token is not an operator
  */
@@ -201,7 +173,7 @@ bool Token::is_operator() const
 
 /**
  * @brief
- * Checks if a token is a separator
+ * Checks if the token is a separator
  * @return true If the token is a separator
  * @return false If the token is not a separator
  */
@@ -212,7 +184,7 @@ bool Token::is_separator() const
 
 /**
  * @brief
- * Checks if a token is a comment
+ * Checks if the token is a comment
  * @return true If the token is a comment
  * @return false If the token is not a comment
  */
@@ -223,8 +195,8 @@ bool Token::is_comment() const
 
 /**
  * @brief
- * Checks if a token is a preprocessor
- * @return true  If the token is a preprocessor
+ * Checks if the token is a preprocessor
+ * @return true If the token is a preprocessor
  * @return false If the token is not a preprocessor
  */
 bool Token::is_preprocessor() const
@@ -256,9 +228,9 @@ bool Token::is_access_specifier() const
 
 /**
  * @brief
- * Checks if a token is an attribute target specifier
- * @return true If the token is an attribute target specifier
- * @return false If the token is not an attribute target specifier
+ * Checks if the token is an attribute target
+ * @return true If the token is an attribute target
+ * @return false If the token is not an attribute target
  */
 bool Token::is_attribute_target() const
 {
@@ -267,9 +239,9 @@ bool Token::is_attribute_target() const
 
 /**
  * @brief
- * Checks if a token is an attribute usage specifier
- * @return true If the token is an attribute usage specifier
- * @return false If the token is not an attribute usage specifier
+ * Checks if the token is an attribute usage
+ * @return true If the token is an attribute usage
+ * @return false If the token is not an attribute usage
  */
 bool Token::is_attribute_usage() const
 {
@@ -278,7 +250,7 @@ bool Token::is_attribute_usage() const
 
 /**
  * @brief
- * Checks if the token is an espaced identifier
+ * Checks if the token is an escaped identifier
  * @return true If the token is an escaped identifier
  * @return false If the token is not an escaped identifier
  */
@@ -289,9 +261,9 @@ bool Token::is_escaped_identifier() const
 
 /**
  * @brief
- * Checks if the token is an interpolated string
- * @return true If the token is an interpolated string
- * @return false If the token is not an interpolated string
+ * Checks if the token is an interpolated string literal
+ * @return true If the token is an interpolated string literal
+ * @return false If the token is not an interpolated string literal
  */
 bool Token::is_interpolated_string() const
 {
@@ -300,9 +272,9 @@ bool Token::is_interpolated_string() const
 
 /**
  * @brief
- * Checks if the token is nullable
- * @return true If the token is nullable
- * @return false If the token is not nullable
+ * Checks if the token is a null literal
+ * @return true If the token is a null literal
+ * @return false If the token is not a null literal
  */
 bool Token::is_nullable() const
 {
@@ -311,9 +283,9 @@ bool Token::is_nullable() const
 
 /**
  * @brief
- * Checks if the token is a verbatim string
- * @return true If the token is a verbatim string
- * @return false If the token is not a verbatim string
+ * Checks if the token is a verbatim string literal
+ * @return true If the token is a verbatim string literal
+ * @return false If the token is not a verbatim string literal
  */
 bool Token::is_verbatim_string() const
 {
@@ -322,9 +294,9 @@ bool Token::is_verbatim_string() const
 
 /**
  * @brief
- * Checks if the token is a regular expression
- * @return true If the token is a regular expression
- * @return false If the token is not a regular expression
+ * Checks if the token is a regular expression literal
+ * @return true If the token is a regular expression literal
+ * @return false If the token is not a regular expression literal
  */
 bool Token::is_regular_expression() const
 {

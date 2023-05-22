@@ -15,9 +15,8 @@
 
 // C++ standard libraries
 #include <string>
-#include <sstream>
-#include <array>
 #include <optional>
+#include <ostream>
 
 /**
  * @brief
@@ -71,7 +70,6 @@ public:
 
     // Operator overload
     bool operator==(const Token &) const;
-    friend std::ostream &operator<<(std::ostream &, const Token &);
 
     // Functions
     std::string to_string() const;
@@ -98,7 +96,7 @@ private:
     TokenType m_type;
 
     // Functions
-    std::string get_type_string() const;
+    std::string get_type_string(TokenType) const;
 };
 
 #endif //!  TOKEN_H
