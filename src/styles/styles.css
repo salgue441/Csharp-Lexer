@@ -19,7 +19,8 @@
   --interpolated-string-literal-color: #ce9178;
   --null-literal-color: #569cd6;
   --verbatim-string-literal-color: #ce9178;
-  --other-color: #d4d4d4;
+  --body-color: #d4d4d4;
+  --text-color: #ce9178;
 }
 
 /* Base styles */
@@ -27,6 +28,7 @@ code {
   font-family: "Victor Mono", monospace;
   font-size: 1em;
   line-height: 1.5em;
+  color: var(--body-color);
 }
 
 /* Tokens */
