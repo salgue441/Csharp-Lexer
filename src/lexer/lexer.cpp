@@ -41,8 +41,8 @@
  * @details uses the ECMAScript regex syntax and is optimized
  */
 std::regex Lexer::m_regex_tokenizer(
-    R"(\w+|\s+|\/\/[^\n]*|\/\*[\s\S]*?\*\/|[{}()\[\];,.:?><+\-*/%&=!@#$~,_`\\|\"]|=|\"(?:[^\"\\]|\\.)*\"|'(?:[^'\\]|\\.)*')",
-    std::regex_constants::optimize | std::regex_constants::ECMAScript);
+    R"(\".*\"|\w+|\s+|\/\/[^\n]*|\/\*[\s\S]*?\*\/|[{}()\[\];,.:?><+\-*/%&=!@#$~,_`\\|\"])",
+    std::regex::optimize | std::regex_constants::ECMAScript);
 
 // Access Methods
 /**
@@ -303,36 +303,35 @@ TokenType Lexer::identify_token(const std::string_view &token)
  */
 std::string Lexer::escape_html(const std::string &input) const
 {
-    std::stringstream escaped;
-    escaped.str(std::string{});
-    escaped << std::noskipws;
+    std::string result;
+    result.reserve(input.size());
 
-    for (char c : input)
+    for (const auto &c : input)
     {
         switch (c)
         {
         case '&':
-            escaped << "&amp;";
+            result.append("&amp;");
             break;
         case '\"':
-            escaped << "&quot;";
+            result.append("&quot;");
             break;
         case '\'':
-            escaped << "&#39;";
+            result.append("&apos;");
             break;
         case '<':
-            escaped << "&lt;";
+            result.append("&lt;");
             break;
         case '>':
-            escaped << "&gt;";
+            result.append("&gt;");
             break;
         default:
-            escaped << c;
+            result.append(&c, 1);
             break;
         }
     }
 
-    return escaped.str();
+    return result;
 }
 
 /**
