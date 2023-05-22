@@ -4,16 +4,15 @@
  * @author Sergio Garnica
  * @brief Implementation of the Lexer class
  * @version 0.1
- * @date 2023-05-12
+ * @date 2023-05-22
  *
  * @copyright Copyright (c) 2023
  *
  */
 
-// Standard libraries
+// C++ standard libraries
 #include <fstream>
 #include <filesystem>
-#include <iostream>
 
 // Project files
 #include "lexer.h"
@@ -21,11 +20,28 @@
 // Regex
 /**
  * @brief
- * Regex for tokenizing the source code
+ * Regex for tokenizing the Csharp source code. Matches the following:
+ * - Words
+ * - Spaces, tabs, newlines, etc.
+ * - Single line comments
+ * - Multiline comments
+ * - Brackets
+ * - Parenthesis
+ * - Semicolons
+ * - Commas
+ * - Periods
+ * - Colons
+ * - Question marks
+ * - Less than and greater than signs
+ * - Plus, minus, asterisk, forward slash, percent, ampersand, equal, exclamation, at, hash, dollar, tilde, underscore, backtick, backslash, vertical bar, and double quotes
+ * - Equals sign
+ * - Strings
+ * - Characters
+ * @details uses the ECMAScript regex syntax and is optimized
  */
 std::regex Lexer::m_regex_tokenizer(
-    R"(\w+|\s+|\/\/[^\n]*|\/\*[\s\S]*?\*\/|[{}()\[\];,.:?><+\-*/%&=!@#$~,_`\\|\"]|=|\"[^\"]*\"|'[^']*')",
-    std::regex_constants::optimize);
+    R"(\w+|\s+|\/\/[^\n]*|\/\*[\s\S]*?\*\/|[{}()\[\];,.:?><+\-*/%&=!@#$~,_`\\|\"]|=|\"(?:[^\"\\]|\\.)*\"|'(?:[^'\\]|\\.)*')",
+    std::regex_constants::optimize | std::regex_constants::ECMAScript);
 
 // Access Methods
 /**
@@ -35,7 +51,7 @@ std::regex Lexer::m_regex_tokenizer(
  */
 std::vector<Token> Lexer::get_tokens() const
 {
-    return m_tokens;
+    return std::move(m_tokens);
 }
 
 // Methods (Public)
@@ -86,8 +102,6 @@ void Lexer::lex_parallel(const std::vector<std::string> &filenames)
         for (const auto &filename : filenames)
         {
             auto tokens = lex_file(filename);
-
-            std::lock_guard<std::mutex> lock(m_file_mutex);
             threads.emplace_back(std::thread(&Lexer::save_multiple, this,
                                              filename, tokens));
         }
