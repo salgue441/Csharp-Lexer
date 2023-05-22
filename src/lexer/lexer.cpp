@@ -41,7 +41,7 @@
  * @details uses the ECMAScript regex syntax and is optimized
  */
 std::regex Lexer::m_regex_tokenizer(
-    R"(\".*\"|\w+|\s+|\/\/[^\n]*|\/\*[\s\S]*?\*\/|[{}()\[\];,.:?><+\-*/%&=!@#$~,_`\\|\"])",
+    R"(\".*\"|\b_?[0-9]+(?:\.[0-9]+)?\b|\w+|\s+|\/\/[^\n]*|\/\*[\s\S]*?\*\/|[{}()\[\];,.:?><+\-*/%&=!@#$~,_`\\|\"])",
     std::regex::optimize | std::regex_constants::ECMAScript);
 
 // Access Methods
@@ -291,6 +291,14 @@ TokenType Lexer::identify_token(const std::string_view &token)
     if (token.find("\"") != std::string::npos ||
         token.find("\'") != std::string::npos)
         return TokenType::Literal;
+
+    // If number starting with underscore
+    if (token.length() > 1 && token[0] == '_' && std::isdigit(token[1]))
+        return TokenType::NumericLiteral;
+
+    // If number
+    if (std::isdigit(token[0]))
+        return TokenType::NumericLiteral;
 
     return TokenType::Other;
 }

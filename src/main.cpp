@@ -59,8 +59,6 @@ int main(int argc, char **argv)
     auto filenames = get_filenames(input_directory);
     std::unique_ptr<Lexer> lexer{std::make_unique<Lexer>()};
 
-    std::cout << "Number of files: " << filenames.size() << std::endl;
-
     // Convert filenames to strings
     std::vector<std::string> filenames_str;
     std::transform(filenames.begin(), filenames.end(),
