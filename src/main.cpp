@@ -41,7 +41,7 @@ int main(int argc, char **argv)
     {
         std::cerr
             << "Usage: " << argv[0]
-            << " <filename> <output_filename>" << std::endl;
+            << "input_directory" << std::endl;
 
         return 1;
     }
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
     }
 
     auto filenames = get_filenames(input_directory);
-    std::shared_ptr<Lexer> lexer{std::make_shared<Lexer>()};
+    std::unique_ptr<Lexer> lexer{std::make_unique<Lexer>()};
 
     // Convert filenames to strings
     std::vector<std::string> filenames_str;
