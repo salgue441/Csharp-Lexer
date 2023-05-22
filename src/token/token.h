@@ -62,11 +62,11 @@ public:
 
     // Access methods
     std::string get_value() const;
-    TokenType get_type() const;
+    std::optional<TokenType> get_type() const;
 
     // Mutator methods
     void set_value(std::string);
-    void set_type(TokenType);
+    void set_type(std::optional<TokenType> type);
 
     // Operator overload
     bool operator==(const Token &) const;

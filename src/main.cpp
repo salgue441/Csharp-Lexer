@@ -51,7 +51,8 @@ int main(int argc, char **argv)
     if (!std::filesystem::exists(input_directory) ||
         !std::filesystem::is_directory(input_directory))
     {
-        std::cerr << "Error: " << input_directory << " is not a valid directory" << std::endl;
+        std::cerr << "Error: " << input_directory
+                  << " is not a valid directory" << std::endl;
         return 1;
     }
 

@@ -368,13 +368,14 @@ std::string Lexer::token_to_html(const Token &token) const
         {TokenType::Other, "<span class=\"Other\">"}};
 
     std::string html;
-    TokenType token_type = token.get_type();
+    auto token_type = token.get_type();
 
-    // Add the html tag
-    html += html_tags.at(token_type);
+    if (token_type != TokenType::Other)
+        html += html_tags.at(token_type.value());
 
     // Escape the token string
     html += escape_html(token.get_value());
+    html += "</span>";
 
     return html;
 }

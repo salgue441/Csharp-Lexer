@@ -43,9 +43,9 @@ std::string Token::get_value() const
 /**
  * @brief
  * Get the type of the token
- * @return TokenType Type of the token
+ * @return std::optional<TokenType> Type of the token
  */
-TokenType Token::get_type() const
+std::optional<TokenType> Token::get_type() const
 {
     return m_type;
 }
@@ -58,7 +58,7 @@ TokenType Token::get_type() const
  */
 void Token::set_value(std::string value)
 {
-    m_value = value;
+    m_value = std::move(value);
 }
 
 /**
@@ -66,9 +66,9 @@ void Token::set_value(std::string value)
  * Set the type of the token
  * @param type Type of the token
  */
-void Token::set_type(TokenType type)
+void Token::set_type(std::optional<TokenType> type)
 {
-    m_type = type;
+    m_type = type.value_or(TokenType::Other);
 }
 
 // Operator overloads
