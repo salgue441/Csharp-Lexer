@@ -53,14 +53,10 @@ private:
     std::vector<Token> m_tokens;
     static std::regex m_regex_tokenizer;
 
-    // Language and token mapping
-    std::unordered_map<std::string_view,
-                       std::unordered_map<std::string_view, TokenType>>
-        m_language_map;
-
     // Lexer methods
     std::vector<Token> lex_file(const std::string_view &);
     void lex_parallel(const std::vector<std::string> &);
+    void lex_and_save(const std::string &);
 
     // Token methods
     std::vector<Token> tokenize(const std::string_view &);

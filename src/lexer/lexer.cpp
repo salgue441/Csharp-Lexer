@@ -13,9 +13,12 @@
 // C++ standard libraries
 #include <fstream>
 #include <filesystem>
+#include <future>
+#include <iostream>
 
 // Project files
 #include "lexer.h"
+#include "../threads/thread_pool.h"
 
 // Regex
 /**
@@ -94,30 +97,31 @@ void Lexer::start_multi(const std::vector<std::string> &filenames)
  */
 void Lexer::lex_parallel(const std::vector<std::string> &filenames)
 {
-    std::vector<std::thread> threads;
-    threads.resize(std::thread::hardware_concurrency());
+    ThreadPool pool(std::thread::hardware_concurrency());
 
     try
     {
         for (const auto &filename : filenames)
         {
-            auto tokens = lex_file(filename);
-            threads.emplace_back(std::thread(&Lexer::save_multiple, this,
-                                             filename, tokens));
+            pool.enqueue(&Lexer::lex_and_save,
+                         this, filename);
         }
-
-        for (auto &thread : threads)
-        {
-            if (thread.joinable())
-                thread.join();
-        }
-
-        threads.clear();
     }
     catch (std::exception &e)
     {
         throw std::runtime_error(e.what());
     }
+}
+
+/**
+ * @brief
+ * Lexes a file and saves the tokens to a file
+ * @param filename Filename to lex
+ */
+void Lexer::lex_and_save(const std::string &filename)
+{
+    auto tokens = lex_file(filename);
+    save_multiple(filename, tokens);
 }
 
 /**

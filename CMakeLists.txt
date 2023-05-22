@@ -15,6 +15,7 @@ add_executable(Lexer
     # References
     src/lexer/lexer.cpp
     src/token/token.cpp
+    src/threads/thread_pool.cpp
 )
 
 target_include_directories(Lexer PUBLIC 
