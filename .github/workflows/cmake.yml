@@ -15,10 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Run script
-        working-directory: ${{github.workspace}}
+        working-directory: ${{ github.workspace }}
         run: |
           if [ ! -d "build" ]; then
             mkdir build
@@ -40,18 +41,17 @@ jobs:
           make clean
           cd ..
 
-    - name: Test script
-      working-directory: ${{github.workspace}}
-      run: |
-        if [ ! -d "build" ]; then
-          mkdir build
-        fi
+      - name: Test script
+        working-directory: ${{ github.workspace }}
+        run: |
+          if [ ! -d "build" ]; then
+            mkdir build
+          fi
 
-        cd build
-        cmake ..
+          cd build
+          cmake ..
 
-        make run_tests
+          make run_tests
 
-        make clean
-        cd ..
-
+          make clean
+          cd ..

@@ -43,7 +43,7 @@ public:
     ~Lexer() = default;
 
     // Acess Methods
-    std::vector<Token> get_tokens() const;
+    const std::vector<Token> get_tokens() const noexcept;
 
     // Methods
     void start_single(const std::vector<std::string> &);
