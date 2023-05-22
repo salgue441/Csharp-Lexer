@@ -13,8 +13,6 @@
 // C++ standard libraries
 #include <fstream>
 #include <filesystem>
-#include <future>
-#include <iostream>
 
 // Project files
 #include "lexer.h"
@@ -103,8 +101,8 @@ void Lexer::lex_parallel(const std::vector<std::string> &filenames)
     {
         for (const auto &filename : filenames)
         {
-            pool.enqueue(&Lexer::lex_and_save,
-                         this, filename);
+            pool.enqueue([&]()
+                         { lex_and_save(filename); });
         }
     }
     catch (std::exception &e)

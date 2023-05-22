@@ -16,6 +16,7 @@
 #include <filesystem>
 #include <algorithm>
 #include <vector>
+#include <memory>
 
 // Classes
 #include "lexer/lexer.h"
@@ -45,23 +46,33 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    auto filenames = get_filenames(argv[1]);
-    Lexer lexer;
+    std::string_view input_directory{argv[1]};
 
-    // Converting filenames to string
-    std::vector<std::string> filenames_string;
+    if (!std::filesystem::exists(input_directory) ||
+        !std::filesystem::is_directory(input_directory))
+    {
+        std::cerr << "Error: " << input_directory << " is not a valid directory" << std::endl;
+        return 1;
+    }
+
+    auto filenames = get_filenames(input_directory);
+    std::shared_ptr<Lexer> lexer{std::make_shared<Lexer>()};
+
+    // Convert filenames to strings
+    std::vector<std::string> filenames_str;
     std::transform(filenames.begin(), filenames.end(),
-                   std::back_inserter(filenames_string),
+                   std::back_inserter(filenames_str),
                    [](const std::filesystem::path &path)
                    {
                        return path.string();
                    });
 
+    // Start the lexer and measure the time
     auto single_time = utils::measure_time([&]()
-                                           { lexer.start_single(filenames_string); });
+                                           { lexer->start_single(filenames_str); });
 
     auto multi_time = utils::measure_time([&]()
-                                          { lexer.start_multi(filenames_string); });
+                                          { lexer->start_multi(filenames_str); });
 
     std::cout
         << "Execution time for Single thread Lexer "
@@ -85,15 +96,7 @@ std::vector<std::filesystem::path> get_filenames(
     const std::string_view &input_directory)
 {
     std::vector<std::filesystem::path> filenames;
-    std::filesystem::path path{input_directory};
-
-    if (!std::filesystem::is_directory(path))
-    {
-        std::cerr << "Error: " << input_directory
-                  << " is not a valid directory" << std::endl;
-
-        exit(1);
-    }
+    std::filesystem::path path(input_directory);
 
     for (const auto &entry : std::filesystem::directory_iterator(path))
         if (entry.path().extension() == ".cs")
@@ -101,9 +104,7 @@ std::vector<std::filesystem::path> get_filenames(
 
     if (filenames.empty())
     {
-        std::cerr << "Error: no input files found in "
-                  << input_directory << std::endl;
-
+        std::cerr << "Error: no input files found in " << input_directory << std::endl;
         exit(1);
     }
 
