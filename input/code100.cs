@@ -9,7 +9,6 @@ class CubeRoot
         Console.Write("Enter the Number : ");
         num = double.Parse(Console.ReadLine());
         res = Math.Ceiling(Math.Pow(num, (double)1 / 3));
-        Console.Write("Cube Root : " + res);
- 
+        Console.Write("Cube Root : " + res); 
     }
 }

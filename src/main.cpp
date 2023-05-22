@@ -100,8 +100,13 @@ std::vector<std::filesystem::path> get_filenames(
     std::filesystem::path path(input_directory);
 
     for (const auto &entry : std::filesystem::directory_iterator(path))
+    {
+        if (!std::filesystem::is_regular_file(entry))
+            continue;
+
         if (entry.path().extension() == ".cs")
             filenames.push_back(entry.path());
+    }
 
     if (filenames.empty())
     {
